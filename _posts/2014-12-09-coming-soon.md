@@ -2,8 +2,8 @@
 layout: post
 title: "Coming Soon"
 description: ""
-category: Misc 
-tags: [Misc]
+category: misc 
+tags: [misc]
 ---
 {% include JB/setup %}
 

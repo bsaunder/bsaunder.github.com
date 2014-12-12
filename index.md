@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Bryan Saunders
-tagline: Supporting tagline
+tagline: A Tech Blog
+category: misc 
+tags: [misc]
 ---
 {% include JB/setup %}
 
