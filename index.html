@@ -12,9 +12,9 @@ tags: [misc]
 {% for post in paginator.posts %}
   <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
   <div class="content">
-    {{ post.content }}
+    {{ post.excerpt }}
   </div>
-  <aside class="details">posted on the <time>{{ post.date | date_to_string }}</time></aside>
+  <aside class="details">posted on <time>{{ post.date | date_to_string }}</time></aside>
 {% endfor %}
  
 <!-- pagination (a page1 folder isn't created by Jekyll.
@@ -26,7 +26,7 @@ specified separately) -->
     {% if paginator.previous_page %}
       {% if paginator.previous_page == 1 %}
         <li>
-          <a href="/">&laquo;</a>
+          <a href="/">Prev</a>
         </li>
       {% else %}
         <li>
@@ -35,7 +35,7 @@ specified separately) -->
       {% endif %}
     {% else %}
       <li class="disabled">
-        <a href="#">&laquo;</a>
+        <a href="#">Prev</a>
       </li>
     {% endif %}
     {% if paginator.page == 1 %}
@@ -60,11 +60,11 @@ specified separately) -->
     {% endfor %}
     {% if paginator.next_page %}
       <li>
-        <a href="/page{{paginator.next_page}}">&raquo;</a>
+        <a href="/page{{paginator.next_page}}">Next</a>
       </li>
     {% else %}
       <li class="disabled">
-        <a href="#">&raquo;</a>
+        <a href="#">Next</a>
       </li>
     {% endif %}
   </ul>
