@@ -1,0 +1,28 @@
+---
+layout: post
+title: Resize VirtualBox Hard Drive
+date: 2012-06-20 17:23:58.000000000 -04:00
+categories:
+- Linux
+- Virtualization
+tags:
+- linux
+- virtualbox
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>Use the following command to resize a VirtualBox Hard Drive in Linux. It may or may not work in Windows as well.</p>
+<p><code lang="bash[lines-notools]">VBoxManage modifyhd YOUR_HARD_DISK.vdi --resize SIZE_IN_MB</code></p>
+<p>40960 MB = 40 GB</p>
+<p>Source: <a href="http://www.webupd8.org/2011/02/how-to-easily-resize-virtualbox-40-hard.html">http://www.webupd8.org/2011/02/how-to-easily-resize-virtualbox-40-hard.html</a></p>
+<p><strong>Note:</strong> Running this command on a RHEL5.8 x86_64 VM caused errors when logging in as users other than root. I believe the partitions inside the VM will need to be resized as well, after running this command.</p>

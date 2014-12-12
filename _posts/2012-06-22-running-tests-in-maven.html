@@ -1,0 +1,31 @@
+---
+layout: post
+title: Running Tests in Maven
+date: 2012-06-22 12:54:22.000000000 -04:00
+categories:
+- Development
+- Maven
+- Testing
+tags:
+- java
+- maven
+- testing
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>To run a single tests class and all of its methods in Maven, you need to use the command:<br />
+<code lang="bash[lines-notools]">mvn test -Dtest=TestCircle</code><br />
+Where TestCircle is the test class name.</p>
+<p>To run a single test method in Maven, you need to provide the command as:<br />
+<code lang="bash[lines-notools]">mvn test -Dtest=TestCircle#xyz</code><br />
+Where TestCircle is the test class name and xyz is the test method.</p>
+<p>Note: You can also use wild card characters in the method name and class name.</p>

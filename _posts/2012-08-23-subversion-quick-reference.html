@@ -1,0 +1,73 @@
+---
+layout: post
+title: Subversion Quick Reference
+date: 2012-08-23 12:08:29.000000000 -04:00
+categories:
+- Subversion
+- Version Control
+tags:
+- subversion
+- version-control
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>Below is a quick reference for several of the most commonly used Subversion commands. Since I have been using both Git and Subversion lately for different projects, I routinely get the commands for the two confused. To help out with that, I created this quick reference.</p>
+<h2>Commands</h2>
+<h3>checkout / co</h3>
+<p>Checks out a working copy of the course code into the given directory<br />
+<code lang="shell[lines-notools]">svn checkout REPO_URL FOLDER</code><br />
+<code lang="shell[lines-notools]">svn co REPO_URL FOLDER</code></p>
+<h3>import</h3>
+<p>Imports the directory and all files/sub-directories into the subversion server at the specified URL. The URL can be several levels deep.<br />
+<code lang="shell[lines-notools]">svn import -m "Import Message" FOLDER REPO_URL</code></p>
+<h3>update</h3>
+<p>Updates the repository to the most recent code.<br />
+<code lang="shell[lines-notools]">svn update</code><br />
+Add the <em>-r</em> option to update to a specific revision number.<br />
+<code lang="shell[lines-notools]">svn update -r REV</code></p>
+<h3>revert</h3>
+<p>Reverts all the changes made to the current working copy that have not yet been committed. Adding the optional FILE will result in only that file being reverted. The <em>-R</em> flag will tell the command to recurse into all sub-directories as well.<br />
+<code lang="shell[lines-notools]">svn revert [-R] [FILE]</code></p>
+<h3>diff</h3>
+<p>Shows the differences between the local copy of FILE and the current working copy.<br />
+<code lang="shell[lines-notools]">svn diff FILE</code></p>
+<h3>info</h3>
+<p>Gives you info about the current working copy, including the URL of the repository it points to, and the last changed date/author.<br />
+<code lang="shell[lines-notools]">svn info</code></p>
+<h3>list</h3>
+<p>This will list the files in source control for the current workspace directory. If you add the optional REPO_URL then it will list all the files in that repo.<br />
+<code lang="shell[lines-notools]">svn -v list [REPO_URL]</code></p>
+<h3>commit/ci</h3>
+<p>Sends all changes from your local working copy to the repo. If you do not provde a log message with your commit, svn will launch your editor for you to provide one.<br />
+<code lang="shell[lines-notools]">svn commit -m "MESSAGE GOES HERE"</code></p>
+<h3>log</h3>
+<p>Shows log messages from the repo. If no arguments are supplied, svn log shows the log messages for all files and directories inside (and including) the current working directory of your working copy. You can refine the results by specifying a path, one or more revisions, or any combination of the two.<br />
+<code lang="shell[lines-notools]">svn log [PATH]</code></p>
+<h3>add</h3>
+<p>Adds the specified file(s) to version control for the repo associated with the current directory. By default it will recurse into any directories you add and add all of the directories content as well. You can set the level of recurrsion using the  <em>--depth</em> option.<br />
+<code lang="shell[lines-notools]">svn add [PATH(s)] [OPTIONS]</code></p>
+<h3>move/mv</h3>
+<p>This command moves files or directories in your working copy or in the repository. When moving multiple sources, they will be added as children of DST, which must be a directory.<br />
+<code lang="shell[lines-notools]">svn move [PATH(s)] [DEST]</code></p>
+<h3>delete/del/remove/rm</h3>
+<p>Removes the specified file(s) from your local machine as well as version control for the repo associated with the current directory. If you want to keep your local files, you can use the option <em>--keep-local</em>. By default this comment will not delete unmodified or unversioned files, unless the <em>--force</em> option is used.<br />
+<code lang="shell[lines-notools]">svn delete [PATH(s)] [OPTIONS]</code></p>
+<h3>blame/praise/annotate/ann</h3>
+<p>Shows author and revision information inline for the specified files or URLs. Each line of text is annotated at the beginning with the author (username) and the revision number for the last change to that line.<br />
+<code lang="shell[lines-notools]">svn blame [TARGET]</code></p>
+<h3>copy/cp</h3>
+<p>Copies one or more files in your working copy.<br />
+<code lang="shell[lines-notools]">svn copy [SRC...] [DST]</code></p>
+<h2>References</h2>
+<ul>
+<li><a href="http://svnbook.red-bean.com/en/1.7/index.html" target="_blank">Subversion Book</a></li>
+</ul>

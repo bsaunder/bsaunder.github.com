@@ -1,0 +1,72 @@
+---
+layout: post
+title: Signing/Encrypting Email with a CAC in Outlook 2010
+date: 2012-06-21 21:08:37.000000000 -04:00
+categories:
+- Outlook
+- Windows
+tags:
+- cac
+- encryption
+- outlook
+- security
+- windows
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<h3><strong>Introduction</strong></h3>
+<p><span>If you have a Digital Certificate, you can use it to digitally sign and encrypt emails.&nbsp; When you are using Microsoft Outlook as your email client, you will need to first configure Outlook to use your certificate.&nbsp; This document assumes that you have Outlook 2010 configured as your email client (Note: the certificate installation process differs slightly for Outlook 2003 and Outlook 2007).</span></p>
+<ol>
+<li>First you must have your Digital Certificate installed on your computer and have your computer CAC Enabled.</li>
+<li>Once you have your Digital Certificate installed, you should open Outlook. </li>
+<li>Once Outlook is opened, click on the orange <strong>File</strong> tab at the top left. </li>
+<li>On the left hand set of options, click on the <strong>Options</strong> button. </li>
+<li>A window entitled <strong>Outlook Options</strong> will appear.&nbsp; On the left-hand pane, click on the <strong>Trust Center</strong> button at the bottom of the list. </li>
+<li>The right side of the window will change.&nbsp; Click on the <strong>Trust Center Settings</strong> button on the bottom right hand side. </li>
+<li>A window named, <strong>Trust Center</strong> will appear.&nbsp; On the left hand side you shall see selectable options.&nbsp; Click on the <strong>E-mail Security</strong> option on the left hand pane. </li>
+<li>Upon clicking on the <strong>E-mail Security</strong> button, in the right hand pane, you will see a drop down field next to <strong>Default Setting:</strong>.&nbsp; <strong>Click on the Settings</strong> button next to this field. </li>
+<li>A new window will appear named <strong>Change Security Settings</strong>.&nbsp; In this window, you will see two <strong>Choose</strong> buttons under the <strong>Certificates and Algorithms</strong> section. </li>
+</ol>
+<h3><strong>Signing Certificate</strong></h3>
+<p>First you will choose the signing certificate. This is the certificate that you will use to digitally sign emails that you send out. The email in the certificate that you have installed on your computer must match the email address that you are using to sign.&nbsp; This certificate must also be valid.</p>
+<ol>
+<li>In the <strong>Certificates and Algorithms</strong> section of the <strong>Change Security Settings</strong> window, you should see the heading, <strong>Signing Certificate:</strong>. Click on the <strong>Choose</strong> button directly to the right of this heading. </li>
+<li>A new window will appear named, <strong>Select Certificate</strong>.&nbsp; In this window, you will choose the Digital Certificate you would like to sign with from a list of certificates installed on this computer. <strong>Note:</strong> If you are unsure which certificate to choose, you can always highlight a certificate and click on the <strong>View Certificate</strong> button to see the details for that certificate. </li>
+<li>When you have selected the Digital Certificate, click on the <strong>OK</strong> button at the bottom. </li>
+</ol>
+<p>When you return to the <strong>Change Security Settings</strong> window, you should see that the certificate you have chosen has appeared greyed out in the Signing Certificate field.</p>
+<h3><strong>Encryption Certificate</strong></h3>
+<p>Next you will choose the encryption certificate.&nbsp; This is the certificate that other users will use when attempting to encrypt an email to you.&nbsp; In typical use, you will use the same Digital Certificate for both signing and encryption (the exception is for Qualified certificates which are only able to digitally sign emails).&nbsp; You can still decrypt an email with an expired certificate.</p>
+<ol>
+<li>In the <strong>Certificates and Algorithms</strong> section of the <strong>Change Security Settings</strong> window, you should see the heading, <strong>Encryption Certificate:</strong>. Click on the <strong>Choose</strong> button directly right of this heading. </li>
+<li>A new window will appear named <strong>Select Certificate</strong>.&nbsp; In this window, you will choose the Digital Certificate you would use for encryption of emails from a list of certificates installed on this computer.&nbsp; <strong>Note:</strong> If you are unsure which certificate to choose, you can always highlight a certificate and click on the <strong>View Certificate</strong> button to see the details for that certificate. </li>
+<li>When you have selected the certificate, click on the <strong>OK</strong> button at the bottom. </li>
+</ol>
+<p>When you return to the <strong>Change Security Settings</strong> window, you should see that the certificate you have chosen has appeared greyed out in the Encryption Certificate field.&nbsp; When you have finished selecting your Digital Certificate, you can press the <strong>OK</strong> button at the bottom.</p>
+<h3><strong>Additional Configuration (Optional)</strong></h3>
+<p>Back in the <strong>Trust Center</strong> window, you can further configure Outlook 2010 with the way that it uses your Digital Certificate.&nbsp; Under the <strong>Encrypted e-mail</strong> heading, you should see 4 check boxes.&nbsp; These check boxes add various features when using Outlook 2010 and Digital Certificates.</p>
+<ul>
+<li><strong>Encrypt contents and attachments for outgoing messages</strong> - This will try to encrypt every outgoing message.&nbsp; In order to encrypt to a user, you must have a copy of their public key/certificate in your address book.&nbsp;&nbsp;&nbsp; </li>
+<li><strong>Add digital signature to outgoing messages</strong> - This will digitally sign every outgoing message using your Digital Certificate.&nbsp;&nbsp;&nbsp; </li>
+<li><strong>Send clear text signed message when sending signed message</strong> - This sends a digitally signed message to a recipient who does not use S/MIME.&nbsp;&nbsp;&nbsp; </li>
+<li><strong>Request S/MIME receipt for all S/MIME signed messages</strong> - This will request confirmation that a message was received unaltered.&nbsp; Outlook will automatically do this. </li>
+</ul>
+<h3><strong>Digitally Signing and Encrypting E-Mail</strong></h3>
+<p>Once you have followed this guide and selected a certificate for both the <strong>Signing Certificate:</strong> and the <strong>Encryption Certificate:</strong> headings, you will be able to use them while composing an e-mail.</p>
+<ol>
+<li>When you have an email open, click on the <strong>Options</strong> tab at the top of the email. </li>
+<li>In the <strong>Permission</strong> section, directly underneath the top tabs, you should see two buttons named <strong>Sign</strong> and <strong>Encrypt</strong>. </li>
+<li>Click on the <strong>Sign</strong> button to depress it to digitally sign this email. </li>
+<li>Click on the <strong>Encrypt</strong> button to depress it to encrypt this email. <strong>Note:</strong> You must have the recipients public key in order to encrypt an email. </li>
+<li>Click on both buttons, <strong>Sign</strong> and <strong>Encrypt</strong> to digitally sign and encrypt the message. </li>
+<li>After you have finished typing the new email, or the reply/forward, press the <strong>Send</strong> button.</li>
+</ol>

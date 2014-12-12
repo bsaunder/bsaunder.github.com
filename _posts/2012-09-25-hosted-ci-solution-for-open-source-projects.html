@@ -1,0 +1,35 @@
+---
+layout: post
+title: Hosted CI Solution for Open Source Projects
+date: 2012-09-25 10:21:08.000000000 -04:00
+categories:
+- Best Practices
+- Tools
+tags:
+- ci
+- tool
+- travis-ci
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>When I started developing on my DiveLog Side Project, one of the goals of the project was to experiment with various development tools that help with things like code quality, metrics, etc. I initially was going to setup my own Build Box ans run Sonar, but I ultimately decided against it. While in the process of looking in to all of the CI systems that are out there, I stumbled upon a free Hosted CI Solution called <a href="http://travis-ci.org/" target="_blank">Travis-CI</a>.</p>
+<p>Travis-CI is a 100% Free and remotley hosted CI system for open source projects. It connects to your projects GitHub repository via hooks, and whenever a push is made, it will automatically run a build. The CI Environment it self comes equipped with everything you need to build your code, regardless if the language it is in. It supports a large variety of languages, several databases, has multiple messaging servers, and even supports headless browser testing. The one thing it does not have is a Java Application Server, however this can easily be remedied by using Maven to Download and Unpack JBoss AS7.</p>
+<h2>Setting up Travis-CI</h2>
+<p>Setting up Travis-CI is as simple as placing a configuration file into the root of your project and configuring a hook in GitHub, and Travis-CI can actually configure that hook for you. The configuration file for your project can be anywhere from a single line, to dozens of lines, depending on how complex you need your build process to be. This file is where you setup the build environment and specify things like what JDK you need, what Database you want, etc... You can also configure build reporting options so that Travis-CI will notify you when your build is complete. The file is extremely simple to write, and they even provide an online validator that you can use to verify your configuration file is properly formatted.</p>
+<h2>Running your Build</h2>
+<p>Running your build on Travis-CI is as simple as pushing a change to your GitHub repository. Once the push is made Travis-CI will grab your latest code and kick off the build process that you configured for your project. You can then go to the Travis-CI website to the view the progress/results of your builds.</p>
+<h2>Final Thoughts</h2>
+<p>If you are developing an Open Source project that is hosted on GitHub and you need a Free and remotely hosted CI solution, Travis-CI is the only way to go.</p>
+<h2>References</h2>
+<ul>
+<li><a href="http://about.travis-ci.org/" title="Travis-CI" target="_blank">Travis-CI</a></li>
+</ul>

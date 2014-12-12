@@ -1,0 +1,74 @@
+---
+layout: post
+title: Code Coverage with Cobertura in Maven 3
+date: 2012-07-03 18:42:43.000000000 -04:00
+categories:
+- Best Practices
+- Development
+- Java
+- Maven
+- Testing
+tags:
+- cobertura
+- maven
+- metrics
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<h3>Code Coverage</h3>
+<p>Code coverage is a metric used to determine how much of your code is executed by your automated test suite. It is typically only applied to unit & integration tests, but it can be applied to all automated tests. There are several different code coverage tools on the market. The two most well known for Java are Cobertura and EclEmma/JaCoCo.</p>
+<h3>Cobertura</h3>
+<p>Cobertura is a free Java tool that calculates the percentage of code accessed by tests. It can be used to identify which parts of your Java program are lacking test coverage. Cobertura is generally a stand-alone application, however it can also be executed from Ant tasks, IDE Plugins, or Maven Plugins. When Cobertura is executed, it will generate a series of reports that show each line of code, and how many times it was executed. It will also show things like line coverage, branch coverage, & package coverage.</p>
+<h3>Configuring Maven 3</h3>
+<p>The following code will configure Maven 3 to execute the Cobertura plugin during the package phase of the build lifecycle. If the code has line rate of less that 85%, or any single file has a line rate of less than 75%, then the build will fail.<br />
+<code lang="xml[lines-notools]">
+<plugin>
+	<groupid>org.codehaus.mojo</groupid><br />
+	<artifactid>cobertura-maven-plugin</artifactid><br />
+	<version>2.5.1</version><br />
+	<configuration><br />
+		<instrumentation><br />
+			<includes></includes><br />
+			<excludes><br />
+				<exclude>net/bryansaunders/**/*Test.class</exclude><br />
+			</excludes><br />
+		</instrumentation><br />
+		<check></p>
+<linerate>75</linerate>
+			<totallinerate>85</totallinerate><br />
+			<haltonfailure>true</haltonfailure><br />
+		</check><br />
+	</configuration><br />
+	<executions><br />
+		<execution><br />
+			<id>clean</id></p>
+<phase>clean</phase>
+			<goals><br />
+				<goal>clean</goal><br />
+			</goals><br />
+		</execution><br />
+		<execution><br />
+			<id>package</id></p>
+<phase>package</phase>
+			<goals><br />
+				<goal>check</goal><br />
+			</goals><br />
+		</execution><br />
+	</executions>
+</plugin></code><br />
+Along with <strong>lineRate</strong> and <strong>totalLineRate</strong> properties, there are four other that you can set as well, they are:</p>
+<ul>
+<li><strong>branchRate</strong> - Specify the minimum acceptable branch coverage rate needed by each class</li>
+<li><strong>totalBranchRate</strong> - Specify the minimum acceptable average branch coverage rate needed by the project as a whole</li>
+<li><strong>packageBranchRate</strong> - Specify the minimum acceptable average branch coverage rate needed by each package</li>
+<li><strong>packageLineRate</strong> - Specify the minimum acceptable average line coverage rate needed by each package</li>
+</ul>

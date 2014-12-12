@@ -1,0 +1,43 @@
+---
+layout: post
+title: Setting Subversion Properties
+date: 2012-07-17 15:46:57.000000000 -04:00
+categories:
+- Subversion
+- Version Control
+tags:
+- subversion
+- version-control
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>When using subversion from the command line, it is helpful to know how to set subversion properties. This is particularly useful when you need to set the ignore properties to things like eclipse project files, or compiled class files, are not checked in by mistake. In order to work with Subversion properties, there are 3 commands that you should be aware of.</p>
+<h3>svn propset</h3>
+<p><em>propset</em> is the first command you should be aware of. This command can be used to set a property to a new value. It is good for when the property only has a single value, like true/false, or a number.<br />
+<code lang="bash[lines-notools]">svn propset PROPNAME [PROPVAL | -F VALFILE] PATH...</code><br />
+Example, to set the End of Line hanling for a file, you would use<br />
+<code lang="bash[lines-notools]">svn propset svn:eol-style "LF" somefile.txt</code></p>
+<h3>svn propedit</h3>
+<p><em>propedit</em> is the second command you should be aware of. This command is good when you need to set a property that takes multiple values, especially if they are seperated by a newline. It is the preferred command to use when setting the Ignore property for subversion.<br />
+<code lang="bash[lines-notools]">svn propedit PROPNAME TARGET...</code><br />
+When you issue this command, it will open the default editor for your system, and allow you to enter the values for the property. For example, to set the ignore property, you could use the following command, and then enter the names of all of the files/directories you want ignored.<br />
+<code lang="bash[lines-notools]">svn propedit svn:ignore .</code><br />
+Using the . will set the property on the current working directory.</p>
+<h3>svn propget</h3>
+<p><em>propget</em> is the third command you should be aware of. You can use this command to confirm that your property has been set correctly.<br />
+<code lang="bash[lines-notools]">svn propget PROPNAME [TARGET[@REV]...]</code><br />
+For example, you can confirm your ignore property is set correctly by using the following command.<br />
+<code lang="bash[lines-notools]">svn propget svn:ignore</code></p>
+<h3>References</h3>
+<ul>
+<li><a target="_blank" href="http://svnbook.red-bean.com/en/1.7/index.html">Version Control with Subversion</a></li>
+</ul>

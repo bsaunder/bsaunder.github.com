@@ -1,0 +1,72 @@
+---
+layout: post
+title: Running SCAP Content on RHEL 5
+date: 2012-06-21 21:01:54.000000000 -04:00
+categories:
+- Linux
+- RHEL
+tags:
+- linux
+- rhel
+- scap
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>Below are steps to run SCAP content on RHEL 5</p>
+<h3>Requirements</h3>
+<ul>
+<li>Java 6 JDK must be installed</li>
+</ul>
+<p>
+<h3>Install OVAL Interpreter</h3></p>
+<ol>
+<li>Install OVALDI Libs RPM
+<ol>
+<li><a class="jive-link-external-small" href="http://sourceforge.net/projects/ovaldi/files/ovaldi/5.10.1%20Build%201/ovaldi-libs-5.10.1.1.el5.i386.rpm/download">http://sourceforge.net/projects/ovaldi/files/ovaldi/5.10.1%20Build%201/ovaldi-libs-5.10.1.1.el5.i386.rpm/download</a></li>
+</ol>
+</li>
+<li>Install OVALDI RPM
+<ol>
+<li><a class="jive-link-external-small" href="http://sourceforge.net/projects/ovaldi/files/ovaldi/5.10.1%20Build%201/ovaldi-5.10.1.1.el5.i386.rpm/download">http://sourceforge.net/projects/ovaldi/files/ovaldi/5.10.1%20Build%201/ovaldi-5.10.1.1.el5.i386.rpm/download</a></li>
+</ol>
+</li>
+</ol>
+<p>
+<h3>Install XCCDFExec</h3></p>
+<ol>
+<li>Download and Extract Built 47
+<ol>
+<li><a class="jive-link-external-small" href="http://sourceforge.net/projects/xccdfexec/files/1.2_build_47/xccdf_interpreter-bin-1.2_build_47.zip/download">http://sourceforge.net/projects/xccdfexec/files/1.2_build_47/xccdf_interpreter-bin-1.2_build_47.zip/download</a></li>
+</ol>
+</li>
+</ol>
+<p>
+<h3>Configuration</h3></p>
+<ol>
+<li>Set xccdf_interpreter.properties<br /><span style="font-size: 8pt;">Note: These may be different depending on your installation, "yum -ql ovaldi" will locate your installed files.</span>
+<ol>
+<li>Set: oval.dir=/usr/sbin</li>
+<li>
+<p>Set: oval.bin=ovaldi</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>
+<h3>Run</h3></p>
+<ol>
+<li>From your XCCDF Directory, Run:
+<ol>
+<li>java -jar xccdfexec_v1.2.jar &lt;XCCDF_FILE.xml&gt; -C &lt;CPE_DICT.xml&gt; -c &lt;OVAL_FILE.xml&gt; </li>
+</ol>
+</li>
+</ol>

@@ -1,0 +1,34 @@
+---
+layout: post
+title: Reading Environment Vaiables in Java
+date: 2012-06-21 15:37:26.000000000 -04:00
+categories:
+- Development
+- Java
+tags:
+- java
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>The following code snippet will read environment variables in Java. </p>
+<p><code lang="java[lines-notools]">import java.util.Map;</p>
+<p>public class EnvMap {<br />
+    public static void main (String[] args) {<br />
+        Map<String, String> env = System.getenv();<br />
+        for (String envName : env.keySet()) {<br />
+            System.out.format("%s=%s%n",<br />
+                              envName,<br />
+                              env.get(envName));<br />
+        }<br />
+    }<br />
+}</code></p>
+<p>With a <em>String</em> argument, <em>getenv</em> returns the value of the specified variable. If the variable is not defined, <em>getenv</em> returns <em>null</em>.</p>

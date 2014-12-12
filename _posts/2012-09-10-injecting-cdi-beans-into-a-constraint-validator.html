@@ -1,0 +1,33 @@
+---
+layout: post
+title: Injecting CDI Beans into a Constraint Validator
+date: 2012-09-10 22:05:53.000000000 -04:00
+categories:
+- Development
+- EE6
+- Java
+tags:
+- cdi
+- java
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>I just spent the last few hours working on my <a href="https://github.com/bsaunder/JEE6DiveLog/wiki" target="_blank">DiveLog</a> project and ran into some issues implementing a custom Bean Validator. I was trying to inject a service bean into my validator, but kept getting a NullPointerException on the injected bean. After fiddling with it for half an hour or so, I started doing some research.</p>
+<p>As it turns out, Hibernate Bean Validator's are not registered as a CDI managed beans by default, therefore ConstraintValidator implementations are not CDI managed Beans. This of course means that you can not inject any beans into them. Unfortunately there are currently no really great alternatives. You can try to look up the bean you want to inject via the JNDI tree and retrieve it that way, but that has its own little set of problems.</p>
+<p>Allegedly <a href="http://seamframework.org/Seam3/ValidationModule" target="_blank">Seam 3 Validation</a> will solve this problem by bridging Hibernate Bean Validation to CDI and thus allowing you to inject beans, but after reading the <a href="http://docs.jboss.org/seam/3/validation/snapshot/reference/en-US/html_single/#validation-dependency-injection" target="_blank">documentation</a> and following the instructions, I was ultimately unable to get it working. I eventually just ended up taking a different route for the validation that didn't involve a custom bean validator, but it is not nearly as clean of a solution.</p>
+<h2>There is Hope...</h2>
+<p>Version 1.1 of the Bean Validation specification includes plans to add this support natively, so that you do not need to do any hacks or use any 3rd party libraries. There is currently no release date for version 1.1 of the spec however.</p>
+<h2>References</h2>
+<ul>
+<li><a href="http://beanvalidation.org/roadmap/" target="_blank">Bean Validation 1.1 Roadmap</a></li>
+<li><a href="https://hibernate.onjira.com/browse/BVAL-238" target="_blank">Bean Validation 1.1 Specification - Issue 238</a></li>
+</ul>

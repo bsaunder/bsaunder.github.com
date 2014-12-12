@@ -1,0 +1,76 @@
+---
+layout: post
+title: Generating Self-signed Certificates for Mutual Authentication in Java
+date: 2012-07-03 14:15:36.000000000 -04:00
+categories:
+- Security
+- Server
+- SSL/TLS
+tags:
+- security
+- ssl
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>This post is a follow up to my previous post on <a href="http://bryansaunders.net/blog/2012/07/03/generating-self-signed-certificates-for-use-in-java/" title="Generating Self-signed Certificates for use in Java">Generating Self-Signed Certificate for use in Java</a>. This post will follow many of the same steps, but will show you how to generate both server and client certificates for use with mutual authentication (Two-Way SSL). Once again we will be using OpenSSL and Java Keytool.</p>
+<div class="alert alert-info">
+<strong>Update</strong> If you need to create self signed certificates for use in Java and are running Linux, I have developed a Shell Script you can use. You can find the source and instructions on <a href="https://github.com/bsaunder/ShellScripts/tree/master/SSL_Gen_Keys" title="SSL_Gen_Keys" target="_blank">GitHub</a>.
+</div>
+<h3>1) Create private keys using OpenSSL</h3>
+<p><code lang="bash[lines-notools]">openssl genrsa -out server-private.pem 2048<br />
+openssl genrsa -out client-private.pem 2048</code><br />
+The private keys are 2048 bits long and generated using the RSA algorithm. They are not protected with an additional pass phrase.</p>
+<h3>2) Create self-signed X509 certificates</h3>
+<p><code lang="bash[lines-notools]">openssl req -new -x509 -key server-private.pem -out server-certificate.pem -days 365<br />
+openssl req -new -x509 -key client-private.pem -out client-certificate.pem -days 365</code><br />
+For each command you will be prompted to enter a few pieces of information, use “.” if you wish to leave the field blank.<br />
+<code lang="bash[lines-notools]">Country Name (2 letter code) []: US<br />
+State or Province Name (full name) []: South Carolina<br />
+Locality Name (eg, city) []: Charleston<br />
+Organization Name (eg, company) []: Red Hat<br />
+Organizational Unit Name (eg, section) []: Consulting<br />
+Common Name (eg, YOUR name) []: HOSTNAME<br />
+Email Address []:.</code><br />
+<strong>NOTE:</strong> The field Common Name is quite important here. It is the hostname of the machine you are trying to certify with the certificate, which is the name in the DNS entry corresponding to your machine IP.</p>
+<p>If you want to avoid having to manually enter all of this information each time, you can use the <em>subj</em> argument and pass all of the relevant information in to OpenSSL. If you use the <em>subj</em> argument, the command will look like this:<br />
+<code lang="bash[lines-notools]">openssl req -new -x509 -key server-private.pem -out server-certificate.pem -days 365 -subj "/C=US/ST=South Carolina/L=Charleston/O=Red Hat/OU=Consulting/CN=localhost"</code><br />
+Obviously you will need to replace my information with yours.</p>
+<h3>3) Create JKS trust stores</h3>
+<p>In order to use our keys and certificates in Java applications we need to import them into keystores.<br />
+<code lang="bash[lines-notools]">keytool -importcert -trustcacerts -keystore  server_truststore.jks -storetype jks -storepass <server_truststore_password> -file client-certificate.pem<br />
+keytool -importcert -trustcacerts -keystore  client_truststore.jks -storetype jks -storepass <client_truststore_password> -file server-certificate.pem</client_truststore_password></server_truststore_password></code></p>
+<h3>4) Create PKCS12 keystores and import the certificates</h3>
+<p>Java's keytool application will not let us import an existing private key into a keystore. The workaround to this problem is to combine the private key with the certificate into a pkcs12 file and then import this pkcs12 keystore into a regular keystore.<br />
+<code lang="bash[lines-notools]">openssl pkcs12 -export -inkey server_private.pem -in server-certificate.pem -out server.p12<br />
+openssl pkcs12 -export -inkey client_private.pem -in client-certificate.pem -out client.p12</code></p>
+<h3>5) Convert the PKCS12 keystores to Java keystores using Java keytool</h3>
+<p><code lang="bash[lines-notools]">keytool -importkeystore -srckeystore server.p12 -srcstoretype pkcs12 -destkeystore server.jks –deststoretype jks<br />
+keytool -importkeystore -srckeystore client.p12 -srcstoretype pkcs12 -destkeystore client.jks –deststoretype jks</code><br />
+Keytool will first ask you for the new password for the JKS keystore twice, and it will also ask you for the password you set for the PKCS12 keystore created earlier.<br />
+<code lang="bash[lines-notools]">Enter destination keystore password:<br />
+Re-enter new password:<br />
+Enter source keystore password:<br />
+Entry for alias 1 successfully imported.<br />
+Import command completed: 1 entries successfully imported, 0 entries failed or cancelled</code><br />
+It will output the number of entries successfully imported, failed, and cancelled. </p>
+<p>If nothing went wrong, you should have 2 new keystore files: <em>server.jks</em> & <em>client.jks</em>.</p>
+<h3>6) Configure server</h3>
+<p>Depending on how you are using your keys, you will now need to configure your server. The file <em>server.jks</em> contains your servers self signed certificate, and the file <em>server_truststore.jks</em> contains your servers trust store that trusts your client certificate.</p>
+<p>For an example of how to configure SSL using an Embedded Jetty server, see <a href="http://bryansaunders.net/blog/2012/06/28/using-ssl-with-embedded-jetty/" title="Using SSL with Embedded Jetty">Using SSL with Embedded Jetty</a></p>
+<h3>7) Configure client</h3>
+<p>Depending on how you are using your keys, you will now need to configure the client. The file <em>client.jks</em> contains your servers self signed certificate, and the file <em>client_truststore.jks</em> contains your clients trust store that trusts your server certificate.</p>
+<p>If your are going to be using a browser as the client, then you will want to import the <em>client.p12</em> file into your browser.</p>
+<h3>References</h3>
+<ul>
+<li><a href="http://www.openssl.org/docs/HOWTO/" target="_blank">http://www.openssl.org/docs/HOWTO/</a></li>
+<li><a href="http://docs.oracle.com/javase/1.3/docs/tooldocs/win32/keytool.html" target="_blank">http://docs.oracle.com/javase/1.3/docs/tooldocs/win32/keytool.html</a></li>
+</ul>

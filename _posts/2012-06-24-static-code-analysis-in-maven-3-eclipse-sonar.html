@@ -1,0 +1,117 @@
+---
+layout: post
+title: Static Code Analysis in Maven 3, Eclipse, & Sonar
+date: 2012-06-24 13:01:48.000000000 -04:00
+categories:
+- Best Practices
+- Development
+- Java
+- Maven
+tags:
+- checkstyle
+- findbugs
+- java
+- maven
+- pmd
+- sonar
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>When implementing coding conventions and best practices in a Java project, especially one with an automated build or in an agile environment, there are several static analysis code tools that are generally used. These tools automatically scan your code to looked for things like potential bugs, security risks, code smells, best practices, proper styling, etc... These tools when used in conjunction with a solid code review and check-in process can help to maintain a high level of code quality across your project. So what are these tools?</p>
+<h2>FindBugs</h2>
+<p>[blockquote cite="Wikipedia"]FindBugs is an open source program created by Bill Pugh and David Hovemeyer which looks for bugs in Java code. It uses static analysis to identify hundreds of different potential types of errors in Java programs. FindBugs operates on Java bytecode, rather than source code.[/blockquote]In short FindBugs finds bugs in your Java code. It has several categories of bugs that it can detect and classifies each bug into a priority level based on its severity. FindBugs is generally distributed as a standalone GUI tool, however it can be integrated into Ant, Maven, Eclipse, and almost all other IDE's & build tools with one of several plugins.</p>
+<h2>PMD</h2>
+<p>[blockquote cite="Wikipedia"]PMD is a static ruleset based Java source code analyzer that identifies potential problems like: Possible bugs, Dead code, Suboptimal code, Duplicate code, Etc... While PMD doesn't officially stand for anything, it has several unofficial names, the most appropriate probably being Programming Mistake Detector.[/blockquote]In a way PMD is very similar to FindBugs. Both tools can be used to find potential bugs and bad practices. However where FindBugs focuses on finding bugs, PMD focuses on finding sub-optimal and inefficient code. Typically, PMD errors are not true errors, but rather inefficient code, i.e. the application could still function properly even if they were not corrected. One other difference between the two is that PMD scans your source code, not the byte code, to find its errors. Like FindBugs, it will also prioritize the errors that it finds based on severity.</p>
+<h2>Checkstyle</h2>
+<p>[blockquote cite="Wikipedia"]Checkstyle is a static code analysis tool used in software development for checking if Java source code complies with coding rules. Checkstyle defines a set of available modules, each of which provides rules checking with a configurable level of strictness (mandatory, optional...). Each rule can raise notifications, warnings, and errors.[/blockquote]Checkstyle is completly different from the previous two tools. Where FindBugs and PMD work to find bugs and poor code, Checkstyle enforces style conventions. By default it enforces the <a href="http://www.oracle.com/technetwork/java/codeconv-138413.html" target="_blank">Standard Java Coding Standards</a> as published by Oracle, however you can customize it to your specific style standards.</p>
+<h2>Sonar</h2>
+<p>Sonar is an open source software quality platform. Sonar uses various static code analysis tools such as Checkstyle, PMD, FindBugs to extract software metrics, which then can be used to improve software quality. Sonar offers reports on duplicated code, coding standards, unit tests, code coverage, complex code, potential bugs, comments and design and architecture. Typically Sonar is used in conjunction with the other tools and run each night with the nightly build. Since Sonar includes the three previously mentioned tools, it provides a web-based UI that can be used to configure the rule files for PMD, FindBugs, and CheckStyle with ease. These configuration files can then be downloaded or linked to directly and used inside automated build scripts and IDE plugins.</p>
+<h2>Pulling it all together</h2>
+<h3>Maven & Plugin Configurations</h3>
+<p>When using Maven for your build tool and Eclipse as your IDE, you can very easily configure the PMD, FindBugs, and CheckStyle plugins to utilize the same configuration files that maven uses. This will allow your developers to run CheckStyle & PMD live, and FindBugs at will, without the need to do maven builds when they need to run the static analysis tools. The big advantage to the IDE plugins comes from the CheckStyle and PMD plugins. Since these tools scan your source code, not the byte code, they can run "live" in the background, and highlight errors and potential problems as they are created, so they can be resolved immediately. The CheckStyle formatter will also generate Eclipse formatter and organizer profiles based on your rules, so that the Format and Organize shortcuts will automatically match your style conventions.</p>
+<h3>Maven & Sonar Configurations</h3>
+<p>If you are using Sonar with your nightly builds and are generating your PMD, FindBugs, and CheckStyle configuration files in Sonar, then you can easily configure the Maven PMD & CheckStyle plugins to use your remote configurations. You simply need to point them to the correct permalinks for your Sonar profile. The Maven FindBugs plugin however does not yet support remote configurations. In order to use your Sonar configuration file with the Maven Findbugs plugin, you will need to first download the file locally.</p>
+<p>You can however still automate this process by using the Maven Wagon plugin. The Wagon plugin will allow you to download the Findbugs configuration file from Sonar and place it in a local directory, prior to the Findbugs plugin running. You then just need to configure the Findbugs plugin to point to your local Findbugs configuration file. </p>
+<p><em><strong>Note:</strong> The Sonar Findbugs configuration file is an Include Filter, it is not an Exclude Filter.</em></p>
+<h3>Eclipse & Sonar Sharing Configurations?</h3>
+<p>Maven & Sonar together provide a very nice way to automatically scan your code for possible bugs using industry standard tools, as well as provide an extremely convenient way to manage all of the configurations. Now that your code is getting scanned nightly, and your Maven build is properly configured, you want to setup your Eclipse IDE to use the same configurations that are hosted on Sonar and that your Maven build is using. With the CheckStyle eclipse plugin this is a breeze. You can simply add a new Remote Configuration File that points to Sonar's permalink and then tell your project to use that configuration.</p>
+<p>The PMD and FindBugs Eclipse plugins however do not support remote configuration files, so you have to have the configuration files locally. Just as we discussed earlier the Maven Wagon plugin can be setup to download the configuration files to a local directory. You could set it up to download the files for all 3 tools, and then configure both Maven and your IDE plugins to use the local files, but this causes issues when you do not have internet access. It also requires that you run the Maven script prior to setting up your IDE, but maybe this isn't an issue for your project. There are other ways to get it to work, however, none of them are as simple or straightforward as the CheckStyle plugin.</p>
+<h2>Configuring Maven</h2>
+<p>Now that you have sorted out what tools you are going to use, and how to get the configuration files locally, how do you setup Maven to run them? Well, Here is how:</p>
+<h3>Findbugs</h3>
+<p>This FindBugs configuration will run FindBugs in the verify phase of the build process. It will run with Max effort and a threshold of Experimental, this means that any errors it finds will cause the build to fail.<br />
+<code lang="xml[lines-notools]">
+<plugin>
+	<groupid>org.codehaus.mojo</groupid><br />
+	<artifactid>findbugs-maven-plugin</artifactid><br />
+	<version>2.4.0</version><br />
+	<configuration><br />
+		<xmloutput>true</xmloutput></p>
+<threshold>Exp</threshold>
+		<effort>Max</effort><br />
+		<includefilterfile>configs/findbugs.xml</includefilterfile><br />
+	</configuration><br />
+	<executions><br />
+		<execution></p>
+<phase>verify</phase>
+			<goals><br />
+				<goal>check</goal><br />
+			</goals><br />
+		</execution><br />
+	</executions>
+</plugin></code></p>
+<h3>PMD</h3>
+<p>This PMD configuration will cause PMD to run during the verify phase of the build process. PMD will by default fail the build if any errors are detected.<br />
+<code lang="xml[lines-notools]">
+<plugin>
+	<groupid>org.apache.maven.plugins</groupid><br />
+	<artifactid>maven-pmd-plugin</artifactid><br />
+	<version>2.7</version><br />
+	<configuration><br />
+		<minimumtokens>100</minimumtokens><br />
+		<verbose>true</verbose><br />
+		<rulesets><br />
+			<ruleset>configs/pmd.xml</ruleset><br />
+		</rulesets><br />
+	</configuration><br />
+	<executions><br />
+		<execution></p>
+<phase>verify</phase>
+			<goals><br />
+				<goal>check</goal><br />
+			</goals><br />
+		</execution><br />
+	</executions>
+</plugin></code></p>
+<h3>Checkstyle</h3>
+<p>This CheckStyle configuration will cause CheckStyle to run during the verify phase of the build process. It is configured to ignore the test source directory, and fail the build if it finds any errors with a severity level of info or higher. This will result in a build failure on any error.<br />
+<code lang="xml[lines-notools]">
+<plugin>
+	<groupid>org.apache.maven.plugins</groupid><br />
+	<artifactid>maven-checkstyle-plugin</artifactid><br />
+	<version>2.8</version><br />
+	<configuration><br />
+		<consoleoutput>true</consoleoutput><br />
+		<configlocation>configs/checkstyle.xml</configlocation></p>
+<propertyexpansion>basedir=${project.basedir}</propertyexpansion>
+		<violationseverity>info</violationseverity><br />
+		<includetestsourcedirectory>false</includetestsourcedirectory><br />
+	</configuration><br />
+	<executions><br />
+		<execution></p>
+<phase>verify</phase>
+			<goals><br />
+				<goal>check</goal><br />
+			</goals><br />
+		</execution><br />
+	</executions>
+</plugin></code></p>

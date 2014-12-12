@@ -1,0 +1,63 @@
+---
+layout: post
+title: Charleston CodeRetreat & The Game of Life
+date: 2012-06-26 10:46:29.000000000 -04:00
+categories:
+- Best Practices
+- Development
+- Training
+tags:
+- code retreat
+- game of life
+- java
+- pair programming
+- tdd
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>This past saturday I attended the <a href="http://coderetreatchs.jackhq.com/" target="_blank">Charleston CodeRetreat</a> with a few of my colleagues. This was the first official CodeRetreat in Charleston and was sponsored by <a href="http://jackrussellsoftware.com/" target="_blank">Jack Russel Software</a> and <a href="http://ssm.cofc.edu/" target="_blank">College of Charleston's School of Sciences and Mathematics</a>. Having never been to a CodeRetreat before, I wasnt sure what to expect, but I can say that I was pleasantly surpirsed. The day was highly informative, lots of fun, and I learned a lot.</p>
+<h2>What is a CodeRetreat?</h2>
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. It provides developers the opportunity to take part in focused practice, away from the pressures of work/school. The CodeRetreat day consists of 5-6 sessions, with each session's learnings building upon previous sessions. The morning focuses on becoming comfortable with the problem domain, breaking old habits and beginning focused self-discovery. The afternoon pushes the envelope by challenging pairs to stretch their skills and understanding of abstractions, modular design and test-driven development.</p>
+<p>CodeRetreats were started at the January, 2009, Codemash Conference by Gary Bernhardt, Patrick Welsh, Nayan Hajratwala and Corey Haines. The idea was to develop a repeatable, day-long event that was focused on practicing the fundamentals of software development. The first event was held on January 24, 2009, in Ann Arbor, MI. By practicing the basic principles of modular and object-oriented design, developers can improve their ability to write code that minimizes the cost of change over time. In today's world of crappy code and failing projects, this practice and experience is crucial. For more information about CodeRetreat, check out the official website at <a href="http://coderetreat.org" target="_blank">http://coderetreat.org</a>.</p>
+<h2>Charleston CodeRetreat</h2>
+<p>The CodeRetreat on satruday was the first CodeRetreat held in Charleston, I would say it was a great success, with a turn out of around 35-40 people. The people in attendance came from all walks of life, everyone from college students to professionals with decades of experience, people who knew Java, Ruby, Python, C#, JavaScript, and more. With a such a wide range of experience in the room, there was something for everyone to learn. We started off the day with some brief introductions and then immediatley jumped in to the coding sessions. Our agenda for the day was:</p>
+<ul>
+<li>08:00 - 08:45 am : Registration, Coffee</li>
+<li>08:45 - 09:00 am : Welcome, introductions, explanation of the problem</li>
+<li>09:00 - 09:45 am : Session #1</li>
+<li>09:45 - 10:00 am : Retrospective & Break</li>
+<li>10:00 - 10:45 am : Session #2</li>
+<li>10:45 - 11:00 am : Retrospective & Break</li>
+<li>11:00 - 11:45 am : Session #3</li>
+<li>11:45 - 12:00 pm : Retrospective & Break</li>
+<li>12:00 - 01:30 pm : Lunch</li>
+<li>01:30 - 02:15 pm : Session #4</li>
+<li>02:15 - 02:30 pm : Retrospective & Break</li>
+<li>02:30 - 03:15 pm : Session #5</li>
+<li>03:15 - 03:30 pm : Retrospective & Break</li>
+<li>03:30 - 04:15 pm : Session #6</li>
+<li>04:15 - 04:30 pm : Retrospective & Break</li>
+<li>04:30 - 05:00 pm : Closing circle</li>
+</ul>
+<p>The two main practices we focused on learning at the CodeRetreat were Test Driven Development and Pair Programming. In the agile world, these practices are extremly common, and have proven to be highly effective. During each session of the day, the goal was to use pair programming and TDD to complete as much of the problem as possible, while writting the best code possible. In the afternoon, the sessions got a little more difficult by introducing new challenges. Some of the challegens were things like not using any loops, no if statements, and no primitives. Other challenges were too use various pair pgramming techniques, such as navigator-driver and <a href="http://coderetreat.org/facilitating/activities/ping-pong" target="_blank">ping pong</a>.</p>
+<h2>Conway's Game of Life</h2>
+<p>The problem domain for the Charleston CodeRetreat was <a href="http://www.math.com/students/wonders/life/life.ht" target="_blank">Conway's Game of Life</a>. The problem is small enough so that a significant amount of it can be completed in a single 45 minute session, but complex enough to allow for significant thought and abstraction. The Game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970. The "game" is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.</p>
+<p>The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead. Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:</p>
+<ol>
+<li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
+<li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+<li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+</ol>
+<p>The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed—births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick (in other words, each generation is a pure function of the preceding one). The rules continue to be applied repeatedly to create further generations.</p>
+<h3>One Solution</h3>
+<p>After the CodeRetreat was over, none of the pairs that I had worked with had fully completed the problem. When I got home that evening, while the problem was still fresh in my mind, I sat down at my computer, and continued working on the problem. Using TDD, I was able to develop a solution to the problem that is based around a single Grid object that contains a list of Cells. If you want to see my implementation, it can be viewed on GitHub <a href="https://github.com/bsaunder/GameOfLife" target="_blank">here</a>.</p>

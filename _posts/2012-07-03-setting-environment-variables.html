@@ -1,0 +1,65 @@
+---
+layout: post
+title: Setting Environment Variables
+date: 2012-07-03 10:17:28.000000000 -04:00
+categories:
+- Linux
+- Windows
+tags:
+- linux
+- windows
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<p>As a Software Engineer you will eventually have to set environment variables to use some tool or library properly, yet it amazes me how few people actually know how to do this. Below are quick steps for setting environment varialbes in both Windows 7 and Linux.</p>
+<h3>Windows 7</h3>
+<ol>
+<li>Click Start, Right Click My Computer, Select Properties</li>
+<li>In the System window click on Advanced system settings in the left pane</li>
+<li>In the System Properties window select Advanced tab and click on Environment Variables… button given at the bottom of the window</li>
+<li>In the Environment Variables window you will notice two columns User variables for a username and System variables</li>
+<li>To add a new User variable click on New… button. In the New User Variable dialog box type the Variable name and Variable value and click OK button</li>
+<li>To remove a User variable click on the required User variable and then click on Delete button</li>
+<li>To edit a User variable click on Edit… button. In the Edit User Variable dialog box edit the Variable name and Variable value and click OK button
+<ol>
+<li>If Editing the PATH Variable, Seperate multiple entries with a semi-colon "<em>;</em>". You can reference other variables using the following format "<em>%VAR_NAME%</em>".</li>
+</ol>
+</li>
+<li>Click OK button in the Environment Variables dialog window</li>
+<li>Click OK on System Properties window</li>
+<li>Close System window</li>
+<li>Close then reopen any command propmts you have open in order for the changes to take effect</li>
+</ol>
+<h3>Linux</h3>
+<p>In linux you can set environment variables temporarily, so they only exist within your shell session, or permanently, so they stay set.</p>
+<h4>Setting Environment Variables Temporarily</h4>
+<ol>
+<li>Open a Terminal Window</li>
+<li>Execute the following command: <code lang="bash[lines-notools]">export VAR_NAME=VALUE</code></li>
+</ol>
+<h4>Setting Environment Variables Permanently</h4>
+<ol>
+<li>Open a Terminal Window</li>
+<li>Execute the following command: <code lang="bash[lines-notools]">vi ~/.bash_proflle</code></li>
+<li>Append the following to the end of the file: <code lang="bash[lines-notools]">export VAR_NAME=VALUE</code>
+<ol>
+<li>If Editing the PATH Variable, Seperate multiple entries with a colon "<em>:</em>". You can reference other variables using the following format "<em>{VAR_NAME}</em>".</li>
+</ol>
+</li>
+<li>Save & Close the file</li>
+<li>Execute the following command: <code lang="bash[lines-notools]">source ~/.bash_proflle</code>
+<ol>
+<li>you will need to execute this command in all open terminal windows, or logoff completly then log back in, for changes to take effect</li>
+</ol>
+</li>
+</ol>
+<p>Note: To set System Wide environment varialbes, use the same steps as above, but modify the file "<em>/etc/profile</em>".</p>

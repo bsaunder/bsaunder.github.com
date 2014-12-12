@@ -1,0 +1,36 @@
+---
+layout: post
+title: Create/Access Dynamically Created Shell Variables
+date: 2012-07-31 13:10:19.000000000 -04:00
+categories:
+- Development
+- Linux
+- Scripting
+tags:
+- linux
+- shell
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: btsaunde@gmail.com
+  display_name: Bryan Saunders
+  first_name: Bryan
+  last_name: Saunders
+---
+<h3>The Problem</h3>
+<p>Recently I was developing some shell scripts (<a href="https://github.com/bsaunder/ShellScripts" target="_blank">ShellScripts on GitHub</a>) and needed to reference a variable that had a dynamically created name. Essentially I had some values defined in a properties file that were named "client_1, client_2, ... , client_N" where N is not known until run-time of the script. I could easily build the names of all of the variables in a string, but ho do I then convert that String name into an actual variable? After searching high and low, I found the solution.</p>
+<h3>The Solution</h3>
+<p>The first step is to create a variable that holds the dynamically created varialbe name:<br />
+<code lang="shell[lines-notools]">varName=client_$n</code></p>
+<p>To get the name of the newly created variable, you access it like this:<br />
+<code lang="shell[lines-notools]">${varName}</code></p>
+<p>To get the value of the newly created variable, you access it like this:<br />
+<code lang="shell[lines-notools]">${!varName}</code></p>
+<h3>Reference</h3>
+<ul>
+<li><a href="http://samindaw.wordpress.com/2009/02/26/create-and-access-shell-variable-having-a-name-created-by-another-string/" target="_blank">Create and Access Shell Variable Created by Another String</a></li>
+</ul>
