@@ -3,7 +3,7 @@ layout: post
 title: "Acceptance What?"
 description: ""
 category: 
-tags: []
+tags: [agile, scrum, acceptance_criteria]
 ---
 {% include JB/setup %}
 
