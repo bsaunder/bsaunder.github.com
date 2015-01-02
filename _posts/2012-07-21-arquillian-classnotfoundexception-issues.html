@@ -26,9 +26,16 @@ author:
 <p>If you are testing your JEE application using Arquillian and running in to issues with ClassNotFoundExcpetions, the solution is pretty simple. To resolve the issue, simply add the class and/or package to your Deployment Descriptor in your test. This will add the classes to the Archive sent to the container when the tests run. </p>
 <h2>Adding a Local Package</h2>
 <p>Adding an entire package to your deployment archive is fairly simple as Arquillian provides a number of methods for you to use. The easiest was though is to tell your archive to add all the classes in given package and all of its sub-packages. This can be done by using</p>
-<p><code lang="java[lines-notools]">addPackages(true, "your.package.name")</code></p>
+{% highlight java %}
+addPackages(true, "your.package.name");
+{% endhighlight %}
 <h2>Adding a Maven Dependency</h2>
 <p>Sometimes the offending classes will not be part of  your code, but instead will come from one of your Maven dependencies. This generally happens when you are testing your UI and your code needs additional 3rd part libraries. Adding these Maven resources to your deployment archive is a snap. First you will need to create a Maven Dependency Resolver:</p>
-<p><code lang="java[lines-notools]">final MavenDependencyResolver resolver = DependencyResolvers.use(MavenDependencyResolver.class).loadMetadataFromPom("pom.xml");</code></p>
+{% highlight java %}
+final MavenDependencyResolver resolver = DependencyResolvers.use(MavenDependencyResolver.class).loadMetadataFromPom("pom.xml");
+  {% endhighlight %}
+
 <p>Then you will need to add the required dependency to your archive by calling addAsLibraries, replacing the variables with the correct information for the dependency you want to add.</p>
-<p><code lang="java[lines-notools]">final WebArchive war = ShrinkWrap.create(WebArchive.class, "test.war").addAsLibraries(resolver.artifact("<dep_groupid>:<dep_artifactid>:<dep_version>").resolveAsFiles());</dep_version></dep_artifactid></dep_groupid></code></p>
+{% highlight java %}
+final WebArchive war = ShrinkWrap.create(WebArchive.class, "test.war").addAsLibraries(resolver.artifact("<dep_groupid>:<dep_artifactid>:<dep_version>").resolveAsFiles());
+{% endhighlight %}
