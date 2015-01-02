@@ -9,7 +9,11 @@ tags: [jgroups, eap, jboss, clustering]
 
 Recently a client of mine was running into several errors in their clustered EAP environment. The errors they were getting were from JGroups and were similar to the ones below.
 
-<script src="https://gist.github.com/bsaunder/7fee152230bfa9f69ce5.js"></script>
+{% highlight console %}
+WARN  [org.jgroups.protocols.TP$ProtocolAdapter] (OOB-5,shared=udp) dropping unicast message to wrong destination host2:server2/web; my local_addr is host1:server1/web
+WARN [org.jgroups.protocols.UDP] (OOB-8,null) null: no physical address for 0d8a17c3-026c-1be4-3baa-32b66b40acb2, dropping message
+WARN [org.jgroups.protocols.pbcast.NAKACK] (OOB-20,null) nodename/web: dropped message 3 from 0d8a17c3-026c-1be4-3baa-32b66b40acb2 (sender not in table [nodename/web]), view=[nodename/web|0] [nodename/web]
+{% endhighlight %}
 
 Initially we could not find the cause of the errors as all of the cluster configurations were correct. After some digging we initially found the problem.
 
@@ -21,10 +25,22 @@ The solution is to specify jgroups.bind_addr system property with the concrete n
 
 You can set the property in Standalone mode by starting your server with the appropriate command line option
 
-<script src="https://gist.github.com/bsaunder/83f219907936898a413c.js"></script>
+{% highlight bash %}
+./bin/standalone.sh ...(snip)... ‐Djgroups.bind_addr=192.168.0.100
+{% endhighlight %}
 
 or in Domain mode by setting the following <jvm‐options> in host.xml.
 
-<script src="https://gist.github.com/bsaunder/c95ad543ed672656deff.js"></script>
+{% highlight xml %}
+<servers>
+  <server group="main‐server‐group" name="server‐one">
+    <jvm name="default">
+      <jvm‐options>
+        <option value="‐Djgroups.bind_addr=192.168.0.100" />
+      </jvm‐options>
+    </jvm>
+  </server>
+</servers>
+{% endhighlight %}
 
 Even though we had this issue with our UDP cluster, this issue can also occur in TCP based clusters.
