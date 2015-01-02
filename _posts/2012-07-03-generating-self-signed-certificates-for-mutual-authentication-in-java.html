@@ -26,41 +26,65 @@ author:
 <strong>Update</strong> If you need to create self signed certificates for use in Java and are running Linux, I have developed a Shell Script you can use. You can find the source and instructions on <a href="https://github.com/bsaunder/ShellScripts/tree/master/SSL_Gen_Keys" title="SSL_Gen_Keys" target="_blank">GitHub</a>.
 </div>
 <h3>1) Create private keys using OpenSSL</h3>
-<p><code lang="bash[lines-notools]">openssl genrsa -out server-private.pem 2048<br />
-openssl genrsa -out client-private.pem 2048</code><br />
+{% highlight bash %}
+openssl genrsa -out server-private.pem 2048
+openssl genrsa -out client-private.pem 2048
+{% endhighlight %}
+
 The private keys are 2048 bits long and generated using the RSA algorithm. They are not protected with an additional pass phrase.</p>
 <h3>2) Create self-signed X509 certificates</h3>
-<p><code lang="bash[lines-notools]">openssl req -new -x509 -key server-private.pem -out server-certificate.pem -days 365<br />
-openssl req -new -x509 -key client-private.pem -out client-certificate.pem -days 365</code><br />
+{% highlight bash %}
+openssl req -new -x509 -key server-private.pem -out server-certificate.pem -days 365
+openssl req -new -x509 -key client-private.pem -out client-certificate.pem -days 365
+{% endhighlight %}
+
 For each command you will be prompted to enter a few pieces of information, use “.” if you wish to leave the field blank.<br />
-<code lang="bash[lines-notools]">Country Name (2 letter code) []: US<br />
-State or Province Name (full name) []: South Carolina<br />
-Locality Name (eg, city) []: Charleston<br />
-Organization Name (eg, company) []: Red Hat<br />
-Organizational Unit Name (eg, section) []: Consulting<br />
-Common Name (eg, YOUR name) []: HOSTNAME<br />
-Email Address []:.</code><br />
+{% highlight console %}
+Country Name (2 letter code) []: US
+State or Province Name (full name) []: South Carolina
+Locality Name (eg, city) []: Charleston
+Organization Name (eg, company) []: Red Hat
+Organizational Unit Name (eg, section) []: Consulting
+Common Name (eg, YOUR name) []: HOSTNAME
+Email Address []:.
+{% endhighlight %}
+
 <strong>NOTE:</strong> The field Common Name is quite important here. It is the hostname of the machine you are trying to certify with the certificate, which is the name in the DNS entry corresponding to your machine IP.</p>
 <p>If you want to avoid having to manually enter all of this information each time, you can use the <em>subj</em> argument and pass all of the relevant information in to OpenSSL. If you use the <em>subj</em> argument, the command will look like this:<br />
-<code lang="bash[lines-notools]">openssl req -new -x509 -key server-private.pem -out server-certificate.pem -days 365 -subj "/C=US/ST=South Carolina/L=Charleston/O=Red Hat/OU=Consulting/CN=localhost"</code><br />
+{% highlight bash %}
+openssl req -new -x509 -key server-private.pem -out server-certificate.pem -days 365 -subj "/C=US/ST=South Carolina/L=Charleston/O=Red Hat/OU=Consulting/CN=localhost"
+{% endhighlight %}
+
 Obviously you will need to replace my information with yours.</p>
 <h3>3) Create JKS trust stores</h3>
 <p>In order to use our keys and certificates in Java applications we need to import them into keystores.<br />
-<code lang="bash[lines-notools]">keytool -importcert -trustcacerts -keystore  server_truststore.jks -storetype jks -storepass <server_truststore_password> -file client-certificate.pem<br />
-keytool -importcert -trustcacerts -keystore  client_truststore.jks -storetype jks -storepass <client_truststore_password> -file server-certificate.pem</client_truststore_password></server_truststore_password></code></p>
+{% highlight bash %}
+keytool -importcert -trustcacerts -keystore  server_truststore.jks -storetype jks -storepass <server_truststore_password> -file client-certificate.pem
+keytool -importcert -trustcacerts -keystore  client_truststore.jks -storetype jks -storepass <client_truststore_password> -file server-certificate.pem
+{% endhighlight %}
+
 <h3>4) Create PKCS12 keystores and import the certificates</h3>
 <p>Java's keytool application will not let us import an existing private key into a keystore. The workaround to this problem is to combine the private key with the certificate into a pkcs12 file and then import this pkcs12 keystore into a regular keystore.<br />
-<code lang="bash[lines-notools]">openssl pkcs12 -export -inkey server_private.pem -in server-certificate.pem -out server.p12<br />
-openssl pkcs12 -export -inkey client_private.pem -in client-certificate.pem -out client.p12</code></p>
+{% highlight bash %}
+openssl pkcs12 -export -inkey server_private.pem -in server-certificate.pem -out server.p12
+openssl pkcs12 -export -inkey client_private.pem -in client-certificate.pem -out client.p12
+{% endhighlight %}
+
 <h3>5) Convert the PKCS12 keystores to Java keystores using Java keytool</h3>
-<p><code lang="bash[lines-notools]">keytool -importkeystore -srckeystore server.p12 -srcstoretype pkcs12 -destkeystore server.jks –deststoretype jks<br />
-keytool -importkeystore -srckeystore client.p12 -srcstoretype pkcs12 -destkeystore client.jks –deststoretype jks</code><br />
+{% highlight bash %}
+keytool -importkeystore -srckeystore server.p12 -srcstoretype pkcs12 -destkeystore server.jks –deststoretype jks
+keytool -importkeystore -srckeystore client.p12 -srcstoretype pkcs12 -destkeystore client.jks –deststoretype jks
+{% endhighlight %}
+
 Keytool will first ask you for the new password for the JKS keystore twice, and it will also ask you for the password you set for the PKCS12 keystore created earlier.<br />
-<code lang="bash[lines-notools]">Enter destination keystore password:<br />
+{% highlight console %}
+Enter destination keystore password:<br />
 Re-enter new password:<br />
 Enter source keystore password:<br />
 Entry for alias 1 successfully imported.<br />
-Import command completed: 1 entries successfully imported, 0 entries failed or cancelled</code><br />
+Import command completed: 1 entries successfully imported, 0 entries failed or cancelled
+{% endhighlight %}
+
 It will output the number of entries successfully imported, failed, and cancelled. </p>
 <p>If nothing went wrong, you should have 2 new keystore files: <em>server.jks</em> & <em>client.jks</em>.</p>
 <h3>6) Configure server</h3>
