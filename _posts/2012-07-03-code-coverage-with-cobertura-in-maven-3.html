@@ -30,41 +30,43 @@ author:
 <p>Cobertura is a free Java tool that calculates the percentage of code accessed by tests. It can be used to identify which parts of your Java program are lacking test coverage. Cobertura is generally a stand-alone application, however it can also be executed from Ant tasks, IDE Plugins, or Maven Plugins. When Cobertura is executed, it will generate a series of reports that show each line of code, and how many times it was executed. It will also show things like line coverage, branch coverage, & package coverage.</p>
 <h3>Configuring Maven 3</h3>
 <p>The following code will configure Maven 3 to execute the Cobertura plugin during the package phase of the build lifecycle. If the code has line rate of less that 85%, or any single file has a line rate of less than 75%, then the build will fail.<br />
-<code lang="xml[lines-notools]">
+{% highlight xml %}
 <plugin>
-	<groupid>org.codehaus.mojo</groupid><br />
-	<artifactid>cobertura-maven-plugin</artifactid><br />
-	<version>2.5.1</version><br />
-	<configuration><br />
-		<instrumentation><br />
-			<includes></includes><br />
-			<excludes><br />
-				<exclude>net/bryansaunders/**/*Test.class</exclude><br />
-			</excludes><br />
-		</instrumentation><br />
-		<check></p>
-<linerate>75</linerate>
-			<totallinerate>85</totallinerate><br />
-			<haltonfailure>true</haltonfailure><br />
-		</check><br />
-	</configuration><br />
-	<executions><br />
-		<execution><br />
-			<id>clean</id></p>
-<phase>clean</phase>
-			<goals><br />
-				<goal>clean</goal><br />
-			</goals><br />
-		</execution><br />
-		<execution><br />
-			<id>package</id></p>
-<phase>package</phase>
-			<goals><br />
-				<goal>check</goal><br />
-			</goals><br />
-		</execution><br />
+	<groupid>org.codehaus.mojo</groupid>
+	<artifactid>cobertura-maven-plugin</artifactid>
+	<version>2.5.1</version>
+	<configuration>
+		<instrumentation>
+			<includes></includes>
+			<excludes>
+				<exclude>net/bryansaunders/**/*Test.class</exclude>
+			</excludes>
+		</instrumentation>
+		<check>
+			<linerate>75</linerate>
+			<totallinerate>85</totallinerate>
+			<haltonfailure>true</haltonfailure>
+		</check>
+	</configuration>
+	<executions>
+		<execution>
+			<id>clean</id>
+			<phase>clean</phase>
+			<goals>
+				<goal>clean</goal>
+			</goals>
+		</execution>
+		<execution>
+			<id>package</id>
+			<phase>package</phase>
+			<goals>
+				<goal>check</goal>
+			</goals>
+		</execution>
 	</executions>
-</plugin></code><br />
+</plugin>
+{% endhighlight %}
+
 Along with <strong>lineRate</strong> and <strong>totalLineRate</strong> properties, there are four other that you can set as well, they are:</p>
 <ul>
 <li><strong>branchRate</strong> - Specify the minimum acceptable branch coverage rate needed by each class</li>
