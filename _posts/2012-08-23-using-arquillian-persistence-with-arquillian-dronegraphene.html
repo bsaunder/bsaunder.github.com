@@ -33,24 +33,28 @@ author:
 <p>The problem I was having was that the Persistence extension was not executing when the Drone tests ran. This resulted in the user not being created in the database and the test ultimately failing as a result of the user not being found. Behind the scenes, the Persistence extension is not configured to work with tests that are baing run in Client Mode, so when the deployment was set to <em>testable=false</em> the persistence extension never kicked in. </p>
 <h2>The Solution</h2>
 <p>The solution is to "trick" the persistence extension into running prior to the client tests running. This is done with the <em>@InSequence(X)</em> annotation on your tests and by marking the deployment as <em>testable=true</em>. Once this is done you will need to create an empty method that does nothing and set it as the first test in the sequence. This test will be run in In Container mode and will cause the persistence extension to execute and setup your database. All of your remaining client tests should be annotated with <em>@RunAsClient</em> and set to come after the database setup method using <em>@InSequence(X)</em>. Below is the working code sample:</p>
-<p><code lang="java[lines-notools]">@RunWith(Arquillian.class)<br />
-@DataSource("java:jboss/datasources/ExampleDS")<br />
-@UsingDataSet("addUserDataset.yml")<br />
-public class DroneTestIT {</p>
-<p>    @Deployment(testable = true)<br />
-    public static WebArchive createDeployment() {<br />
-        // Create Archive<br />
-    }</p>
-<p>    @Test<br />
-    @InSequence(1)<br />
-    public void setupDatabase(){<br />
-        // Do nothing, so Persistence will setup database<br />
-    }</p>
-<p>    @Test<br />
-    @InSequence(2)<br />
-    @RunAsClient<br />
-    public void someUiTest(@ArquillianResource URL applicationPath, @Drone GrapheneSelenium browser) {<br />
-        // .. Perform Test<br />
-    }</p>
-<p>}</code></p>
+
+{% highlight java %}
+@RunWith(Arquillian.class)
+@DataSource("java:jboss/datasources/ExampleDS")
+@UsingDataSet("addUserDataset.yml")
+public class DroneTestIT {
+    @Deployment(testable = true)
+    public static WebArchive createDeployment() {
+        // Create Archive
+    }
+    @Test
+    @InSequence(1)
+    public void setupDatabase(){
+        // Do nothing, so Persistence will setup database
+    }
+    @Test
+    @InSequence(2)
+    @RunAsClient
+    public void someUiTest(@ArquillianResource URL applicationPath, @Drone GrapheneSelenium browser) {
+        // .. Perform Test
+    }
+}
+{% endhighlight %}
+
 <p>The down side to this is that each client test has to be annotated with <em>@RunAsClient</em> so Drone will kick off a new Selenium session for each test, rather than using the same session for all the tests like it would if you were not running with mixed container modes. This results in the tests taking slightly longer to run. Hopefully in future versions of Arquillian this behavior can be cleaned up so that the process is a little more streamlined and these two extensions work together better.</p>
