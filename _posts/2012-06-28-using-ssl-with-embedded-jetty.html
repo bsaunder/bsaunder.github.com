@@ -29,37 +29,45 @@ author:
 <p>Setting up SSL in Java can be a bit tricky. Setting up SSL with a JAX-WS Endpoint is even trickier. I have spent the last few days figuring out how to get all of this to work, and I finally got it working, and wanted to post some working sample code here for future reference.</p>
 <h3>SSL using Embedded Jetty for a JAX-WS Endpoint</h3>
 <p>Before you code will run, you will need to properly generate or obtain server certificates. For steps to generate your own self-signed server certificates, read <a href="http://bryansaunders.net/blog/2012/07/03/generating-self-signed-certificates-for-use-in-java/" title="Generating Self-signed Certificates for use in Java" target="_blank">this post</a>.<br />
-<code lang="java[lines-notools]">int port = 8443;<br />
-String connectInfo = "/yourServiceUrl";</p>
-<p>final Server server = new Server(port);<br />
-ContextHandlerCollection collection = new ContextHandlerCollection();<br />
-server.setHandler(collection);</p>
-<p>SslContextFactory sslContextFactory = new SslContextFactory("server_keystore.jks");<br />
-sslContextFactory.setKeyStorePassword("yourPass");</p>
-<p>SslSocketConnector connector = new SslSocketConnector(sslContextFactory);<br />
-connector.setPort(port);</p>
-<p>server.setConnectors(new Connector[] { connector });</p>
-<p>this.endpoint = Endpoint.create(service);</p>
-<p>JettyHttpServer jettyServer = new JettyHttpServer(server, true);<br />
-this.endpoint.publish(jettyServer.createContext(connectInfo));</p>
-<p>server.start();</code></p>
+{% highlight java %}
+int port = 8443;
+String connectInfo = "/yourServiceUrl";
+final Server server = new Server(port);
+ContextHandlerCollection collection = new ContextHandlerCollection();
+server.setHandler(collection);
+SslContextFactory sslContextFactory = new SslContextFactory("server_keystore.jks");
+sslContextFactory.setKeyStorePassword("yourPass");
+SslSocketConnector connector = new SslSocketConnector(sslContextFactory);
+connector.setPort(port);
+server.setConnectors(new Connector[] { connector });
+this.endpoint = Endpoint.create(service);
+JettyHttpServer jettyServer = new JettyHttpServer(server, true);
+this.endpoint.publish(jettyServer.createContext(connectInfo));
+server.start();
+{% endhighlight %}
+
 <h3>Mutual Authentication</h3>
 <p>If you need mutual authentication (Two-Way SSL) with your embedded Jetty server, you can use the steps in <a href="http://bryansaunders.net/blog/2012/07/03/generating-self-signed-certificates-for-mutual-authentication-in-java/" title="Generating Self-signed Certificates for Mutual Authentication in Java" target="_blank">this post</a> to generate all of your keys. You will also need to modify the above code by adding the following three lines of code, directly below the creation of the <em>SslContextFactory</em>.<br />
-<code lang="java[lines-notools]">sslContextFactory.setNeedClientAuth(true);<br />
-sslContextFactory.setTrustStore("server_truststore.jks");<br />
-sslContextFactory.setTrustStorePassword("yourPass");</code></p>
+{% highlight java %}
+sslContextFactory.setNeedClientAuth(true);
+sslContextFactory.setTrustStore("server_truststore.jks");
+sslContextFactory.setTrustStorePassword("yourPass");
+{% endhighlight %}
+
 <h3>Maven Dependencies</h3>
 <p>You will also need to add the following two dependencies to your Maven POM file for everything to work.<br />
-<code lang="xml[lines-notools]"><dependency><br />
-	<groupid>org.eclipse.jetty</groupid><br />
-	<artifactid>jetty-server</artifactid><br />
-	<version>8.1.5.v20120716</version><br />
-</dependency><br />
-<dependency><br />
-	<groupid>org.eclipse.jetty</groupid><br />
-	<artifactid>jetty-http-spi</artifactid><br />
-	<version>8.1.5.v20120716</version><br />
-</dependency></code></p>
+{% highlight java %}
+<dependency>
+	<groupid>org.eclipse.jetty</groupid>
+	<artifactid>jetty-server</artifactid>
+	<version>8.1.5.v20120716</version>
+</dependency>
+<dependency>
+	<groupid>org.eclipse.jetty</groupid>
+	<artifactid>jetty-http-spi</artifactid>
+	<version>8.1.5.v20120716</version>
+</dependency>
+{% endhighlight %}
 <h3>References</h3>
 <ul>
 <li><a href="http://www.noppanit.com/tutorial-embedding-jetty-with-ssl" target="_blank">http://www.noppanit.com/tutorial-embedding-jetty-with-ssl</a></li>
