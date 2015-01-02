@@ -29,33 +29,54 @@ author:
 <strong>Update</strong> If you need self-signed certificates for Mutual Authentication, please see my <a href="http://bryansaunders.net/blog/2012/07/03/generating-self-signed-certificates-for-mutual-authentication-in-java/" title="Generating Self-signed Certificates for Mutual Authentication in Java">follow-up article</a>.
 </div>
 <h3>1) Create a host private key using openSSL</h3>
-<p><code lang="bash[lines-notools]">openssl genrsa -out HOSTNAME-private.pem 2048</code><br />
+{% highlight bash %}
+openssl genrsa -out HOSTNAME-private.pem 2048
+{% endhighlight %}
+
 This private key is 2048 bits long, generated using the RSA algorithm, and we choose not to protect it with an additional passphrase because the key will be used with a server certificate. The name of the private key is HOSTNAME-private.pem where HOSTNAME should be replaced by the name of the machine you intend to use the certificate.</p>
 <h3>1.1) Derive the public key using openSSL</h3>
-<p><code lang="bash[lines-notools]">openssl rsa -in HOSTNAME-private.pem -pubout  > HOSTNAME-public.pem</code><br />
+{% highlight bash %}
+openssl rsa -in HOSTNAME-private.pem -pubout  > HOSTNAME-public.pem
+{% endhighlight %}
+
 This step is not necessary, unless you want to distribute the public key to others.</p>
 <h3>2) Create a self-signed X509 certificate</h3>
-<p><code lang="bash[lines-notools]">openssl req -new -x509 -key HOSTNAME-private.pem -out HOSTNAME-certificate.pem -days 365</code><br />
+{% highlight bash %}
+openssl req -new -x509 -key HOSTNAME-private.pem -out HOSTNAME-certificate.pem -days 365
+{% endhighlight %}
+
 Then you will be prompted to enter a few pieces of information, use “.” if you wish to leave the field blank.<br />
-<code lang="bash[lines-notools]">Country Name (2 letter code) []: US<br />
-State or Province Name (full name) []: South Carolina<br />
-Locality Name (eg, city) []: Charleston<br />
-Organization Name (eg, company) []: Red Hat<br />
-Organizational Unit Name (eg, section) []: Consulting<br />
-Common Name (eg, YOUR name) []: HOSTNAME<br />
-Email Address []:.</code><br />
+{% highlight console %}
+Country Name (2 letter code) []: US
+State or Province Name (full name) []: South Carolina
+Locality Name (eg, city) []: Charleston
+Organization Name (eg, company) []: Red Hat
+Organizational Unit Name (eg, section) []: Consulting
+Common Name (eg, YOUR name) []: HOSTNAME
+Email Address []:.
+{% endhighlight %}
+
 <strong>NOTE:</strong> The field Common Name is quite important here. It is the hostname of the machine you are trying to certify with the certificate, which is the name in the DNS entry corresponding to your machine IP.</p>
 <h3>3) Create a PKCS12 keystore and import the host certificate</h3>
-<p><code lang="bash[lines-notools]">openssl pkcs12 -export -out keystore.pkcs12 -in HOSTNAME-certificate.pem -inkey HOSTNAME-private.pem</code><br />
+{% highlight bash %}
+openssl pkcs12 -export -out keystore.pkcs12 -in HOSTNAME-certificate.pem -inkey HOSTNAME-private.pem
+{% endhighlight %}
+
 Provide a password when prompted.</p>
 <h3>4) Convert the PKCS12 keystore to Java keystore using Java keytool</h3>
-<p><code lang="bash[lines-notools]">keytool -importkeystore -srckeystore keystore.pkcs12 -srcstoretype PKCS12 -destkeystore keystore.jks -deststoretype JKS</code><br />
+{% highlight bash %}
+keytool -importkeystore -srckeystore keystore.pkcs12 -srcstoretype PKCS12 -destkeystore keystore.jks -deststoretype JKS
+{% endhighlight %}
+
 Keytool will first ask you for the new password for the JKS keystore twice, and it will also ask you for the password you set for the PKCS12 keystore created earlier.<br />
-<code lang="bash[lines-notools]">Enter destination keystore password:<br />
-Re-enter new password:<br />
-Enter source keystore password:<br />
-Entry for alias 1 successfully imported.<br />
-Import command completed: 1 entries successfully imported, 0 entries failed or cancelled</code><br />
+{% highlight console %}
+Enter destination keystore password:
+Re-enter new password:
+Enter source keystore password:
+Entry for alias 1 successfully imported.
+Import command completed: 1 entries successfully imported, 0 entries failed or cancelled
+{% endhighlight %}
+
 It will output the number of entries successfully imported, failed, and cancelled.  If nothing went wrong, you should have another keystore file: keystore.jks.</p>
 <p>keystore.jks is the file that you will want to use in your java applications and servers.</p>
 <h3>References</h3>
