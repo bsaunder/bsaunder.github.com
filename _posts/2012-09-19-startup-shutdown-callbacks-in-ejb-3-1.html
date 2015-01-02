@@ -24,21 +24,25 @@ author:
   last_name: Saunders
 ---
 <p>Every now and then you need to know when your application starts/stops so that you can perform some action. For years now this has been supported in Java by the Servlet Specification and its <em>ServletContextListener</em> class. Unfortunately this functionality was never offered by the EJB specification. With the release of EJB 3.1 and the @Singleton annotation, this functionality is now possible, and the code is much cleaner and simpler. Here is an example:</p>
-<p><code lang="java[lines-notools]">import javax.ejb.Singleton;<br />
-import javax.ejb.Startup;</p>
-<p>@Startup<br />
-@Singleton<br />
-public class FooBean {</p>
-<p>   @PostConstruct<br />
-   void onStartup() {<br />
-      // Startup Stuff..<br />
-   }</p>
-<p>   @PreDestroy<br />
-   void onShutdown() {<br />
-      // Shutdown Stuff..<br />
-   }<br />
-}<br />
-</code></p>
+
+{% highlight java %}
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+
+@Startup
+@Singleton
+public class FooBean {
+@PostConstruct
+   void onStartup() {
+      // Startup Stuff..
+   }
+   @PreDestroy
+   void onShutdown() {
+      // Shutdown Stuff..
+   }
+}
+{% endhighlight %}
+
 <p>As you can see, the code is very simple and straight forward. There is no configuration needed. Just annotate your class/methods and the container will do the rest.</p>
 <p>The @Startup annotation will cause the Singleton to initialize eagerly during the application startup sequence. Once all the injection has taken place, the container will call the bean's @PostConstruct method. Since the bean is container managed, you have access to all other EJB components, JPA EntityManagers, the TimerService, etc. And unlike other EJB component types, any container-managed transaction behavior for the bean applies to the @PostConstruct method as well.</p>
 <p>By defining a @PreDestroy method the bean instance can request a shutdown notification. Since the Singleton bean instance life cycle is tied to the container's life cycle, this method will be called when the application is shutting down.</p>
