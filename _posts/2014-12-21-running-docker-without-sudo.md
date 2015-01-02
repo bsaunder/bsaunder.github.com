@@ -12,11 +12,22 @@ Recently I have been learning Docker and have been creating some containers for 
 <!-- more -->
 I repeatedly got the following error.
 
-<script src="https://gist.github.com/bsaunder/5cbbbe243577aea5ec7f.js"></script>
+{% highlight console %}
+Get http:///var/run/docker.sock/v1.15/containers/json: dial unix /var/run/docker.sock: permission denied
+{% endhighlight %}
 
 I found that in order for me to run Docker without sudo, I needed to add my user to the docker group. 
 
-<script src="https://gist.github.com/bsaunder/635b198d9ab2e6ceeffb.js"></script>
+{% highlight bash %}
+# Add the docker group if it doesn't already exist.
+sudo groupadd docker
+ 
+# Add the connected user "${USERNAME}" to the docker group.
+sudo gpasswd -a ${USERNAME} docker
+ 
+# Restart the docker daemon.
+sudo service docker restart
+{% endhighlight %}
 
 ## What if it still doesnt work?
 
@@ -28,11 +39,38 @@ Patches have been pushed to the stable repositories for Fedora 19 and 20 that re
 ### Change the Socket Group to docker
 If simply being in the group does not resolve your problem, the first solution you can try is to change the group owner of the socket file to the docker group. 
 
-<script src="https://gist.github.com/bsaunder/fd8b60db909381cf83f3.js"></script>
+{% highlight bash %}
+chown root:docker /var/run/docker.sock
+{% endhighlight %}
 
 ### Disable Socket Activation
 The problem is ultimatley caused by the way the sockets are created and who owns them. This workaround will disable socket activation for docker, which means that systemd is no longer responsible for creating the docker socket.  The docker daemon itself will create the socket, and will create it owned by the "docker" group
 
-<script src="https://gist.github.com/bsaunder/d0e6184cf443fdfcfeaf.js"></script>
+{% highlight bash %}
+systemctl stop docker.socket
+systemctl disable docker.socket
+systemctl disable docker
+ 
+cat > /etc/systemd/system/docker.service <<EOF
+[Unit]
+Description=Docker Application Container Engine
+Documentation=http://docs.docker.io
+After=network.target
+ 
+[Service]
+Type=notify
+EnvironmentFile=-/etc/sysconfig/docker
+ExecStart=/usr/bin/docker -d --selinux-enabled --dns 172.17.42.1
+Restart=on-failure
+LimitNOFILE=1048576
+LimitNPROC=1048576
+ 
+[Install]
+WantedBy=multi-user.target
+EOF
+ 
+systemctl enable docker
+systemctl start docker
+{% endhighlight %}
 
 
