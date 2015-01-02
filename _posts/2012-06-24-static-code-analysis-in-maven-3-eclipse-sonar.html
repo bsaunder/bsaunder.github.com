@@ -28,11 +28,11 @@ author:
 ---
 <p>When implementing coding conventions and best practices in a Java project, especially one with an automated build or in an agile environment, there are several static analysis code tools that are generally used. These tools automatically scan your code to looked for things like potential bugs, security risks, code smells, best practices, proper styling, etc... These tools when used in conjunction with a solid code review and check-in process can help to maintain a high level of code quality across your project. So what are these tools?</p>
 <h2>FindBugs</h2>
-<p>[blockquote cite="Wikipedia"]FindBugs is an open source program created by Bill Pugh and David Hovemeyer which looks for bugs in Java code. It uses static analysis to identify hundreds of different potential types of errors in Java programs. FindBugs operates on Java bytecode, rather than source code.[/blockquote]In short FindBugs finds bugs in your Java code. It has several categories of bugs that it can detect and classifies each bug into a priority level based on its severity. FindBugs is generally distributed as a standalone GUI tool, however it can be integrated into Ant, Maven, Eclipse, and almost all other IDE's & build tools with one of several plugins.</p>
+>FindBugs is an open source program created by Bill Pugh and David Hovemeyer which looks for bugs in Java code. It uses static analysis to identify hundreds of different potential types of errors in Java programs. FindBugs operates on Java bytecode, rather than source code.[/blockquote]In short FindBugs finds bugs in your Java code. It has several categories of bugs that it can detect and classifies each bug into a priority level based on its severity. FindBugs is generally distributed as a standalone GUI tool, however it can be integrated into Ant, Maven, Eclipse, and almost all other IDE's & build tools with one of several plugins.</p>
 <h2>PMD</h2>
-<p>[blockquote cite="Wikipedia"]PMD is a static ruleset based Java source code analyzer that identifies potential problems like: Possible bugs, Dead code, Suboptimal code, Duplicate code, Etc... While PMD doesn't officially stand for anything, it has several unofficial names, the most appropriate probably being Programming Mistake Detector.[/blockquote]In a way PMD is very similar to FindBugs. Both tools can be used to find potential bugs and bad practices. However where FindBugs focuses on finding bugs, PMD focuses on finding sub-optimal and inefficient code. Typically, PMD errors are not true errors, but rather inefficient code, i.e. the application could still function properly even if they were not corrected. One other difference between the two is that PMD scans your source code, not the byte code, to find its errors. Like FindBugs, it will also prioritize the errors that it finds based on severity.</p>
+>PMD is a static ruleset based Java source code analyzer that identifies potential problems like: Possible bugs, Dead code, Suboptimal code, Duplicate code, Etc... While PMD doesn't officially stand for anything, it has several unofficial names, the most appropriate probably being Programming Mistake Detector.[/blockquote]In a way PMD is very similar to FindBugs. Both tools can be used to find potential bugs and bad practices. However where FindBugs focuses on finding bugs, PMD focuses on finding sub-optimal and inefficient code. Typically, PMD errors are not true errors, but rather inefficient code, i.e. the application could still function properly even if they were not corrected. One other difference between the two is that PMD scans your source code, not the byte code, to find its errors. Like FindBugs, it will also prioritize the errors that it finds based on severity.</p>
 <h2>Checkstyle</h2>
-<p>[blockquote cite="Wikipedia"]Checkstyle is a static code analysis tool used in software development for checking if Java source code complies with coding rules. Checkstyle defines a set of available modules, each of which provides rules checking with a configurable level of strictness (mandatory, optional...). Each rule can raise notifications, warnings, and errors.[/blockquote]Checkstyle is completly different from the previous two tools. Where FindBugs and PMD work to find bugs and poor code, Checkstyle enforces style conventions. By default it enforces the <a href="http://www.oracle.com/technetwork/java/codeconv-138413.html" target="_blank">Standard Java Coding Standards</a> as published by Oracle, however you can customize it to your specific style standards.</p>
+>Checkstyle is a static code analysis tool used in software development for checking if Java source code complies with coding rules. Checkstyle defines a set of available modules, each of which provides rules checking with a configurable level of strictness (mandatory, optional...). Each rule can raise notifications, warnings, and errors.[/blockquote]Checkstyle is completly different from the previous two tools. Where FindBugs and PMD work to find bugs and poor code, Checkstyle enforces style conventions. By default it enforces the <a href="http://www.oracle.com/technetwork/java/codeconv-138413.html" target="_blank">Standard Java Coding Standards</a> as published by Oracle, however you can customize it to your specific style standards.</p>
 <h2>Sonar</h2>
 <p>Sonar is an open source software quality platform. Sonar uses various static code analysis tools such as Checkstyle, PMD, FindBugs to extract software metrics, which then can be used to improve software quality. Sonar offers reports on duplicated code, coding standards, unit tests, code coverage, complex code, potential bugs, comments and design and architecture. Typically Sonar is used in conjunction with the other tools and run each night with the nightly build. Since Sonar includes the three previously mentioned tools, it provides a web-based UI that can be used to configure the rule files for PMD, FindBugs, and CheckStyle with ease. These configuration files can then be downloaded or linked to directly and used inside automated build scripts and IDE plugins.</p>
 <h2>Pulling it all together</h2>
@@ -49,69 +49,73 @@ author:
 <p>Now that you have sorted out what tools you are going to use, and how to get the configuration files locally, how do you setup Maven to run them? Well, Here is how:</p>
 <h3>Findbugs</h3>
 <p>This FindBugs configuration will run FindBugs in the verify phase of the build process. It will run with Max effort and a threshold of Experimental, this means that any errors it finds will cause the build to fail.<br />
-<code lang="xml[lines-notools]">
+{% highlight xml %}
 <plugin>
-	<groupid>org.codehaus.mojo</groupid><br />
-	<artifactid>findbugs-maven-plugin</artifactid><br />
-	<version>2.4.0</version><br />
-	<configuration><br />
-		<xmloutput>true</xmloutput></p>
-<threshold>Exp</threshold>
-		<effort>Max</effort><br />
-		<includefilterfile>configs/findbugs.xml</includefilterfile><br />
-	</configuration><br />
-	<executions><br />
-		<execution></p>
-<phase>verify</phase>
-			<goals><br />
-				<goal>check</goal><br />
-			</goals><br />
-		</execution><br />
+	<groupid>org.codehaus.mojo</groupid>
+	<artifactid>findbugs-maven-plugin</artifactid>
+	<version>2.4.0</version>
+	<configuration>
+		<xmloutput>true</xmloutput>
+		<threshold>Exp</threshold>
+		<effort>Max</effort>
+		<includefilterfile>configs/findbugs.xml</includefilterfile>
+	</configuration>
+	<executions>
+		<execution>
+		<phase>verify</phase>
+			<goals>
+				<goal>check</goal>
+			</goals>
+		</execution>
 	</executions>
-</plugin></code></p>
+</plugin>
+{% endhighlight %}
 <h3>PMD</h3>
 <p>This PMD configuration will cause PMD to run during the verify phase of the build process. PMD will by default fail the build if any errors are detected.<br />
-<code lang="xml[lines-notools]">
+{% highlight xml %}
 <plugin>
-	<groupid>org.apache.maven.plugins</groupid><br />
-	<artifactid>maven-pmd-plugin</artifactid><br />
-	<version>2.7</version><br />
-	<configuration><br />
-		<minimumtokens>100</minimumtokens><br />
-		<verbose>true</verbose><br />
-		<rulesets><br />
-			<ruleset>configs/pmd.xml</ruleset><br />
-		</rulesets><br />
-	</configuration><br />
-	<executions><br />
-		<execution></p>
-<phase>verify</phase>
-			<goals><br />
-				<goal>check</goal><br />
-			</goals><br />
-		</execution><br />
+	<groupid>org.apache.maven.plugins</groupid>
+	<artifactid>maven-pmd-plugin</artifactid>
+	<version>2.7</version>
+	<configuration>
+		<minimumtokens>100</minimumtokens>
+		<verbose>true</verbose>
+		<rulesets>
+			<ruleset>configs/pmd.xml</ruleset>
+		</rulesets>
+	</configuration>
+	<executions>
+		<execution>
+			<phase>verify</phase>
+			<goals>
+				<goal>check</goal>
+			</goals>
+		</execution>
 	</executions>
-</plugin></code></p>
+</plugin>
+{% endhighlight %}
 <h3>Checkstyle</h3>
 <p>This CheckStyle configuration will cause CheckStyle to run during the verify phase of the build process. It is configured to ignore the test source directory, and fail the build if it finds any errors with a severity level of info or higher. This will result in a build failure on any error.<br />
-<code lang="xml[lines-notools]">
+{% highlight xml %}
 <plugin>
-	<groupid>org.apache.maven.plugins</groupid><br />
-	<artifactid>maven-checkstyle-plugin</artifactid><br />
-	<version>2.8</version><br />
-	<configuration><br />
-		<consoleoutput>true</consoleoutput><br />
-		<configlocation>configs/checkstyle.xml</configlocation></p>
-<propertyexpansion>basedir=${project.basedir}</propertyexpansion>
-		<violationseverity>info</violationseverity><br />
-		<includetestsourcedirectory>false</includetestsourcedirectory><br />
-	</configuration><br />
-	<executions><br />
-		<execution></p>
-<phase>verify</phase>
-			<goals><br />
-				<goal>check</goal><br />
-			</goals><br />
-		</execution><br />
+	<groupid>org.apache.maven.plugins</groupid>
+	<artifactid>maven-checkstyle-plugin</artifactid>
+	<version>2.8</version>
+	<configuration>
+		<consoleoutput>true</consoleoutput>
+		<configlocation>configs/checkstyle.xml</configlocation>
+		<propertyexpansion>basedir=${project.basedir}</propertyexpansion>
+		<violationseverity>info</violationseverity>
+		<includetestsourcedirectory>false</includetestsourcedirectory>
+	</configuration>
+	<executions>
+		<execution>
+			<phase>verify</phase>
+			<goals>
+				<goal>check</goal>
+			</goals>
+		</execution>
 	</executions>
-</plugin></code></p>
+</plugin>
+{% endhighlight %}
+
