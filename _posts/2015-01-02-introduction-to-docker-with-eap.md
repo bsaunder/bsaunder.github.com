@@ -31,7 +31,9 @@ Find your platform in the list [here](https://docs.docker.com/installation/) and
 
 All interactions with Docker are via the command line, so if you’ve never used the terminal, now is the time to get started. The main command you’ll use is the `docker` command. Running this command without any additional options will display the help screen, and a list of all of the options available to you. To ensure everything is working properly, go ahead and run the following command to test your Docker installation.
 
-	docker run hello-world
+{% highlight bash %}
+docker run hello-world
+{% endhighlight %}
 
 # Building a Docker container for EAP
 
