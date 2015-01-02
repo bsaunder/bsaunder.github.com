@@ -35,9 +35,43 @@ All interactions with Docker are via the command line, so if you’ve never used
 docker run hello-world
 {% endhighlight %}
 
+This command will look for an image named `hello-world` on your local machine, and in its abscence, try to download it from the Docker Hub. The Docker Hub[Docker Hub](https://hub.docker.com)  is a central repository of Docker images that can be used for free by anyone. Once it has found the image, you should see some output similar to this:
+
+{% highlight console %}
+Unable to find image 'hello-world' locally
+Pulling repository hello-world
+e45a5af57b00: Download complete 
+511136ea3c5a: Download complete 
+31cbccb51277: Download complete 
+Status: Downloaded newer image for hello-world:latest
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (Assuming it was not already locally available.)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+For more examples and ideas, visit:
+ http://docs.docker.com/userguide/
+{%endhighlight %}
+
+So a couple of things just happened. The Docker enginer tried to fine the image locally but failed, so it downloaded it from the Hub. Docker then created a new container from that image which contained the executable code that produced the output. It then ran the container, and once it finished running, sent the output to your console. The same steps will happen everytime you run a Docker container. You can also run an interactive Docker container by appending the `-i -t` options to the command. For instance the following command will run an interactive Fedora 21 based container:
+
+{% highlight bash %}
+sudo docker run -i -t fedora:21 bash
+{% endhighlight %}
+
 # Building a Docker container for EAP
 
-Now that we have a basic understanding of what Docker is, lets jump into the meet of things and talk about our EAP container. The container itself is pretty straight forward. All you need to create it is the Dockerfile and the EAP installation zip. If you do not alreay have the ZIP archive for EAP 6.3 then you should go download it here. Now lets look at the Dockerfile for our container.
+Now that we have a basic understanding of what Docker is, lets jump into the meet of things and talk about our EAP container. The container itself is pretty straight forward. All you need to create it is the Dockerfile and the EAP installation zip. If you do not alreay have the ZIP archive for EAP 6.3 then you should go download it [here](http://www.jboss.org/download-manager/file/jboss-eap-6.3.0.GA.zip) here. Now lets look at the Dockerfile for our container.
 
 {% highlight bash %}
 ### Set the base image to Fedora
@@ -57,7 +91,8 @@ ENV JBOSS_HOME /opt/jboss/jboss-eap-6.3
 RUN $JBOSS_HOME/bin/add-user.sh admin admin123! --silent
 
 ### Configure EAP
-RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> $JBOSS_HOME/bin/standalone.conf
+RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" 
+	>> $JBOSS_HOME/bin/standalone.conf
 
 ### Open Ports
 EXPOSE 8080 9990 9999
@@ -66,3 +101,4 @@ EXPOSE 8080 9990 9999
 ENTRYPOINT $JBOSS_HOME/bin/standalone.sh -c standalone-full-ha.xml
 {% endhighlight %}
 
+There are several steps happening in this file, and we will walk through them all one at a time.
