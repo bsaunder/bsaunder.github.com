@@ -44,7 +44,7 @@ Official scores for exams come exclusively from Red Hat Certification Central. R
 Camel Development with Red Hat JBoss Fuse ([JB421](http://www.redhat.com/en/services/training/jb421-camel-development-red-hat-jboss-fuse)) is the recommended training course for preparing for this exam.
 
 
-# Exam Objective Resources
+# Exam Objectives & Resources
 This section will break down the exam by objectives and relate each objective back to the appropriate section in the JB421 training course and official documentation. Additional resources may also be referenced for some objectives when there is a need to provide more detail.
 
 ## Create & Maintain Camel Routes
