@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "EX421 Study Guide"
+title: "Red Hat EX421 Study Guide"
 description: ""
 category:
 tags: [camel,fuse,jboss,training,jb421,exam,ex421]
@@ -44,10 +44,11 @@ Official scores for exams come exclusively from Red Hat Certification Central. R
 Camel Development with Red Hat JBoss Fuse ([JB421](http://www.redhat.com/en/services/training/jb421-camel-development-red-hat-jboss-fuse)) is the recommended training course for preparing for this exam.
 
 
-# Exam Objective Mapping
+# Exam Objective Resources
 This section will break down the exam by objectives and relate each objective back to the appropriate section in the JB421 training course and official documentation. Additional resources may also be referenced for some objectives when there is a need to provide more detail.
 
 ## Create & Maintain Camel Routes
+TODO
 
 ### Objective: Use the Java language
 TODO
@@ -55,8 +56,8 @@ TODO
 ### Objective: Use the CamelContext XML
 TODO
 
-
 ## Understand Exchange messages
+TODO
 
 ### Objective: Work with the Message Body
 TODO
@@ -70,33 +71,86 @@ TODO
 ### Objective: Work with the In/out Messages
 TODO
 
+## Consume and produce files
+TODO
 
-- **Consume and produce files**
-  - CSV format
-  - XML format
-- **Work with databases and the Camel JPA component**
-- **Understand transactional routes**
-- **Use EIPs**
-  - Content-based routing
-  - Wire Tap
-  - Splitter
-  - Aggregator
-  - RecipientList
-- **Use Camel components**
-  - File2
-  - FTP
-  - JPA2
-  - JMS
-  - Direct
-- **Use Camel Test**
-  - Mock endpoints
-  - JUnit 4 integration and CamelTest APIs
-- **Dynamically route messages**
-  - Use conditional routes
-  - Use data-driven routes
-- **Handle exceptions**
-  - Catch and handle exceptions
-  - Use the dead-letter queue
+### Objective: Work with CSV files
+TODO
+
+### Objective: Work with XML file
+TODO
+
+## Work with databases and Camel JPA
+TODO
+
+## Understand transactional routes
+TODO
+
+## Understand & use common EIPs
+TODO
+
+### Objective: Work with Content-based routing
+TODO
+
+### Objective: Work with Wire Tap
+TODO
+
+### Objective: Work with Splitter
+TODO
+
+### Objective: Work with Aggregator
+TODO
+
+### Objective: Work with RecipientList
+TODO
+
+## Understand & use common Camel components
+TODO
+
+### Objective: Work with File2
+TODO
+
+### Objective: Work with FTP
+TODO
+
+### Objective: Work with JPA2
+TODO
+
+### Objective: Work with JMS
+TODO
+
+### Objective: Work with Direct
+TODO
+
+## Testing Routes
+TODO
+
+### Objective: Work with Mock endpoints
+TODO
+
+### Objective: Understand JUnit 4 integration
+TODO
+
+### Objective: Work with CamelTest APIs
+TODO
+
+## Dynamically Route Messages
+TODO
+
+### Objective: Use conditional routes
+TODO
+
+### Objective: Use data-driven routes
+TODO
+
+## Exception Handling
+TODO
+
+### Objective: Catch and handle exceptions
+TODO
+
+### Objective: Work with Use the dead-letter queue
+TODO
 
 
 # Additional recommended reading
