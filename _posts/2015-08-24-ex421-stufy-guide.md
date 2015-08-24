@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: post
 title: "EX421 Study Guide"
 description: ""
+category:
+tags: [camel,fuse,jboss,training,jb421,exam,ex421]
 ---
 {% include JB/setup %}
 
