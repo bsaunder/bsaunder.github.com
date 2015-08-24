@@ -48,48 +48,48 @@ Camel Development with Red Hat JBoss Fuse ([JB421](http://www.redhat.com/en/serv
 This section will break down the exam by objectives and relate each objective back to the appropriate section in the JB421 training course and official documentation. Additional resources may also be referenced for some objectives when there is a need to provide more detail.
 
 - **Create and maintain Camel routes**
- - Use the Java™ language
- - Use the CamelContext XML
+  - Use the Java language
+  - Use the CamelContext XML
 
 - **Exchange messages**
- -- Body
- -- In/out
- -- Headers
- -- Attachments
+  - Body
+  - In/out
+  - Headers
+  - Attachments
 
 - **Consume and produce files**
- -- CSV format
- -- XML format
+  - CSV format
+  - XML format
 
 - **Work with databases and the Camel JPA component**
 
 - **Understand transactional routes**
 
 - **Use EIPs**
- -- Content-based routing
- -- Wire Tap
- -- Splitter
- -- Aggregator
- -- RecipientList
+  - Content-based routing
+  - Wire Tap
+  - Splitter
+  - Aggregator
+  - RecipientList
 
 - **Use Camel components**
- -- File2
- -- FTP
- -- JPA2
- -- JMS
- -- Direct
+  - File2
+  - FTP
+  - JPA2
+  - JMS
+  - Direct
 
 - **Use Camel Test**
- -- Mock endpoints
- -- JUnit 4 integration and CamelTest APIs
+  - Mock endpoints
+  - JUnit 4 integration and CamelTest APIs
 
 - **Dynamically route messages**
- -- Use conditional routes
- -- Use data-driven routes
+  - Use conditional routes
+  - Use data-driven routes
 
 - **Handle exceptions**
- -- Catch and handle exceptions
- -- Use the dead-letter queue
+  - Catch and handle exceptions
+  - Use the dead-letter queue
 
 
 # Additional recommended reading
