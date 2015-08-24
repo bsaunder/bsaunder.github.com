@@ -50,34 +50,34 @@ This section will break down the exam by objectives and relate each objective ba
 ## Create & Maintain Camel Routes
 TODO
 
-### Objective: Use the Java language
+### **Objective:** Use the Java language DSL
 TODO
 
-### Objective: Use the CamelContext XML
+### **Objective:** Use the CamelContext XML
 TODO
 
 ## Understand Exchange messages
 TODO
 
-### Objective: Work with the Message Body
+### **Objective:** Work with the Message Body
 TODO
 
-### Objective: Work with the Message Headers
+### **Objective:** Work with the Message Headers
 TODO
 
-### Objective: Work with the Message Attachments
+### **Objective:** Work with the Message Attachments
 TODO
 
-### Objective: Work with the In/out Messages
+### **Objective:** Work with the In/out Messages
 TODO
 
 ## Consume and produce files
 TODO
 
-### Objective: Work with CSV files
+### **Objective:** Work with CSV files
 TODO
 
-### Objective: Work with XML file
+### **Objective:** Work with XML file
 TODO
 
 ## Work with databases and Camel JPA
@@ -89,67 +89,67 @@ TODO
 ## Understand & use common EIPs
 TODO
 
-### Objective: Work with Content-based routing
+### **Objective:** Work with Content-based router EIP
 TODO
 
-### Objective: Work with Wire Tap
+### **Objective:** Work with Wire Tap EIP
 TODO
 
-### Objective: Work with Splitter
+### **Objective:** Work with Splitter EIP
 TODO
 
-### Objective: Work with Aggregator
+### **Objective:** Work with Aggregator EIP
 TODO
 
-### Objective: Work with RecipientList
+### **Objective:** Work with RecipientList EIP
 TODO
 
 ## Understand & use common Camel components
 TODO
 
-### Objective: Work with File2
+### **Objective:** Work with File2 component
 TODO
 
-### Objective: Work with FTP
+### **Objective:** Work with FTP component
 TODO
 
-### Objective: Work with JPA2
+### **Objective:** Work with JPA2 component
 TODO
 
-### Objective: Work with JMS
+### **Objective:** Work with JMS component
 TODO
 
-### Objective: Work with Direct
+### **Objective:** Work with Direct component
 TODO
 
 ## Testing Routes
 TODO
 
-### Objective: Work with Mock endpoints
+### **Objective:** Work with Mock endpoints
 TODO
 
-### Objective: Understand JUnit 4 integration
+### **Objective:** Understand JUnit 4 integration
 TODO
 
-### Objective: Work with CamelTest APIs
+### **Objective:** Work with CamelTest APIs
 TODO
 
 ## Dynamically Route Messages
 TODO
 
-### Objective: Use conditional routes
+### **Objective:** Use conditional routes
 TODO
 
-### Objective: Use data-driven routes
+### **Objective:** Use data-driven routes
 TODO
 
 ## Exception Handling
 TODO
 
-### Objective: Catch and handle exceptions
+### **Objective:** Catch and handle exceptions
 TODO
 
-### Objective: Work with Use the dead-letter queue
+### **Objective:** Work with Use the dead-letter queue
 TODO
 
 
