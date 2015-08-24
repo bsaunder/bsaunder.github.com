@@ -47,9 +47,14 @@ Camel Development with Red Hat JBoss Fuse ([JB421](http://www.redhat.com/en/serv
 # Exam Objective Mapping
 This section will break down the exam by objectives and relate each objective back to the appropriate section in the JB421 training course and official documentation. Additional resources may also be referenced for some objectives when there is a need to provide more detail.
 
-- **Create and maintain Camel routes**
-  - Use the Java language
-  - Use the CamelContext XML
+## Create & Maintain Camel Routes
+### Objective: Use the Java language
+TODO
+
+### Objective: Use the CamelContext XML
+TODO
+
+
 - **Exchange messages**
   - Body
   - In/out
