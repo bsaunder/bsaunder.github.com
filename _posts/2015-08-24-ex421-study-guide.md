@@ -138,8 +138,16 @@ TODO
 TODO
 
 ### **Objective:** Use conditional routes
-TODO
-Note: Includes the Use of Predicates
+**Notes:**
+Conditional routing in Camel is primarily accomplished by a combination of a Content Based Router and an Expression. In addition to the Content Based Router EIP you should be familiar with Expressions, Predicates, and the Simple Expression Language. 
+
+-**Official Resources**
+  - JB421 Chapter
+  - Fuse Documentation
+-**Community References**
+  - Camel Site
+-**Additional Reading**
+  - Camel in Action
 
 ### **Objective:** Use data-driven routes
 TODO
