@@ -90,7 +90,16 @@ TODO
 TODO
 
 ### **Objective:** Work with Content-based router EIP
-TODO
+The Content Based Router EIP pattern allows you to route messages to the correct destination based on the contents of a message exchange. Expressions are utilized to evaluate the content of the exchange and determine where to route the message.
+
+- **Official Resources**
+  - Training Course - JB421, Sections 3.1 & 3.2
+  - [Official Documentation - Camel Development Guide, Sec 8.1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout.html#MsgRout-ContentBased)
+- **Community References**
+  - [Camel Docs - Content Based Router](http://camel.apache.org/content-based-router.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 2.5.1
+  - Book - Enterprise Integration Patterns, Chapter 7
 
 ### **Objective:** Work with Wire Tap EIP
 TODO
@@ -141,7 +150,7 @@ TODO
 Conditional routing in Camel is primarily accomplished by the combination of a Content Based Router and an Expression. In addition to the Content Based Router EIP you should be familiar with Expressions, Predicates, and the Simple Expression Language.
 
 - **Official Resources**
-  - Training Course - JB421 Sections 3.1 & 3.2
+  - Training Course - JB421, Sections 3.1 & 3.2
   - [Official Documentation - Camel Development Guide, Sec 8.1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout.html#MsgRout-ContentBased)
 - **Community References**
   - [Camel Docs - Content Based Router](http://camel.apache.org/content-based-router.html)
@@ -149,8 +158,8 @@ Conditional routing in Camel is primarily accomplished by the combination of a C
   - [Camel Docs - Simple Expression Language](http://camel.apache.org/simple.html)
   - [Camel Docs - Predicates](http://camel.apache.org/predicate.html)
 - **Additional Reading**
-  - Book - Camel in Action v1 Section 2.5.1
-  - Book - Enterprise Integration Patterns Chapter 7
+  - Book - Camel in Action v1, Section 2.5.1
+  - Book - Enterprise Integration Patterns, Chapter 7
 
 ### **Objective:** Use data-driven routes
 TODO
