@@ -100,6 +100,8 @@ The Content Based Router EIP pattern allows you to route messages to the correct
 - **Additional Reading**
   - Book - Camel in Action v1, Section 2.5.1
   - Book - Enterprise Integration Patterns, Chapter 7
+- **Gotchas**
+  - When using the Java DSL there are limitations on how "deep" you can go into a route. If your code does not compile when using a CBR try using .endChoice() to return control back to the CBR. You can find more detailed information [here](http://camel.apache.org/why-can-i-not-use-when-or-otherwise-in-a-java-camel-route.html) Note that this is not an issue with XML Routes. 
 
 ### **Objective:** Work with Wire Tap EIP
 TODO
