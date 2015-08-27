@@ -50,34 +50,53 @@ This section will break down the exam by objectives and relate each objective ba
 ## Create & Maintain Camel Routes
 TODO
 
-### **Objective:** Use the Java language DSL
-TODO
+- **Official Resources**
+  - Training Course - JB421, Sections 1.5 & 1.6
+  - Official Documentation (Link Needed)
+- **Community References**
+  - Camel Docs (Link(s) Needed)
+- **Additional Reading**
+  - Book - Camel in Action v1, (Chapter Needed)
 
-### **Objective:** Use the CamelContext XML
+### Use the Java language DSL
 TODO
+JB421 2.3/2.4
+
+### Use the CamelContext XML
+TODO
+JB241 2.5/2.6
 
 ## Understand Exchange messages
+An exchange stores messages received and transmitted using Camel routes. It stores routing information, the properties of the route/exchange itself, and the headers and properties of messages. The exchange is composed of an ID, Exchange Pattern (MEP), Properties, and two messages (In & Out).
+
+- **Official Resources**
+  - Training Course - JB421, Sections 1.3 & 1.4
+  - Official Documentation (Link Needed)
+- **Community References**
+  - Camel Docs (Link(s) Needed)
+- **Additional Reading**
+  - Book - Camel in Action v1, (Chapter Needed)
+
+### Work with the Message Body
+TODO
+Related: Camel Data Formats - http://camel.apache.org/data-format.html
+
+### Work with the Message Headers
 TODO
 
-### **Objective:** Work with the Message Body
+### Work with the Message Attachments
 TODO
 
-### **Objective:** Work with the Message Headers
-TODO
-
-### **Objective:** Work with the Message Attachments
-TODO
-
-### **Objective:** Work with the In/out Messages
+### Work with the In/out Messages
 TODO
 
 ## Consume and produce files
 TODO
 
-### **Objective:** Work with CSV files
+### Work with CSV files
 TODO
 
-### **Objective:** Work with XML file
+### Work with XML file
 TODO
 
 ## Work with databases and Camel JPA
@@ -89,7 +108,15 @@ TODO
 ## Understand & use common EIPs
 TODO
 
-### **Objective:** Work with Content-based router EIP
+- **Official Resources**
+  - Training Course - JB421, Sections 1.7
+  - Official Documentation (Link Needed)
+- **Community References**
+  - Camel Docs (Link(s) Needed)
+- **Additional Reading**
+  - Book - Camel in Action v1, (Chapter Needed)
+
+### Work with Content-based router EIP
 The Content Based Router EIP pattern allows you to route messages to the correct destination based on the contents of a message exchange. Expressions are utilized to evaluate the content of the exchange and determine where to route the message.
 
 - **Official Resources**
@@ -101,54 +128,54 @@ The Content Based Router EIP pattern allows you to route messages to the correct
   - Book - Camel in Action v1, Section 2.5.1
   - Book - Enterprise Integration Patterns, Chapter 7
 - **Gotchas**
-  - When using the Java DSL there are limitations on how "deep" you can go into a route. If your code does not compile when using a CBR try using .endChoice() to return control back to the CBR. You can find more detailed information [here](http://camel.apache.org/why-can-i-not-use-when-or-otherwise-in-a-java-camel-route.html) Note that this is not an issue with XML Routes. 
+  - When using the Java DSL there are limitations on how "deep" you can go into a route. If your code does not compile when using a CBR try using .endChoice() to return control back to the CBR. You can find more detailed information [here](http://camel.apache.org/why-can-i-not-use-when-or-otherwise-in-a-java-camel-route.html) Note that this is not an issue with XML Routes.
 
-### **Objective:** Work with Wire Tap EIP
+### Work with Wire Tap EIP
 TODO
 
-### **Objective:** Work with Splitter EIP
+### Work with Splitter EIP
 TODO
 
-### **Objective:** Work with Aggregator EIP
+### Work with Aggregator EIP
 TODO
 
-### **Objective:** Work with RecipientList EIP
+### Work with RecipientList EIP
 TODO
 
 ## Understand & use common Camel components
 TODO
 
-### **Objective:** Work with File2 component
+### Work with File2 component
 TODO
 
-### **Objective:** Work with FTP component
+### Work with FTP component
 TODO
 
-### **Objective:** Work with JPA2 component
+### Work with JPA2 component
 TODO
 
-### **Objective:** Work with JMS component
+### Work with JMS component
 TODO
 
-### **Objective:** Work with Direct component
+### Work with Direct component
 TODO
 
 ## Testing Routes
 TODO
 
-### **Objective:** Work with Mock endpoints
+### Work with Mock endpoints
 TODO
 
-### **Objective:** Understand JUnit 4 integration
+### Understand JUnit 4 integration
 TODO
 
-### **Objective:** Work with CamelTest APIs
+### Work with CamelTest APIs
 TODO
 
 ## Dynamically Route Messages
 TODO
 
-### **Objective:** Use conditional routes
+### Use conditional routes
 Conditional routing in Camel is primarily accomplished by the combination of a Content Based Router and an Expression. In addition to the Content Based Router EIP you should be familiar with Expressions, Predicates, and the Simple Expression Language.
 
 - **Official Resources**
@@ -163,16 +190,16 @@ Conditional routing in Camel is primarily accomplished by the combination of a C
   - Book - Camel in Action v1, Section 2.5.1
   - Book - Enterprise Integration Patterns, Chapter 7
 
-### **Objective:** Use data-driven routes
+### Use data-driven routes
 TODO
 
 ## Exception Handling
 TODO
 
-### **Objective:** Catch and handle exceptions
+### Catch and handle exceptions
 TODO
 
-### **Objective:** Work with Use the dead-letter queue
+### Work with Use the dead-letter queue
 TODO
 
 
