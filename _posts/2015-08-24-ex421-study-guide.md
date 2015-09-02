@@ -48,34 +48,52 @@ Camel Development with Red Hat JBoss Fuse ([JB421](http://www.redhat.com/en/serv
 This section will break down the exam by objectives and relate each objective back to the appropriate section in the JB421 training course and official documentation. Additional resources may also be referenced for some objectives when there is a need to provide more detail.
 
 ## Create & Maintain Camel Routes
-TODO
+Camel routes are the core construct within Camel and are used for routing messages. They are composed of Components and Endpoints and are created using one of many DSL's or XML based languages. The most common methods for creating a route are using the Java DSL or Spring XML.
 
 - **Official Resources**
   - Training Course - JB421, Sections 1.5 & 1.6
-  - Official Documentation (Link Needed)
+  - [Official Documentation - Camel Development Guide, Chapter 1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/FuseMRStartedBlocks.html)
 - **Community References**
-  - Camel Docs (Link(s) Needed)
+  - [Camel Documentation - Routes](http://camel.apache.org/routes.html)
+  - [Camel Documentation - Java DSL](http://camel.apache.org/java-dsl.html)
+  - [Camel Documentation - Spring DSL](http://camel.apache.org/spring.html)
 - **Additional Reading**
-  - Book - Camel in Action v1, (Chapter Needed)
+  - Book - Camel in Action v1, Chapter 2.3 & 2.4
 
 ### Use the Java language DSL
-TODO
-JB421 2.3/2.4
+The Java based DSL uses a fluent builder style. The Java DSL is available by extending the RouteBuilder class and implementing the configure method.
+
+- **Official Resources**
+  - Training Course - JB421, Sections 2.3 & 2.4
+  - [Official Documentation - Camel Development Guide, Chapter 1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/FuseMRStartedBlocks.html)
+- **Community References**
+  - [Camel Documentation - Java DSL](http://camel.apache.org/java-dsl.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 2.3
 
 ### Use the CamelContext XML
-TODO
-JB241 2.5/2.6
+The CamelContext XML is used with the Spring XML to create and define Camel routes. You can configure a CamelContext inside any spring.xml using the CamelContextFactoryBean. This will automatically start the CamelContext along with any referenced Routes along any referenced Component and Endpoint instances.
+
+- **Official Resources**
+  - Training Course - JB421, Sections 2.5 & 2.6
+  - [Official Documentation - Camel Development Guide, Chapter 1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/FuseMRStartedBlocks.html)
+- **Community References**
+  - [Camel Documentation - Spring DSL](http://camel.apache.org/spring.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 2.4
 
 ## Understand Exchange messages
 An exchange stores messages received and transmitted using Camel routes. It stores routing information, the properties of the route/exchange itself, and the headers and properties of messages. The exchange is composed of an ID, Exchange Pattern (MEP), Properties, and two messages (In & Out).
 
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
-  - Official Documentation (Link Needed)
+  - [Official Documentation - Camel Development Guide, Chapter 42](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgFormats.html)
 - **Community References**
-  - Camel Docs (Link(s) Needed)
+  - [Camel Documentation - Routes](http://camel.apache.org/routes.html)
+  - [Camel Documentation - Java DSL](http://camel.apache.org/java-dsl.html)
+  - [Camel Documentation - Spring DSL](http://camel.apache.org/spring.html)
 - **Additional Reading**
-  - Book - Camel in Action v1, (Chapter Needed)
+  - Book - Camel in Action v1, Chapter 2.3 & 2.4
 
 ### Work with the Message Body
 TODO
@@ -106,24 +124,24 @@ TODO
 TODO
 
 ## Understand & use common EIPs
-TODO
+EIP's are Design Patterns that are intended to be used in ESB's and other SOA systems to solve common integration problems. Camel supports most of the Enterprise Integration Patterns from the excellent book by Gregor Hohpe and Bobby Woolf.
 
 - **Official Resources**
   - Training Course - JB421, Sections 1.7
-  - Official Documentation (Link Needed)
+  - [Official Documentation - Camel Development Guide, Chapter 3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/IntroToEIP.html)
 - **Community References**
-  - Camel Docs (Link(s) Needed)
+  - [Camel Documentation - Enterprise Integration Patterns](http://camel.apache.org/enterprise-integration-patterns.html)
 - **Additional Reading**
-  - Book - Camel in Action v1, (Chapter Needed)
+  - Book - Camel in Action v1, Chapter 8
 
 ### Work with Content-based router EIP
-The Content Based Router EIP pattern allows you to route messages to the correct destination based on the contents of a message exchange. Expressions are utilized to evaluate the content of the exchange and determine where to route the message.
+The Content Based Router EIP pattern allows you to route messages to the correct destination based on the contents of a message exchange. Expressions are utilized to evaluate the content of the exchange and determine where to route the message.docs.redhat.
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.1 & 3.2
-  - [Official Documentation - Camel Development Guide, Sec 8.1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout.html#MsgRout-ContentBased)
+  - [Official Documentation - Camel Development Guide, Section 8.1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout.html#MsgRout-ContentBased)
 - **Community References**
-  - [Camel Docs - Content Based Router](http://camel.apache.org/content-based-router.html)
+  - [Camel Documentation - Content Based Router](http://camel.apache.org/content-based-router.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 2.5.1
   - Book - Enterprise Integration Patterns, Chapter 7
@@ -180,12 +198,12 @@ Conditional routing in Camel is primarily accomplished by the combination of a C
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.1 & 3.2
-  - [Official Documentation - Camel Development Guide, Sec 8.1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout.html#MsgRout-ContentBased)
+  - [Official Documentation - Camel Development Guide, Section 8.1](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout.html#MsgRout-ContentBased)
 - **Community References**
-  - [Camel Docs - Content Based Router](http://camel.apache.org/content-based-router.html)
-  - [Camel Docs - Expressions](http://camel.apache.org/expression.html)
-  - [Camel Docs - Simple Expression Language](http://camel.apache.org/simple.html)
-  - [Camel Docs - Predicates](http://camel.apache.org/predicate.html)
+  - [Camel Documentation - Content Based Router](http://camel.apache.org/content-based-router.html)
+  - [Camel Documentation - Expressions](http://camel.apache.org/expression.html)
+  - [Camel Documentation - Simple Expression Language](http://camel.apache.org/simple.html)
+  - [Camel Documentation - Predicates](http://camel.apache.org/predicate.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 2.5.1
   - Book - Enterprise Integration Patterns, Chapter 7
