@@ -14,7 +14,6 @@ Note that this guide is currently a WIP.
 <!-- more -->
 
 # Audience &amp; Prerequisites
-
 The following audiences may be interested in earning the Red Hat Certificate of Expertise in Camel Development:
 - Enterprise Java developers who are familiar with service-oriented architecture (SOA) principles and are responsible for integrating enterprise applications.
 - Enterprise SOA architects with some Java development experience and knowledge of enterprise integration.
@@ -26,7 +25,6 @@ Exam candidates should:
 
 
 # Exam format
-
 This exam is a performance-based evaluation of the candidate's Camel development skills and knowledge. Candidates perform tasks associated with the development and maintenance of enterprise integration patterns using Red Hat JBoss Fuse. Performance-based testing means that candidates must perform tasks similar to what they perform on the job.
 
 This is a closed exam where candidates do not have access to the internet and candidates are not permitted to bring any papers, books or electronic aids to the exam. Candidates are, however, provided with a local copy of the official [JBoss Fuse documentation](https://access.redhat.com/site/documentation/JBoss_Fuse/). Candidates should familiarize themselves with this documentation when preparing for the exam.
@@ -35,14 +33,11 @@ This exam consists of 1 section lasting 4 hours.
 
 
 # Scores and reporting
-
 Official scores for exams come exclusively from Red Hat Certification Central. Red Hat does not authorize examiners or training partners to report results to candidates directly. Scores on the exam are usually reported within 3 U.S. business days.
 
 
 # Recommended training
-
 Camel Development with Red Hat JBoss Fuse ([JB421](http://www.redhat.com/en/services/training/jb421-camel-development-red-hat-jboss-fuse)) is the recommended training course for preparing for this exam.
-
 
 # Exam Objectives & Resources
 This section will break down the exam by objectives and relate each objective back to the appropriate section in the JB421 training course and official documentation. Additional resources may also be referenced for some objectives when there is a need to provide more detail.
@@ -96,17 +91,30 @@ An exchange stores messages received and transmitted using Camel routes. It stor
   - Book - Camel in Action v1, Chapter 2.3 & 2.4
 
 ### Work with the Message Body
-TODO
-Related: Camel Data Formats - http://camel.apache.org/data-format.html
+The message body contains data that will be processed by the receiver and/or manipulated by Camel processors.
+
+- **Official Resources**
+  - Training Course - JB421, Sections 1.3 & 1.4
+- **Related**
+  - [Camel Data Formats](http://camel.apache.org/data-format.html)
 
 ### Work with the Message Headers
-TODO
+Message headers contain metadata such as sender information and security details in a java.util.Map collection.
+
+- **Official Resources**
+  - Training Course - JB421, Sections 1.3 & 1.4
 
 ### Work with the Message Attachments
-TODO
+Attachments contain file-based contents to be transmitted to a receiver.
+
+- **Official Resources**
+  - Training Course - JB421, Sections 1.3 & 1.4
 
 ### Work with the In/out Messages
-TODO
+The In/Out messages are the messages on the Camel Exchange and are manipulated by the Camel processors.
+
+- **Official Resources**
+  - Training Course - JB421, Sections 1.3 & 1.4
 
 ## Consume and produce files
 TODO
@@ -114,14 +122,26 @@ TODO
 ### Work with CSV files
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 4.7 & 4.8
+
 ### Work with XML file
 TODO
+
+- **Official Resources**
+  - Training Course - JB421, Sections 5.1 & 5.2
 
 ## Work with databases and Camel JPA
 TODO
 
+- **Official Resources**
+  - Training Course- JB421, Sections 7.8 & 7.9
+
 ## Understand transactional routes
 TODO
+
+- **Official Resources**
+  - Training Course- JB421, Sections 11.3 & 11.4
 
 ## Understand & use common EIPs
 EIP's are Design Patterns that are intended to be used in ESB's and other SOA systems to solve common integration problems. Camel supports most of the Enterprise Integration Patterns from the excellent book by Gregor Hohpe and Bobby Woolf.
@@ -151,32 +171,62 @@ The Content Based Router EIP pattern allows you to route messages to the correct
 ### Work with Wire Tap EIP
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 3.5 & 3.6
+
 ### Work with Splitter EIP
 TODO
+
+- **Official Resources**
+  - Training Course - JB421, Sections 3.3 & 3.4
 
 ### Work with Aggregator EIP
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 3.9 & 3.10
+
 ### Work with RecipientList EIP
 TODO
+
+- **Official Resources**
+  - Training Course - JB421, Sections 3.7 & 3.8
 
 ## Understand & use common Camel components
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 7.1
+
 ### Work with File2 component
 TODO
+
+- **Official Resources**
+  - Training Course - JB421, Sections 7.2 & 7.3
 
 ### Work with FTP component
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 7.2 & 7.3
+
 ### Work with JPA2 component
 TODO
+
+- **Official Resources**
+  - Training Course - JB421, Sections 7.8 & 7.9
 
 ### Work with JMS component
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 8.3 & 8.4
+
 ### Work with Direct component
 TODO
+
+- **Official Resources**
+  - Training Course - JB421, Sections 7.4 & 7.5
 
 ## Testing Routes
 TODO
@@ -184,11 +234,20 @@ TODO
 ### Work with Mock endpoints
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 9.5 & 9.6
+
 ### Understand JUnit 4 integration
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 9.1 & 9.2
+
 ### Work with CamelTest APIs
 TODO
+
+- **Official Resources**
+  - Training Course- JB421, Sections 9.3 & 9.4
 
 ## Dynamically Route Messages
 TODO
@@ -208,18 +267,20 @@ Conditional routing in Camel is primarily accomplished by the combination of a C
   - Book - Camel in Action v1, Section 2.5.1
   - Book - Enterprise Integration Patterns, Chapter 7
 
-### Use data-driven routes
-TODO
-
 ## Exception Handling
 TODO
 
 ### Catch and handle exceptions
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 10.8 & 10.9
+
 ### Work with Use the dead-letter queue
 TODO
 
+- **Official Resources**
+  - Training Course - JB421, Sections 10.4 & 10.5
 
 # Additional recommended reading
 The following books may be useful in your exam preperation however they are not required reading and you should be able to pass the exam without reading these books.
