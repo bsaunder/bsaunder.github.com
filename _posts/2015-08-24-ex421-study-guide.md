@@ -95,26 +95,30 @@ The message body contains data that will be processed by the receiver and/or man
 
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
+  - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
 - **Related**
-  - [Camel Data Formats](http://camel.apache.org/data-format.html)
+  - [Camel Documentation - Data Formats](http://camel.apache.org/data-format.html)
 
 ### Work with the Message Headers
 Message headers contain metadata such as sender information and security details in a java.util.Map collection.
 
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
+  - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
 
 ### Work with the Message Attachments
 Attachments contain file-based contents to be transmitted to a receiver.
 
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
+  - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
 
 ### Work with the In/out Messages
 The In/Out messages are the messages on the Camel Exchange and are manipulated by the Camel processors.
 
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
+  - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
 
 ## Consume and produce files
 TODO
@@ -124,24 +128,28 @@ TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 4.7 & 4.8
+  - [Official Documentation - Camel Component Guide, Chapter 43](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
 
 ### Work with XML file
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 5.1 & 5.2
+  - [Official Documentation - Camel Component Guide, Chapter 43](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
 
 ## Work with databases and Camel JPA
 TODO
 
 - **Official Resources**
   - Training Course- JB421, Sections 7.8 & 7.9
+  - [Official Documentation - Camel Component Guide, Chapter 76](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JPA)
 
 ## Understand transactional routes
 TODO
 
 - **Official Resources**
   - Training Course- JB421, Sections 11.3 & 11.4
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ## Understand & use common EIPs
 EIP's are Design Patterns that are intended to be used in ESB's and other SOA systems to solve common integration problems. Camel supports most of the Enterprise Integration Patterns from the excellent book by Gregor Hohpe and Bobby Woolf.
@@ -173,60 +181,70 @@ TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.5 & 3.6
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ### Work with Splitter EIP
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.3 & 3.4
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ### Work with Aggregator EIP
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.9 & 3.10
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ### Work with RecipientList EIP
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.7 & 3.8
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ## Understand & use common Camel components
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.1
+  - [Official Documentation - Camel Development Guide](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html)
 
 ### Work with File2 component
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.2 & 7.3
+  - [Official Documentation - Camel Development Guide, Chapter 42](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
 
 ### Work with FTP component
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.2 & 7.3
+  - [Official Documentation - Camel Development Guide, Chapter 47](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-FTP2)
 
 ### Work with JPA2 component
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.8 & 7.9
+  - [Official Documentation - Camel Development Guide, Chapter 76](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JPA)
 
 ### Work with JMS component
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 8.3 & 8.4
+  - [Official Documentation - Camel Development Guide, Chapter 74](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JMS)
 
 ### Work with Direct component
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.4 & 7.5
+  - [Official Documentation - Camel Development Guide, Chapter 32](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-Direct)
 
 ## Testing Routes
 TODO
@@ -236,18 +254,21 @@ TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 9.5 & 9.6
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ### Understand JUnit 4 integration
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 9.1 & 9.2
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ### Work with CamelTest APIs
 TODO
 
 - **Official Resources**
   - Training Course- JB421, Sections 9.3 & 9.4
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ## Dynamically Route Messages
 TODO
@@ -275,12 +296,14 @@ TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 10.8 & 10.9
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 ### Work with Use the dead-letter queue
 TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 10.4 & 10.5
+  - [Official Documentation - Camel Development Guide, Chapter XX]()
 
 # Additional recommended reading
 The following books may be useful in your exam preperation however they are not required reading and you should be able to pass the exam without reading these books.
