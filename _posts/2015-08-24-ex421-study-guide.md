@@ -100,6 +100,8 @@ The message body contains data that will be processed by the receiver and/or man
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
 - **Related**
   - [Camel Documentation - Data Formats](http://camel.apache.org/data-format.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 1.3
 
 ### Work with the Message Headers
 Message headers contain metadata such as sender information and security details in a java.util.Map collection.
@@ -107,6 +109,8 @@ Message headers contain metadata such as sender information and security details
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 1.3
 
 ### Work with the Message Attachments
 Attachments contain file-based contents to be transmitted to a receiver.
@@ -114,6 +118,8 @@ Attachments contain file-based contents to be transmitted to a receiver.
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 1.3
 
 ### Work with the In/out Messages
 The In/Out messages are the messages on the Camel Exchange and are manipulated by the Camel processors.
@@ -121,37 +127,43 @@ The In/Out messages are the messages on the Camel Exchange and are manipulated b
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 1.3
 
 ## Consume and produce files
-TODO
 
 ### Work with CSV files
-TODO
+CSV File operations in Camel are performed using Bindy.
 
 - **Official Resources**
   - Training Course - JB421, Sections 4.7 & 4.8
   - [Official Documentation - Camel Component Guide, Chapter 43](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 3.4
 
 ### Work with XML file
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 5.1 & 5.2
   - [Official Documentation - Camel Component Guide, Chapter 43](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 3.3
 
 ## Work with databases and Camel JPA
-TODO
 
 - **Official Resources**
   - Training Course- JB421, Sections 7.8 & 7.9
   - [Official Documentation - Camel Component Guide, Chapter 76](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JPA)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 7.6
 
 ## Understand transactional routes
-TODO
 
 - **Official Resources**
   - Training Course- JB421, Sections 11.3 & 11.4
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+  - [Official Documentation - Camel Development Guide, Chapter 10.9](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgEnd-Transactional.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 9
 
 ## Understand & use common EIPs
 EIP's are Design Patterns that are intended to be used in ESB's and other SOA systems to solve common integration problems. Camel supports most of the Enterprise Integration Patterns from the excellent book by Gregor Hohpe and Bobby Woolf.
@@ -179,101 +191,116 @@ The Content Based Router EIP pattern allows you to route messages to the correct
   - When using the Java DSL there are limitations on how "deep" you can go into a route. If your code does not compile when using a CBR try using .endChoice() to return control back to the CBR. You can find more detailed information [here](http://camel.apache.org/why-can-i-not-use-when-or-otherwise-in-a-java-camel-route.html) Note that this is not an issue with XML Routes.
 
 ### Work with Wire Tap EIP
-TODO
+The wire tap pattern enables you to route a copy of the message to a separate tap location, while the original message is forwarded to the ultimate destination.
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.5 & 3.6
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+  - [Official Documentation - Camel Development Guide, Chapter 11.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/WireTap.html)
+- **Additional Reading**
+  - Book - Enterprise Integration Patterns, Chapter 11
 
 ### Work with Splitter EIP
-TODO
+A splitter is a type of router that splits an incoming message into a series of outgoing messages. Each of the outgoing messages contains a piece of the original message.
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.3 & 3.4
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+  - [Official Documentation - Camel Development Guide, Chapter 8.4](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout-Splitter.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 8.3
+  - Book - Enterprise Integration Patterns, Chapter 7
 
 ### Work with Aggregator EIP
-TODO
+The aggregator pattern enables you to combine a batch of related messages into a single message.
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.9 & 3.10
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+  - [Official Documentation - Camel Development Guide, Chapter 8.5](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout-Aggregator.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 8.2
+  - Book - Enterprise Integration Patterns, Chapter 7
 
 ### Work with RecipientList EIP
-TODO
+A recipient list is a type of router that sends each incoming message to multiple different destinations. In addition, a recipient list typically requires that the list of recipients be calculated at run time.
 
 - **Official Resources**
   - Training Course - JB421, Sections 3.7 & 3.8
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+  - [Official Documentation - Camel Development Guide, Chapter 8.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout-RecipientList.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 8.4
+  - Book - Enterprise Integration Patterns, Chapter 7
 
 ## Understand & use common Camel components
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.1
   - [Official Documentation - Camel Development Guide](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 7
 
 ### Work with File2 component
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.2 & 7.3
   - [Official Documentation - Camel Development Guide, Chapter 42](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 7.2
 
 ### Work with FTP component
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.2 & 7.3
   - [Official Documentation - Camel Development Guide, Chapter 47](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-FTP2)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 7.2
 
 ### Work with JPA2 component
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.8 & 7.9
   - [Official Documentation - Camel Development Guide, Chapter 76](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JPA)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 7.6
 
 ### Work with JMS component
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 8.3 & 8.4
   - [Official Documentation - Camel Development Guide, Chapter 74](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JMS)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 7.3
 
 ### Work with Direct component
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 7.4 & 7.5
   - [Official Documentation - Camel Development Guide, Chapter 32](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-Direct)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 7.7
 
 ## Testing Routes
-TODO
 
 ### Work with Mock endpoints
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 9.5 & 9.6
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 6.2
 
 ### Understand JUnit 4 integration
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 9.1 & 9.2
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 6.1
 
 ### Work with CamelTest APIs
-TODO
 
 - **Official Resources**
   - Training Course- JB421, Sections 9.3 & 9.4
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 6.1
 
 ## Dynamically Route Messages
-TODO
 
 ### Use conditional routes
 Conditional routing in Camel is primarily accomplished by the combination of a Content Based Router and an Expression. In addition to the Content Based Router EIP you should be familiar with Expressions, Predicates, and the Simple Expression Language.
@@ -291,21 +318,23 @@ Conditional routing in Camel is primarily accomplished by the combination of a C
   - Book - Enterprise Integration Patterns, Chapter 7
 
 ## Exception Handling
-TODO
+Apache Camel provides several different mechanisms, which let you handle exceptions at different levels of granularity: you can handle exceptions within a route using doTry, doCatch, and doFinally; or you can specify what action to take for each exception type and apply this rule to all routes in a RouteBuilder using onException; or you can specify what action to take for all exception types and apply this rule to all routes in a RouteBuilder using errorHandler.
 
 ### Catch and handle exceptions
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 10.8 & 10.9
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+  - [Official Documentation - Camel Development Guide, Chapter 2.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/BasicPrinciples-ExceptionHandling.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Chapter 5
 
 ### Work with Use the dead-letter queue
-TODO
 
 - **Official Resources**
   - Training Course - JB421, Sections 10.4 & 10.5
-  - [Official Documentation - Camel Development Guide, Chapter XX]()
+  - [Official Documentation - Camel Development Guide, Chapter 6.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgCh-DeadLetter.html)
+- **Additional Reading**
+  - Book - Camel in Action v1, Section 5.2
 
 # Additional recommended reading
 The following books may be useful in your exam preperation however they are not required reading and you should be able to pass the exam without reading these books.
