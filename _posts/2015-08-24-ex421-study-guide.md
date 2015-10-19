@@ -9,8 +9,6 @@ tags: [camel,fuse,jboss,training,jb421,exam,ex421]
 
 This guide is intended to serve as a study reference for people planning to take the Red Hat Certificate of Expertise in Camel Development Exam ([EX421](http://www.redhat.com/en/services/training/ex421-red-hat-certificate-expertise-camel-development-exam)). It contains all of the information & resources that you need to properly prepare yourself for the exam.
 
-Note that this guide is currently a WIP.
-
 <!-- more -->
 
 # Audience &amp; Prerequisites
