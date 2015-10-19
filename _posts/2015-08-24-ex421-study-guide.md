@@ -98,6 +98,8 @@ The message body contains data that will be processed by the receiver and/or man
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
+- **Community References**
+  - [Camel Documentation - Message](http://camel.apache.org/message.html)
 - **Related**
   - [Camel Documentation - Data Formats](http://camel.apache.org/data-format.html)
 - **Additional Reading**
@@ -109,6 +111,8 @@ Message headers contain metadata such as sender information and security details
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
+- **Community References**
+  - [Camel Documentation - Message](http://camel.apache.org/message.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 1.3
 
@@ -118,6 +122,8 @@ Attachments contain file-based contents to be transmitted to a receiver.
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
+- **Community References**
+  - [Camel Documentation - Message](http://camel.apache.org/message.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 1.3
 
@@ -127,6 +133,9 @@ The In/Out messages are the messages on the Camel Exchange and are manipulated b
 - **Official Resources**
   - Training Course - JB421, Sections 1.3 & 1.4
   - [Official Documentation - Camel Development Guide, Chapter 43.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Development_Guide/index.html#Processors-MsgContent)
+- **Community References**
+  - [Camel Documentation - Message](http://camel.apache.org/message.html)
+  - [Camel Documentation - Using getIn or getOut](http://camel.apache.org/using-getin-or-getout-methods-on-exchange.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 1.3
 
@@ -138,6 +147,8 @@ CSV File operations in Camel are performed using Bindy.
 - **Official Resources**
   - Training Course - JB421, Sections 4.7 & 4.8
   - [Official Documentation - Camel Component Guide, Chapter 43](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
+- **Community References**
+  - [Camel Documentation - Bindy](http://camel.apache.org/bindy.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 3.4
 
@@ -146,6 +157,8 @@ CSV File operations in Camel are performed using Bindy.
 - **Official Resources**
   - Training Course - JB421, Sections 5.1 & 5.2
   - [Official Documentation - Camel Component Guide, Chapter 43](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
+- **Community References**
+  - [Camel Documentation - XSLT](http://camel.apache.org/xslt.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 3.3
 
@@ -154,6 +167,8 @@ CSV File operations in Camel are performed using Bindy.
 - **Official Resources**
   - Training Course- JB421, Sections 7.8 & 7.9
   - [Official Documentation - Camel Component Guide, Chapter 76](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JPA)
+- **Community References**
+  - [Camel Documentation - JPA](http://camel.apache.org/jpa.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 7.6
 
@@ -162,6 +177,8 @@ CSV File operations in Camel are performed using Bindy.
 - **Official Resources**
   - Training Course- JB421, Sections 11.3 & 11.4
   - [Official Documentation - Camel Development Guide, Chapter 10.9](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgEnd-Transactional.html)
+- **Community References**
+  - [Camel Documentation - Transactional Client](http://camel.apache.org/transactional-client.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 9
 
@@ -196,6 +213,8 @@ The wire tap pattern enables you to route a copy of the message to a separate ta
 - **Official Resources**
   - Training Course - JB421, Sections 3.5 & 3.6
   - [Official Documentation - Camel Development Guide, Chapter 11.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/WireTap.html)
+- **Community References**
+  - [Camel Documentation - Wire Tap](http://camel.apache.org/wire-tap.html)
 - **Additional Reading**
   - Book - Enterprise Integration Patterns, Chapter 11
 
@@ -205,6 +224,8 @@ A splitter is a type of router that splits an incoming message into a series of 
 - **Official Resources**
   - Training Course - JB421, Sections 3.3 & 3.4
   - [Official Documentation - Camel Development Guide, Chapter 8.4](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout-Splitter.html)
+- **Community References**
+  - [Camel Documentation - Splitter](http://camel.apache.org/splitter.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 8.3
   - Book - Enterprise Integration Patterns, Chapter 7
@@ -215,6 +236,8 @@ The aggregator pattern enables you to combine a batch of related messages into a
 - **Official Resources**
   - Training Course - JB421, Sections 3.9 & 3.10
   - [Official Documentation - Camel Development Guide, Chapter 8.5](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout-Aggregator.html)
+- **Community References**
+  - [Camel Documentation - Aggregator](http://camel.apache.org/aggregator.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 8.2
   - Book - Enterprise Integration Patterns, Chapter 7
@@ -225,6 +248,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 - **Official Resources**
   - Training Course - JB421, Sections 3.7 & 3.8
   - [Official Documentation - Camel Development Guide, Chapter 8.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgRout-RecipientList.html)
+- **Community References**
+  - [Camel Documentation - Recipient List](http://camel.apache.org/recipient-list.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 8.4
   - Book - Enterprise Integration Patterns, Chapter 7
@@ -242,6 +267,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 - **Official Resources**
   - Training Course - JB421, Sections 7.2 & 7.3
   - [Official Documentation - Camel Development Guide, Chapter 42](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-File2)
+- **Community References**
+  - [Camel Documentation - File2](http://camel.apache.org/file2.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 7.2
 
@@ -250,6 +277,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 - **Official Resources**
   - Training Course - JB421, Sections 7.2 & 7.3
   - [Official Documentation - Camel Development Guide, Chapter 47](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-FTP2)
+- **Community References**
+  - [Camel Documentation - FTP](http://camel.apache.org/ftp.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 7.2
 
@@ -258,6 +287,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 - **Official Resources**
   - Training Course - JB421, Sections 7.8 & 7.9
   - [Official Documentation - Camel Development Guide, Chapter 76](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JPA)
+- **Community References**
+  - [Camel Documentation - JPA](http://camel.apache.org/jpa.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 7.6
 
@@ -266,6 +297,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 - **Official Resources**
   - Training Course - JB421, Sections 8.3 & 8.4
   - [Official Documentation - Camel Development Guide, Chapter 74](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-JMS)
+- **Community References**
+  - [Camel Documentation - JMS](http://camel.apache.org/jms.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 7.3
 
@@ -274,6 +307,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 - **Official Resources**
   - Training Course - JB421, Sections 7.4 & 7.5
   - [Official Documentation - Camel Development Guide, Chapter 32](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Apache_Camel_Component_Reference/index.html#IDU-Direct)
+- **Community References**
+  - [Camel Documentation - Direct](http://camel.apache.org/direct.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 7.7
 
@@ -283,6 +318,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 
 - **Official Resources**
   - Training Course - JB421, Sections 9.5 & 9.6
+- **Community References**
+  - [Camel Documentation - Mock](http://camel.apache.org/mock.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 6.2
 
@@ -290,6 +327,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 
 - **Official Resources**
   - Training Course - JB421, Sections 9.1 & 9.2
+- **Community References**
+  - [Camel Documentation - Testing](http://camel.apache.org/testing.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 6.1
 
@@ -297,6 +336,8 @@ A recipient list is a type of router that sends each incoming message to multipl
 
 - **Official Resources**
   - Training Course- JB421, Sections 9.3 & 9.4
+- **Community References**
+  - [Camel Documentation - Camel Test](http://camel.apache.org/camel-test.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 6.1
 
@@ -325,6 +366,8 @@ Apache Camel provides several different mechanisms, which let you handle excepti
 - **Official Resources**
   - Training Course - JB421, Sections 10.8 & 10.9
   - [Official Documentation - Camel Development Guide, Chapter 2.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/BasicPrinciples-ExceptionHandling.html)
+- **Community References**
+  - [Camel Documentation - Error Handling](http://camel.apache.org/error-handling-in-camel.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Chapter 5
 
@@ -333,6 +376,8 @@ Apache Camel provides several different mechanisms, which let you handle excepti
 - **Official Resources**
   - Training Course - JB421, Sections 10.4 & 10.5
   - [Official Documentation - Camel Development Guide, Chapter 6.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Apache_Camel_Development_Guide/MsgCh-DeadLetter.html)
+- **Community References**
+  - [Camel Documentation - Dead Letter Channel](http://camel.apache.org/dead-letter-channel.html)
 - **Additional Reading**
   - Book - Camel in Action v1, Section 5.2
 
