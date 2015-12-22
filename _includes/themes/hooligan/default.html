@@ -61,6 +61,13 @@
                   </a>
                 </li>
                 {% endif %}
+                {% if site.author.github2 %}
+                <li>
+                  <a href="https://github.com/{{ site.author.github2 }}" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Work Github</span>
+                  </a>
+                </li>
+                {% endif %}
                 {% if site.author.googleplus %}
                 <li>
                   <a href="https://plus.google.com/{{ site.author.googleplus }}" class="zocial googleplus icon" target="_blank">
