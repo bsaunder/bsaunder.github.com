@@ -1,0 +1,2582 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Red Hat, Inc.</title>
+
+  <meta name="description" content="Introduction to Camel with Demos from the Field">
+  <meta name="author" content="Bryan Saunders">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.css">
+
+
+  <!-- dstanley/dblack - Set the theme to night - black background -->
+  <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+    	var link = document.createElement('link');
+    	link.rel = 'stylesheet';
+    	link.type = 'text/css';
+    	link.href = 'css/print/pdf.css';
+    	document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  </script>
+
+  <!-- Begin added by SCE -->
+  <!-- script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script -->
+  <script type="text/javascript" src="plugin/jquery/jquery.min.js"></script>
+  <!-- script src="http://code.highcharts.com/highcharts.js"></script -->
+  <script src="plugin/highcharts/highcharts.js"></script>
+  <!-- script src="http://code.highcharts.com/modules/exporting.js"></script -->
+  <script src="plugin/highcharts/exporting.js"></script>
+
+
+  <style type="text/css">
+    .rh-header {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      font-family: "Overpass", "Liberation Sans", sans-serif;
+      font-size: 18px;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      color: #eeeeee;
+    }
+    .ribbon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    p {
+      text-align: left;
+    }
+    .reveal table th {
+      text-align: left;
+      padding: 0.2em 0.5em 0.2em 0.5em;
+      border-bottom: 1px solid;
+    }
+    .reveal table td {
+      text-align: left;
+      padding: 0.2em 0.5em 0.2em 0.5em;
+      border-bottom: none;
+    }
+    .reveal table tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+
+  <!-- end content added by SCE -->
+
+
+  <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+  <div class="rh-header">
+    <img src="images/redhat.png" class="ribbon" /> Red Hat | Bryan Saunders
+  </div>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      <section data-background="images/rh_bg_3.png" data-background-size="contain" data-background-position="center" data-transition="slide">
+        <h1 align=left>Camel from the Field</h1>
+        <h2 align=left></h2>
+        <br />
+        <h3 align=left>
+          Bryan Saunders
+          <br /> Feb 16, 2015
+          <br />
+      </section>
+
+      <section>
+        <h2>Agenda</h2>
+        <ul>
+          <li>Introduction to Camel
+            <ul>
+              <li>What is Camel</li>
+              <li>Camel Features</li>
+              <li>Enterprise Integration Patterns</li>
+              <li>Key Components</li>
+            </ul>
+          </li>
+          <li>Camel Architecture</li>
+          <li>Supported Platforms</li>
+          <li>Camel Hands On
+            <ul>
+              <li>Common EIPs</li>
+              <li>Camel on EAP</li>
+              <li>Using JMS</li>
+              <li>Web Services</li>
+            </ul>
+          </li>
+          <li>Future of Camel</li>
+          <li>Q &amp; A</li>
+        </ul>
+      </section>
+
+      <section data-background="images/rh_bg_1.png" data-background-size="contain">
+        <h1>Introduction to Camel</h1>
+      </section>
+
+      <section>
+        <section>
+          <h2>What is Camel</h2>
+          <blockquote  cite="http://camel.apache.org/what-is-camel.html">
+            Apache Camel ™ is a versatile open-source integration framework based on known Enterprise Integration Patterns.
+            <br/>
+            <br/>- Apache Camel Website
+          </blockquote>
+          <br/>
+          <blockquote  cite="http://stackoverflow.com/questions/8845186/what-exactly-is-apache-camel">
+            Apache Camel is an open source Java framework that focuses on making integration easier and more accessible to developers. It does this by providing: concrete implementations of all the widely used EIPs, connectivity to a great variety of transports and
+            APIs, and easy to use Domain Specific Languages (DSLs) to wire EIPs and transports together
+            <br/>
+            <br/>- Jonathan Anstey
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>Why an Integration Framework</h2>
+          <p >Integration is Critical for Business</p>
+          <p >
+            Framework does the Heavy Lifting
+          </p>
+          <p >
+            Lets you Focus on the Problem
+          </p>
+          <p >
+            Prevents Re-inventing the Wheel
+          </p>
+        </section>
+
+        <section>
+          <h2>History of Camel</h2>
+          <p >
+            Started in March 2007
+          </p>
+          <p >
+            Founded by
+            <ul >
+              <li >
+                James Strachan
+              </li>
+              <li >
+                Rob Davies
+              </li>
+              <li >
+                Hiram Chirino
+              </li>
+              <li >
+                Guillaume Nodet
+              </li>
+            </ul>
+          </p>
+          <p >
+            First Release in June 2007
+          </p>
+          <p >
+            Spawned from Apache ServiceMix and Apache ActiveMQ
+          </p>
+          <aside class="notes">
+            ServiceMix and ActiveMQ both had a need to implement EIP's. A decision was made to put that functionality into a seperate Framework that could be used anywhere. Thus Camel was born.
+          </aside>
+        </section>
+      </section>
+
+      <section>
+        <h2>Camel Features</h2>
+        <p >
+          Very Leightweight
+          <span >, Consists of only a handful of JARs</span>
+        </p>
+        <p >
+          Easy Configuration
+        </p>
+        <p >
+          No Heavy Specification
+        </p>
+        <p >
+          No Container Dependencies
+        </p>
+        <p >
+          Payload Agnostic
+        </p>
+      </section>
+
+      <section>
+      <section>
+        <h2>Simple Programming</h2>
+        <p >Minimal Configuration</p>
+        <p >
+          DSL Based Programming
+        </p>
+        <p >
+          6 DSL's and Counting
+        </p>
+        <p>
+          <ul>
+            <li >
+              Java DSL
+            </li>
+            <li >
+              Spring XML
+            </li><li >
+              Blueprint XML
+            </li><li >
+              Rest DSL
+            </li><li >
+              Groovy DSL
+            </li><li >
+              Scala DSL
+            </li><li >
+              Kotlin DSL in the works
+            </li>
+          </ul>
+        </p>
+      </section>
+
+      <section>
+        <h2>Java DSL</h2>
+        <pre>
+          <code data-trim>
+from("file:src/data?noop=true")
+  .choice()
+    .when(xpath("/person/city = &#39;London&#39;"))
+      .to("file:target/messages/uk")
+    .otherwise()
+      .to("file:target/messages/others");
+          </code>
+        </pre>
+      </section>
+
+      <section>
+        <h2>Spring XML</h2>
+        <pre>
+          <code data-trim>
+&lt;route&gt;
+  &lt;from uri="direct:a"/&gt;
+  &lt;choice&gt;
+    &lt;when&gt;
+      &lt;xpath&gt;$foo = 'bar'&lt;/xpath&gt;
+      &lt;to uri="direct:b"/&gt;
+    &lt;/when&gt;
+    &lt;when&gt;
+      &lt;xpath&gt;$foo = 'cheese'&lt;/xpath&gt;
+      &lt;to uri="direct:c"/&gt;
+    &lt;/when&gt;
+    &lt;otherwise&gt;
+      &lt;to uri="direct:d"/&gt;
+    &lt;/otherwise&gt;
+  &lt;/choice&gt;
+&lt;/route&gt;
+        </code>
+        </pre>
+      </section>
+
+      <section>
+        <h2>Rest DSL</h2>
+        <table width="100%">
+          <tr>
+            <td>
+              <pre>
+                <code>
+rest("/say")
+  .get("/hello").to("direct:hello")
+  .get("/bye").consumes("application/json").to("direct:bye")
+
+
+
+                </code>
+              </pre>
+            </td>
+            <td>
+              <pre>
+                <code data-trim>
+&lt;rest path="/say"&gt;
+  &lt;get uri="/hello"&gt;
+    &lt;to uri="direct:hello"/&gt;
+  &lt;/get&gt;
+  &lt;get uri="/bye" consumes="application/json"&gt;
+    &lt;to uri="direct:bye"/&gt;
+  &lt;/get&gt;
+&lt;/rest&gt;
+                </code>
+              </pre>
+            </td>
+          </tr>
+        </table>
+        <aside class="notes">
+          Not Available until Camel 2.14
+        </aside>
+      </section>
+    </section>
+
+      <section>
+        <section>
+          <h2>Components</h2>
+          <p>
+            191 Components and counting
+          </p>
+          <p>
+            Component for pretty much anything
+          </p>
+          <p>
+            Most commonley used components
+          </p>
+          <p>
+            <ul>
+              <li>CXF</li>
+              <li>CXFRS</li>
+              <li>JMS</li>
+              <li>ActiveMQ</li>
+              <li>AMQP</li>
+              <li>Infinispan</li>
+              <li>CDI</li>
+              <li>Drools</li>
+            </ul>
+          </p>
+        </section>
+        <section>
+          <h2>Lots of Components</h2>
+          <table style="margin: 0 auto;">
+            <tr>
+              <td>ahc</td>
+              <td>aws-ddb</td>
+              <td>beanstalk</td>
+              <td>cometid</td>
+              <td>dataformat</td>
+              <td>ejb</td>
+            </tr>
+            <tr>
+              <td>ahc-ws</td>
+              <td>aws-sdb</td>
+              <td>bean-validator</td>
+              <td>context</td>
+              <td>dataset</td>
+              <td>eleasticsearch</td>
+            </tr>
+            <tr>
+              <td>amqp</td>
+              <td>aws-ses</td>
+              <td>box</td>
+              <td>controlbus</td>
+              <td>direct</td>
+              <td>spring-event</td>
+            </tr>
+            <tr>
+              <td>apns</td>
+              <td>aws-sns</td>
+              <td>browse</td>
+              <td>couchdb</td>
+              <td>direct-vm</td>
+              <td>eventadmin</td>
+            </tr>
+            <tr>
+              <td>atmosphere</td>
+              <td>aws-sqs</td>
+              <td>cache</td>
+              <td>crypto</td>
+              <td>dns</td>
+              <td>exec</td>
+            </tr>
+            <tr>
+              <td>atom</td>
+              <td>aws-swf</td>
+              <td>class</td>
+              <td>cxf</td>
+              <td>disruptor</td>
+              <td>facebook</td>
+            </tr>
+            <tr>
+              <td>avro</td>
+              <td>aws-s3</td>
+              <td>chunk</td>
+              <td>cxfbean</td>
+              <td>docker</td>
+              <td>file</td>
+            </tr>
+            <tr>
+              <td>aws-cw</td>
+              <td>bean</td>
+              <td>cmis</td>
+              <td>cxfrs</td>
+              <td>dropbox</td>
+              <td>flatpack</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>More Components</h2>
+          <table style="margin: 0 auto;">
+            <tr>
+              <td>freemarker</td>
+              <td>google-drive</td>
+              <td>hdfs</td>
+              <td>imaps</td>
+              <td>jira</td>
+              <td>krati</td>
+            </tr>
+            <tr>
+              <td>ftp</td>
+              <td>gogle-mail</td>
+              <td>hdfs2</td>
+              <td>irc</td>
+              <td>jms</td>
+              <td>language</td>
+            </tr>
+            <tr>
+              <td>ftps</td>
+              <td>gmail</td>
+              <td>hl7</td>
+              <td>javaspace</td>
+              <td>jmx</td>
+              <td>ldap</td>
+            </tr>
+            <tr>
+              <td>gauth</td>
+              <td>geocoder</td>
+              <td>infinispan</td>
+              <td>jclouds</td>
+              <td>jpa</td>
+              <td>linkedin</td>
+            </tr>
+            <tr>
+              <td>ghttp</td>
+              <td>github</td>
+              <td>http</td>
+              <td>jcr</td>
+              <td>jsch</td>
+              <td>log</td>
+            </tr>
+            <tr>
+              <td>glogin</td>
+              <td>guava-eventbus</td>
+              <td>http4</td>
+              <td>jdbc</td>
+              <td>jt400</td>
+              <td>lucene</td>
+            </tr>
+            <tr>
+              <td>gtask</td>
+              <td>hazelcast</td>
+              <td>ibatis</td>
+              <td>jetty</td>
+              <td>kafka</td>
+              <td>metrics</td>
+            </tr>
+            <tr>
+              <td>google-calendar</td>
+              <td>hbase</td>
+              <td>imap</td>
+              <td>jgroups</td>
+              <td>kestrel</td>
+              <td>mina</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>So Many Components</h2>
+          <table style="margin: 0 auto;">
+            <tr>
+              <td>mina2</td>
+              <td>nagios</td>
+              <td>pax-logging</td>
+              <td>rabbitmq</td>
+              <td>rss</td>
+              <td>sips</td>
+            </tr>
+            <tr>
+              <td>mock</td>
+              <td>netty</td>
+              <td>pop3</td>
+              <td>ref</td>
+              <td>salesforce</td>
+              <td>sjms</td>
+            </tr>
+            <tr>
+              <td>mongodb</td>
+              <td>netty4</td>
+              <td>pop3s</td>
+              <td>rest</td>
+              <td>sap-netweaver</td>
+              <td>smtp</td>
+            </tr>
+            <tr>
+              <td>mgtt</td>
+              <td>netty-http</td>
+              <td>printer</td>
+              <td>restlet</td>
+              <td>schematron</td>
+              <td>smpp</td>
+            </tr>
+            <tr>
+              <td>msv</td>
+              <td>netty4-http</td>
+              <td>properties</td>
+              <td>rmi</td>
+              <td>seda</td>
+              <td>smpps</td>
+            </tr>
+            <tr>
+              <td>mustache</td>
+              <td>olingo2</td>
+              <td>quartz</td>
+              <td>rnc</td>
+              <td>servlet</td>
+              <td>snmp</td>
+            </tr>
+            <tr>
+              <td>mvel</td>
+              <td>openshift</td>
+              <td>quartz2</td>
+              <td>rng</td>
+              <td>sftp</td>
+              <td>solr</td>
+            </tr>
+            <tr>
+              <td>mybatis</td>
+              <td>optaplanner</td>
+              <td>quickfix</td>
+              <td>routebox</td>
+              <td>sip</td>
+              <td>spark-rest</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>Hundreds of Components</h2>
+          <table style="margin: 0 auto;">
+            <tr>
+              <td>splunk</td>
+              <td>stax</td>
+              <td>ssh</td>
+              <td>xquery</td>
+              <td>db4o</td>
+              <td>nmr</td>
+            </tr>
+            <tr>
+              <td>spring-boot</td>
+              <td>stream</td>
+              <td>validation</td>
+              <td>xslt</td>
+              <td>esper</td>
+              <td>rcode</td>
+            </tr>
+            <tr>
+              <td>spring-batch</td>
+              <td>stomp</td>
+              <td>velocity</td>
+              <td>yammer</td>
+              <td>fabric-amq</td>
+              <td>scalate</td>
+            </tr>
+            <tr>
+              <td>spring-int</td>
+              <td>string-temp</td>
+              <td>vm</td>
+              <td>zookeeper</td>
+              <td>fabric-fabric</td>
+              <td>smooks</td>
+            </tr>
+            <tr>
+              <td>spring-ldap</td>
+              <td>stub</td>
+              <td>weather</td>
+              <td>activemq</td>
+              <td>fabric-master</td>
+              <td>spring-neo4j</td>
+            </tr>
+            <tr>
+              <td>spring-redis</td>
+              <td>test</td>
+              <td>websocket</td>
+              <td>activemq-broker</td>
+              <td>hibernate</td>
+              <td>virutalbox</td>
+            </tr>
+            <tr>
+              <td>spring-ws</td>
+              <td>timer</td>
+              <td>xml-security</td>
+              <td>activiti</td>
+              <td>jbi</td>
+              <td>zeromq</td>
+            </tr>
+            <tr>
+              <td>sql</td>
+              <td>twitter</td>
+              <td>xmpp</td>
+              <td>couchbase</td>
+              <td>jcifs</td>
+              <td>
+                <br>
+              </td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+<section>
+  <section>
+    <h2>Error Handling</h2>
+    <p>
+      Try...Catch...Finally
+    </p>
+    <p>
+      Exception Clause in Java DSL
+    </p>
+    <p>
+      Error Handlers
+    </p>
+    <p>
+      <ul>
+        <li>
+          Default Error Handler
+        </li>
+        <li>
+          Dead Letter Channel
+        </li>
+        <li>
+          Logging Error Handler
+        </li>
+        <li>
+          No Error Handler
+        </li>
+        <li>
+          Transaction Error Handler
+        </li>
+      </ul>
+    </p>
+    <p>
+      Support for Exponential Backoff of Retries
+    </p>
+    <aside class="notes">
+      DefaultErrorHandler does not retry, DeadLetterChannel has DLQ and retries.
+    </aside>
+  </section>
+
+  <section>
+    <h2>Error Handling Code</h2>
+    <pre>
+      <code data-trim>
+from("direct:start")
+  .doTry()
+    .process(new ProcessorFail())
+    .to("mock:result")
+  .doCatch(IOException.class, IllegalStateException.class)
+    .to("mock:catch")
+  .doFinally()
+    .to("mock:finally")
+  .end();
+      </code>
+    </pre>
+    <pre>
+      <code data-trim>
+onException(ValidationException.class)
+  .to("activemq:validationFailed");
+
+onException(ShipOrderException.class)
+  .to("activemq:shipFailed");
+
+from("seda:order").to("bean:processOrder");
+      </code>
+    </pre>
+    <pre>
+      <code data-trim>
+errorHandler(deadLetterChannel("jms:queue:dead")
+  .useOriginalMessage()
+  .mamimumRedeliveries(5)
+  .redeliverDelay(5000));
+
+errorHandler(defaultErrorHandler()
+  .allowRedeliveryWhileStopping(false)
+  .maximumRedeliveries(20)
+  .redeliveryDelay(1000)
+  .retryAttemptedLogLevel(LoggingLevel.INFO));
+      </code>
+    </pre>
+  </section>
+
+  <section>
+    <h2>Redelivery Delay Patterns</h2>
+    <p>
+      Allows for custom backoff of retries.
+    </p>
+    <p>
+      Syntax: <i>limit:delay;limit2:delay2;limit3:delay3;...;limitN:delayN</i>
+    </p>
+    <p>
+      If <i>delayPattern=5:1000;10:5000;20:20000</i> then we get
+      <ul>
+        <li>Redelivery attempt number 1..4 = 0 sec (as the first group starts with 5)</li>
+        <li>Redelivery attempt number 5..9 = 1 sec (the first group)</li>
+        <li>Redelivery attempt number 10..19 = 5 sec (the second group)</li>
+        <li>Redelivery attempt number 20.. = 20 sec (the last group)</li>
+      </ul>
+    </p>
+  </section>
+</section>
+
+
+      <section>
+        <section>
+          <h2>Security</h2>
+          <p>
+            Four Broad Categories of Security Offered
+          </p>
+          <p>
+            <ul>
+              <li>
+                Route Security
+              </li>
+              <li>
+                Payload Security
+              </li>
+              <li>
+                Endpoint Security
+              </li>
+              <li>
+                Configuration Security
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Route Security</h2>
+          <p>
+            Policy driven security for routes or route segments
+          </p>
+          <p>
+            <ul>
+              <li>Shiro Security</li>
+              <li>Spring Security</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Payload Security</h2>
+          <p>
+            Encryption and decryption services for secure paylods
+          </p>
+          <p>
+            <ul>
+              <li>XMLSecurity DataFormat (XML Encryption support)</li>
+              <li>XML Security component (XML Signature support)</li>
+              <li>Crypto DataFormat (Encryption + PGP support)</li>
+              <li>Crypto component (Signature support)</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Endpoint Security</h2>
+          <p>
+            Some components can be secured, but not all
+          </p>
+          <p>
+            <ul>
+              <li>Jetty - HTTP Basic &amp; SSL</li>
+              <li>CXF - HTTP Basic &amp; WS-Security</li>
+              <li>Spring Web Services - HTTP Basic &amp; WS-Security</li>
+              <li>Netty - SSL</li>
+              <li>MINA - SSL</li>
+              <li>Cometd - SSL</li>
+              <li>JMS - JAAS and SSL for client <--> broker communication</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Configuration Security</h2>
+          <p>
+            Externalize configuration properties
+          </p>
+          <p>
+            <ul>
+              <li>Properties</li>
+              <li>Jasypt - Encrypted values</li>
+              <li>JSSE Utility - Configure SSL/TLS</li>
+            </ul>
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <h2>Scalable</h2>
+        <p>
+          Load Balancing Policies
+        </p>
+        <p>
+          Thread and Service Pools
+        </p>
+        <p>
+          Asynchronous API
+        </p>
+        <p>
+          Clustering
+        </p>
+        <p>
+          <ul>
+            <li>Same JVM &amp; Context - Use direct or seda</li>
+            <li>Same JVM, Different Context - Use vm</li>
+            <li>Different JVM - Use jms, activemq, ftp, etc...</li>
+            <li>OSGi - Use Normalized Message Router (NMR)</li>
+          </ul>
+        </p>
+        <aside class="notes">
+          NMR is used for interconnecting routes deployed directly into the OSGi container but in different bundles.
+        </aside>
+      </section>
+
+      <section>
+        <h2>HA &amp; Failover</h2>
+        <p>
+          Not natively supported
+        </p>
+        <p>
+          Provided by the following components
+        </p>
+        <p>
+          <ul>
+            <li>Camel Fabric Master component</li>
+            <li>Camel ZooKeeper via a Route policy</li>
+            <li>Camel JGroups</li>
+          </ul>
+        </p>
+        <aside class="notes">
+          Solutions Article 667563. JGroups not until Camel 2.13
+        </aside>
+      </section>
+
+      <section>
+        <section>
+          <h2>Testable</h2>
+          <p>
+            Native test frameworks
+          </p>
+          <p>
+            Supports unit and integration Testing
+          </p>
+          <p>
+            Built in mock &amp; stub support
+          </p>
+          <p>
+            Advanced testing with NotifyBuilder and AdviceWith
+          </p>
+          <p>
+            Works with 3rd party test frameworks
+          </p>
+          <p>
+            <ul>
+              <li>PaxExam</li>
+              <li>Arquillian</li>
+              <li>JUnit</li>
+              <li>TestNG</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Available Test Harnesses</h2>
+          <table width="100%">
+            <tr>
+              <th>Name</th>
+              <th>Component</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+            <td>Camel Test</td>
+            <td>camel-test</td>
+            <td>Standalone Java library to create Camel test cases using a single Java class for all your configuration and
+              routing without using Spring or Guice</td>
+          </tr>
+              <tr>
+              <td>Spring Testing</td>
+              <td>camel-test-spring</td>
+              <td>Supports JUnit 4 tests that bootstrap a test environment using Spring without needing to be familiar with Spring Test.</td>
+            </tr>
+              <tr>
+              <td>Blueprint Testing</td>
+              <td>camel-test-blueprint</td>
+              <td>Provides the ability to do unit testing on blueprint configurations</td>
+            </tr>
+              <tr>
+              <td>Guice</td>
+              <td>camel-guice</td>
+              <td>Uses Guice to dependency inject your test classes</td>
+            </tr>
+              <tr>
+              <td>Camel TestNG</td>
+              <td>camel-testng</td>
+              <td>Supports plain TestNG based tests with or without Spring or Guice</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>Example Camel Test</h2>
+          <pre>
+            <code class="java" data-trim>
+public class FilterTest extends CamelTestSupport {
+  @EndpointInject(uri = "mock:result")
+  protected MockEndpoint resultEndpoint;
+  @Produce(uri = "direct:start")
+  protected ProducerTemplate template;
+  @Test
+  public void testSendMatchingMessage() throws Exception {
+    String expectedBody = "matched";
+    resultEndpoint.expectedBodiesReceived(expectedBody);
+    template.sendBodyAndHeader(expectedBody, "foo", "bar");
+    resultEndpoint.assertIsSatisfied();
+  }
+  @Override
+  protected RouteBuilder createRouteBuilder() {
+    return new RouteBuilder() {
+      public void configure() {
+        from("direct:start").filter(header("foo").isEqualTo("bar")).to("mock:result");
+      }
+    };
+  }
+}
+            </code>
+          </pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Tooling</h2>
+          <p>
+            Several tools exist for working with and monitoring Camel
+          </p>
+          <p>
+            <ul>
+              <li>Camel Maven Plugin</li>
+              <li>JBoss Tools for Camel</li>
+              <li>Talend Open Studio</li>
+              <li>Hawtio Camel Plugin</li>
+            </ul>
+          </p>
+          <aside class="notes">
+            Talend Open Studio is an Eclipse based IDE for Talend products, similar to JBDS.
+          </aside>
+        </section>
+
+        <section>
+          <h2>JBoss Tools for Camel</h2>
+          <p>
+            <img src="images/features-fuse-route-ed.png"/>
+          </p>
+        </section>
+
+        <section>
+          <h2>JBoss Tools for Camel</h2>
+          <p>
+            <img src="images/features-fuse-tracing.png"/>
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Enterprise Integration Patterns</h2>
+          <table width="100%">
+            <tr>
+              <td style="vertical-align: top;">
+                <p>
+                  Similar to Design Patterns
+                </p>
+                <p>
+                  Focused specifically on Integration
+                </p>
+                <p>
+                  Written by Gregor Hohpe &amp; Bobby Wolf
+                </p>
+                <p>
+                  65 Documented Patterns
+                </p>
+                <p>
+                  Camel supports 53 of them
+                </p>
+              </td>
+              <td style="vertical-align: top;">
+                <img src="images/eip_patterns.jpg" border="0"/>
+              </td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>Enterprise Integration Patterns</h2>
+          <img src="images/EAIPatterns.png" width="100%"/>
+        </section>
+
+        <section>
+          <h2>EIP to Camel</h2>
+          <table width="100%">
+            <tr>
+              <td style="text-align: center">
+                <img src="images/cbr.jpg"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <pre>
+                  <code class="java">
+Endpoint newOrder = endpoint("activemq:queue:newOrder");
+Predicate isWidget = xpath("/order/product ='widget'");
+Endpoint widget = endpoint("activemq:queue:widget");
+Endpoint gadget = endpoint("activemq:queue:gadget");
+
+from(newOrder)
+  .choice()
+    .when(isWidget)
+      .to(widget)
+    .otherwise()
+      .to(gadget)
+  .end();
+                  </code>
+                </pre>
+              </td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+      <section data-background="images/rh_bg_4.png" data-background-size="contain">
+        <h1>Architecture</h1>
+      </section>
+
+      <section>
+        <h2>High Level Architecture</h2>
+        <img src="images/camel-arch.png" width="75%"/>
+      </section>
+
+      <section>
+        <h2>Domain Specific Language</h2>
+        <p>
+          Used for defining routes
+        </p>
+        <p>
+          Multiple DSL's exist
+        </p>
+      </section>
+
+      <section>
+        <h2>Route</h2>
+        <p>
+          Set of rules that define message flow
+        </p>
+        <p>
+          Consists of:
+        </p>
+        <p>
+          <ul>
+            <li>
+              Endpoints
+            </li>
+            <li>
+              EIP Constructs
+            </li>
+            <li>
+              Processors
+            </li>
+          </ul>
+        </p>
+      </section>
+
+      <section>
+        <h2>Endpoint</h2>
+        <p>
+          Implementation of the Message Endpoint pattern
+        </p>
+        <p>
+          Created by components
+        </p>
+        <p>
+          Referred to by uniue URI's in the DSL
+        </p>
+        <p>
+          Consumers receive messages
+        </p>
+        <p>
+          Producers send messages
+        </p>
+      </section>
+
+      <section>
+        <h2>Component</h2>
+        <p>
+          Essentially a factory for Endpoint instances
+        </p>
+        <p>
+          Adds functionality to Camel
+        </p>
+        <p>
+          Custom components extend DefaultComponent
+        </p>
+      </section>
+
+      <section>
+        <h2>Processor</h2>
+        <p>
+          Consumes message exchanges
+        </p>
+        <p>
+          Processor interface for building custom Processors
+        </p>
+        <p>
+          Used to encapsulate custom business logic
+        </p>
+        <p>
+          Can be turned into a full Component
+        </p>
+      </section>
+
+      <section>
+        <h2>Message Exchange</h2>
+        <p>
+          Supports multiple Exchange Patterns
+        </p>
+        <p>
+          <ul>
+            <li>
+              One Way Event Message EIP
+            </li>
+            <li>
+              Request Reply Message EIP
+            </li>
+          </ul>
+        </p>
+        <p>
+          Implements Message EIP
+        </p>
+      </section>
+
+      <section data-background="images/rh_bg_5.png" data-background-size="contain">
+        <h1>Supported Platforms</h1>
+      </section>
+
+      <section>
+        <h2>Multiple Platforms</h2>
+        <p>
+          Anywhere that supports Java 1.6
+        </p>
+        <p>
+          <ul>
+            <li>Standard JVM</li>
+            <li>OSGi</li>
+            <li>Tomcat</li>
+            <li>Application Servers</li>
+            <li>Spring</li>
+          </ul>
+        </p>
+      </section>
+
+      <section>
+        <section>
+          <h2>Camel and Red Hat</h2>
+          <p>
+            Included in JBoss Fuse
+          </p>
+          <p>
+            Included in JBoss Fuse Service Works
+          </p>
+          <p>
+            <ul>
+              <li>
+                Run as part of SwitchYard
+              </li>
+              <li>
+                Run outside of SwitchYard on EAP Container
+              </li>
+            </ul>
+          </p>
+          <p>
+            Supported on EAP 6.1.1+
+          </p>
+          <p>
+            <ul>
+              <li>
+                Requires JBoss Fuse &amp; JBoss EAP Subscription
+              </li>
+              <li>
+                Must use Camel libraries from JBoss Fuse
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>JBoss Fuse</h2>
+          <img src="images/jboss_fuse.png" />
+          <aside class="notes">
+            Leightwieght Integration Platform. Full ESB. OSGi on Karaf.
+          </aside>
+        </section>
+
+        <section>
+          <h2>JBoss Fuse Service Works</h2>
+          <img src="images/jboss_fsw.png" />
+          <aside class="notes">
+            EAP 6. SwitchYard for SCA. Service Orchestration. Rules processing. Governance.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Fuse or Service Works</h2>
+          <p>
+            Use Fuse if...
+          </p>
+          <p>
+            <ul>
+              <li>Dont use Java or JEE</li>
+              <li>Dont use EAP</li>
+              <li>Use OSGi or Karaf</li>
+              <li>Governance is not needed</li>
+              <li>No SCA requirement</li>
+            </ul>
+          </p>
+          <p>
+            Use Fuse Service Works if...
+          </p>
+          <p>
+            <ul>
+              <li>​Use JEE</li>
+              <li>Want to use JEE in Services</li>
+              <li>Currently use EAP</li>
+              <li>Need Governance</li>
+              <li>Need SCA or already use SwitchYard</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Camel Considerations</h2>
+          <p>
+            For Fuse...
+          </p>
+          <p>
+            <ul>
+              <li>Can use Blueprint/Spring/Java DSL for Routes</li>
+              <li>Most configuration is done via XML</li>
+              <li>Testing relies on PaxExam and Built in Camel Test Frameworks</li>
+            </ul>
+          </p>
+          <p>
+            For Fuse Service Works w/ SwitchYard...
+          </p>
+          <p>
+            <ul>
+              <li>SwitchYard limits amount of Components you can use</li>
+              <li>JEE Stack well Supported</li>
+              <li>No XML Configuration</li>
+              <li>Can make use of Arquillian</li>
+            </ul>
+          </p>
+          <p>
+            For Camel on EAP...
+          </p>
+          <p>
+            <ul>
+              <li>Can use CDI or Spring</li>
+              <li>JEE Stack not currently well supported</li>
+              <li>Most Components use Spring for configuration</li>
+              <li>Can make use of Arquillian</li>
+            </ul>
+          </p>
+          <aside class="notes">
+            Arquillian OSGi also exists for Fuse, May Not be as Mature as PaxExam.
+          </aside>
+        </section>
+      </section>
+
+      <section data-background="images/rh_bg_2.png" data-background-size="contain">
+        <h1>Hands On Camel</h1>
+      </section>
+
+      <section>
+        <section>
+          <h2>Camel on EAP</h2>
+          <p>
+            Use Camel without SwitchYard or Karaf
+          </p>
+          <p>
+            Supported on EAP 6.1.1 and up with Camel 2.12 Red Hat Libraries
+          </p>
+          <p>
+            Two ways to use Libraries
+          </p>
+          <p>
+            <ul>
+              <li>
+                Packaged inside Application
+              </li>
+              <li>
+                Deployed as EAP Module
+              </li>
+            </ul>
+          </p>
+          <p>
+            Camel Started with 3 methods
+          </p>
+          <p>
+            <ul>
+              <li>Spring ContextLoaderListener</li>
+              <li>ServletListener Component</li>
+              <li>CDI Component</li>
+            </ul>
+          </p>
+          <aside class="notes">
+            Camel Libs are packaged with Fuse. Fuse &amp; EAP or FSW Sub Required.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Starting with Spring</h2>
+          <p>
+            Requires Spring
+          </p>
+          <p>
+            Best if already using Spring
+          </p>
+          <p>
+            Camel uses Spring's Bean Registry
+          </p>
+          <p>
+            Started using Spring ContextLoaderListener
+          </p>
+          <p>
+            Configuration very similar to Fuse with Spring or Blueprint
+          </p>
+        </section>
+
+        <section>
+          <h2>Spring Example </h2>
+          <p>
+            Example web.xml
+          </p>
+          <pre>
+            <code data-xml>
+&lt;web-app ...&gt;
+  &lt;display-name&gt;soap-contract-first&lt;/display-name&gt;
+
+  &lt;!-- Config Location --&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+    &lt;param-value&gt;classpath:META-INF/spring/*.xml&lt;/param-value&gt;
+  &lt;/context-param&gt;
+
+  &lt;!-- Spring Listener Servlet --&gt;
+  &lt;listener&gt;
+    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+  &lt;/listener&gt;
+&lt;/web-app&gt;
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Spring Example</h2>
+          <p>
+            Example camel-route.xml
+          </p>
+          <pre>
+            <code data-xml>
+&lt;beans ...&gt;
+
+  &lt;import resource="classpath:META-INF/spring/camel-cxf.xml" /&gt;
+  &lt;camelContext xmlns="http://camel.apache.org/schema/spring"&gt;
+    &lt;route&gt;
+      &lt;from uri="cxf:bean:orderEndpoint" /&gt;
+      &lt;log message="&gt;&gt; Received SOAP Endpoint: ${body}"&gt;&lt;/log&gt;
+      &lt;setBody&gt;
+        &lt;simple&gt;DONE&lt;/simple&gt;
+      &lt;/setBody&gt;
+    &lt;/route&gt;
+  &lt;/camelContext&gt;
+
+&lt;/beans&gt;
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Starting with Spring Demo</h2>
+          <br/><br/>
+          <p style="text-align: center">
+            <a href="https://github.com/bsaunder/camel/tree/master/eap_6/soap-contract-first" target="_BLANK">https://github.com/bsaunder/camel/tree/master/eap_6/soap-contract-first</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Starting without Spring</h2>
+          <p>
+            Does not Require Spring
+          </p>
+          <p>
+            Best if using JEE, but do not need to access Camel with JEE Stack
+          </p>
+          <p>
+            Camel uses a Simple Map based Bean Registry (Can also use JNDI)
+          </p>
+          <p>
+            Started using CamelServletContextListener
+          </p>
+          <p>
+            Configuration XML Based
+          </p>
+          <p>
+            <ul>
+              <li>
+                Route Builders defined in web.xml
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>ServletListener Configuration</h2>
+          <p>
+            Example web.xml
+          </p>
+          <pre>
+            <code data-xml>
+&lt;web-app ...&gt;
+  &lt;display-name&gt;servlet_listener&lt;/display-name&gt;
+
+  &lt;!-- Set CamelContext name --&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;name&lt;/param-name&gt;
+    &lt;param-value&gt;myCamelContext&lt;/param-value&gt;
+  &lt;/context-param&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;routeBuilder-JavaRoute&lt;/param-name&gt;
+    &lt;param-value&gt;net.bryansaunders.camel.servlet_listener.JavaRoute&lt;/param-value&gt;
+  &lt;/context-param&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;routeBuilder-XmlRoute&lt;/param-name&gt;
+    &lt;param-value&gt;classpath:camel-routes.xml&lt;/param-value&gt;
+  &lt;/context-param&gt;
+  &lt;listener&gt;
+    &lt;listener-class&gt;org.apache.camel.component.servletlistener.SimpleCamelServletContextListener&lt;/listener-class&gt;
+  &lt;/listener&gt;
+
+&lt;/web-app&gt;
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>ServletListener Component Demo</h2>
+          <br/><br/>
+          <p style="text-align: center">
+            <a href="https://github.com/bsaunder/camel/tree/master/eap_6/servlet_listener" target="_BLANK">https://github.com/bsaunder/camel/tree/master/eap_6/servlet_listener</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Bootstrapping with CDI</h2>
+          <p>
+            Does not Require Spring or use Servlets
+          </p>
+          <p>
+            Best if using JEE, Especially CDI
+          </p>
+          <p>
+            Camel uses CDI Bean Manager
+          </p>
+          <p>
+            Started using an @Startup @Singleton Annotated Bean
+          </p>
+          <p>
+            All Configuration done in Java, No XML
+          </p>
+        </section>
+
+        <section>
+          <h2>Camel Bootstrap Class</h2>
+          <p>
+            Must be a Singleton, @Singleton
+          </p>
+          <p>
+            Must run at Startup. @Startup
+          </p>
+          <p>
+            Inject an instance of CdiCamelContext
+          </p>
+          <p>
+            <ul>
+              <li>
+                Adds a CDI Bean Registry that allows lookup of CDI Beans when Instantiated
+              </li>
+            </ul>
+          </p>
+          <p>
+            @PostConstruct method should Configure/Start Context and Add Routes
+          </p>
+          <p>
+            @PreDestroy should Stop Camel Context
+          </p>
+        </section>
+
+        <section>
+          <h2>Example Bootstrap Class</h2>
+          <pre>
+            <code data-java>
+@Singleton
+@Startup
+public class Bootstrap {
+
+  @Inject
+  private CdiCamelContext camelCtx;
+  @Inject
+  private SomeRouteBuilder someRoute;
+
+  @PostConstruct
+  public void init() throws Exception {
+    this.camelCtx.addRoutes(someRoute);
+    this.camelCtx.setName("my-camel-context");
+    this.camelCtx.start();
+  }
+
+  @PreDestroy
+  public void stop() throws Exception {
+    this.camelCtx.stop();
+  }
+}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Using the XML Based DSL</h2>
+          <p>
+            Spring and Blueprint XML routes can also be used
+          </p>
+          <p>
+            Routes loaded from XML file in Bootstrap Class
+          </p>
+          <pre>
+            <code data-java>
+InputStream is = this.getClass().getClassLoader().getResourceAsStream("camel-routes.xml");
+if (is != null) {
+  RoutesDefinition routes = this.camelCtx.loadRoutesDefinition(is);
+  this.camelCtx.addRouteDefinitions(routes.getRoutes());
+}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>CDI Component Demo</h2>
+          <br/><br/>
+          <p style="text-align: center">
+            <a href="https://github.com/bsaunder/camel/tree/master/eap_6/cdi-soap-consume" target="_BLANK">https://github.com/bsaunder/camel/tree/master/eap_6/cdi-soap-consume</a>
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Configuration with Camel CDI</h2>
+          <p>
+            No Spring Config or Context
+          </p>
+          <p>
+            With Camel CDI Components are Configured in Java
+          </p>
+          <p>
+            Configured on the Camel Context
+          </p>
+          <p>
+            All Components can be Configured
+          </p>
+        </section>
+
+        <section>
+          <h2>Configuring Components</h2>
+          <p>
+            Configred in your Bootstrap Class
+          </p>
+          <p>
+            Must be Configured Prior to Start of Camel Context
+          </p>
+          <p>
+            Lookup Existing Components with getComponent()
+          </p>
+          <p>
+            <ul>
+              <li>
+                Lookup via Registered Name - jms, activemq, etc...
+              </li>
+              <li>
+                Most Core Components already Registered on Context
+              </li>
+              <li>
+                Lazily initialize Components that arent Registered
+              </li>
+            </ul>
+          </p>
+          <p>
+            Add New Components with addComponent()
+          </p>
+          <aside class="notes">
+            Most Components Configuration Not Discussed in Docs, Lookup in JavaDocs.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Sample Configuration</h2>
+          <pre>
+            <code data-java>
+@Resource(mappedName = "java:/ConnectionFactory")
+private ConnectionFactory jmsConnFactory;
+
+...
+
+JmsConfiguration jmsConfig = new JmsConfiguration(jmsConnFactory);
+jmsConfig.setConcurrentConsumers(10);
+jmsConfig.setMaxConcurrentConsumers(10);
+
+Component component = this.camelCtx.getComponent("jms");
+if (component != null) {
+  JmsComponent jmsComponent = (JmsComponent) component;
+  jmsComponent.setConfiguration(jmsConfig);
+} else {
+  this.camelCtx.addComponent("jms", new JmsComponent(jmsConfig));
+}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>JMS Configuration Demo</h2>
+          <br/><br/>
+          <p style="text-align: center">
+            <a href="https://github.com/bsaunder/camel/tree/master/eap_6/cdi-jms" target="_BLANK">https://github.com/bsaunder/camel/tree/master/eap_6/cdi-jms</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Camel &amp; JBoss A-MQ</h2>
+          <p>
+            Camel has no JBoss A-MQ Component
+          </p>
+          <p>
+            Several ways to Connect to A-MQ from Camel
+          </p>
+          <p>
+            <ul>
+              <li>
+                JMS Component
+              </li>
+              <li>
+                ActiveMQ Component
+              </li>
+              <li>
+                Bean using JMS API
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Camel JMS vs ActiveMQ</h2>
+          <p>
+            JMS component
+          </p>
+          <p>
+            <ul>
+              <li>
+                Based on Spring JMS
+              </li>
+              <li>
+                Uses Spring JmsTemplate for Sending
+              </li>
+              <li>
+                Uses Spring MessageListenerContainer for Consuming
+              </li>
+            </ul>
+          </p>
+          <p>
+            ActiveMQ Component
+          </p>
+          <p>
+            <ul>
+              <li>
+                Based on JMS Component
+              </li>
+              <li>
+                Optimized for ActiveMQ
+              </li>
+              <li>
+                Supports ActiveMQ Specific Features such as Destination Options
+              </li>
+            </ul>
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <h2>MDB vs Camel JMS</h2>
+        <p>
+          Using an MDB Generally offers Higher Performance
+        </p>
+        <p>
+          Use a Producer Template to send to a Direct Camel Route
+        </p>
+        <p>
+          MDB Uses Containers Pooled Resource Adapter
+        </p>
+        <p>
+          Camel JMS Component Built on Spring JMS
+        </p>
+        <p>
+          <ul>
+            <li>
+              Uses the DefaultMessageListenerContainer
+            </li>
+            <li>
+              Shares a Single Connection for all Consumers
+            </li>
+          </ul>
+        </p>
+      </section>
+
+      <section>
+        <section>
+          <h2>Attachments over JMS</h2>
+          <p>
+            Not Supported by Camel or any of its JMS based Components
+          </p>
+          <p>
+            Two Solutions
+          </p>
+          <p>
+            <ul>
+              <li>
+                Move Attachment into Message Body with a Custom Object
+              </li>
+              <li>
+                Use the Claim Check EIP
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Claim Check EIP</h2>
+          <p>
+            Replaces Message Data with a Unique ID for Future Retrieval
+          </p>
+          <p>
+            Data stored into Persistent Data Store
+          </p>
+          <p>
+            Data Retrieved later using Unique ID
+          </p>
+          <img src="images/ClaimCheck.gif" width="100%"/>
+        </section>
+
+        <section>
+          <h2>Claim Check EIP Example</h2>
+          <pre>
+            <code data-java>
+              from("direct:start").to("bean:checkLuggage").to("jms:queue:SomeQueue");
+              from("jms:queue:SomeQueue").to("bean:dataEnricher").log("Do Stuff");
+            </code>
+          </pre>
+          <pre>
+            <code data-java>
+              public static final class CheckLuggageBean {
+                public void checkLuggage(Exchange exchange, @Body String body, @XPath("/order/@custId") String custId) {
+                  dataStore.put(custId, body);
+                  exchange.getIn().setHeader("claimCheck", custId);
+                  exchange.getIn().setBody(null);
+                }
+              }
+
+              public static final class DataEnricherBean {
+                public void addDataBackIn(Exchange exchange, @Header("claimCheck") String claimCheck) {
+                  exchange.getIn().setBody(dataStore.get(claimCheck));
+                  dataStore.remove(claimCheck);
+                  exchange.getIn().removeHeader("claimCheck");
+                }
+              }
+            </code>
+          </pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Web Services with Camel CDI</h2>
+          <p>
+            Web Services are common place in Integration
+          </p>
+          <p>
+            Camel has Several Web Service Related Components
+          </p>
+          <p>
+            <ul>
+              <li>CXF</li>
+              <li>CXFRS</li>
+              <li>Spring Web Services</li>
+              <li>Rest</li>
+              <li>Spark-Rest</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Some of the Problems</h2>
+          <p>
+            Spring Web Services require Spring
+          </p>
+          <p>
+            Rest and Spark-Rest Components not Available
+          </p>
+          <p>
+            <ul>
+              <li>
+                Part of Camel 2.14
+              </li>
+            </ul>
+          </p>
+          <p>
+            Only Leaves CXF and CXFRS
+          </p>
+          <p>
+            <ul>
+              <li>
+                Dependent on Spring for Configuration
+              </li>
+              <li>
+                Needs Servlet to Start
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Using Camel CXF with Camel CDI</h2>
+          <p>
+            Configured via Camel Context
+          </p>
+          <p>
+            Endpoints created Programmatically
+          </p>
+          <p>
+            Requires Http Jetty Transport to Publish Service
+          </p>
+          <pre>
+            <code data-java>
+CxfEndpoint orderEndpoint = new CxfEndpoint();
+orderEndpoint.setAddress("http://localhost:9595/order");
+orderEndpoint.setServiceClass("net.bryansaunders.camel.OrderEndpoint");
+orderEndpoint.setWsdlURL("wsdl/order.wsdl");
+orderEndpoint.setCamelContext(this.camelCtx);
+camelCtx.addEndpoint("cxf:bean:orderEndpoint", orderEndpoint);
+            </code>
+          </pre>
+          <aside class="notes">
+            Stands up Jetty on a seperate port for each Endpoint, Not ideal for most Production Environments. Does not have access to the Containers Transport, Can not use CDI with Servlet because of the Bean Manager.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Alternate Solution</h2>
+          <p>
+            Use the Web Services Subsystem
+          </p>
+          <p>
+            Deploy Web Services using JAX-WS
+          </p>
+          <p>
+            Use Producer Template to Call Camel from Implementation
+          </p>
+          <p>
+            Use a Direct Route
+          </p>
+          <p>
+            Route is more Flexible, Can be Called without SOAP
+          </p>
+          <p>
+            Easier to Configure more Advanced Web Services
+          </p>
+          <aside class="notes">
+            Same Problems exist with REST and CXF-RS Component. Use Rest DSL when using 2.14, In the Meantime take the same approach with JAX-RS.
+          </aside>
+        </section>
+
+        <section>
+          <h2>JAX-WS Demo</h2>
+          <br/><br/>
+          <p style="text-align: center">
+            <a href="https://github.com/bsaunder/camel/tree/master/eap_6/cdi-jaxws-publish" target="_BLANK">https://github.com/bsaunder/camel/tree/master/eap_6/cdi-jaxws-publish</a>
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Camel &amp; SwitchYard Test Support</h2>
+          <p>
+            Camel and SwitchYard both include Test Frameworks
+          </p>
+          <p>
+            Mocks created with Camel Test cannot replace SwitchYard Endpoints
+          </p>
+          <p>
+            <ul>
+              <li>
+                Intercept Messages and Route to Mockable Endpoint
+              </li>
+            </ul>
+          </p>
+          <p>
+            SwitchYard expects Route to Start with SwitchYard Endpoint
+          </p>
+          <p>
+            <ul>
+              <li>
+                Define two Routes
+              </li>
+              <li>
+                First Route has SwitchYard Endpoint and Forwards to Second Route
+              </li>
+              <il>
+                Second Route starts with a Mockable Endpoint (Usually Direct)
+              </il>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Camel &amp; SwitchYard Test Support</h2>
+          <pre>
+            <code data-java>
+              public class SomeTestClass extends CamelTestSupport {
+                private static final String MESSAGE = "...";
+                @Test
+                public void someTest() throws Exception {
+                  MockEndpoint endpoint = getMockEndpoint("mock:switchyard:WebOutService");
+                  endpoint.expectedBodiesReceived(MESSAGE);
+                  template.sendBody("direct:WebInService", MESSAGE);
+                  endpoint.assertIsSatisfied();
+                }
+                @Override
+                protected RouteBuilder createRouteBuilder() throws Exception {
+                  return new WebInServiceRoute() {
+                    @Override
+                    public void configure() throws Exception {
+                      interceptSendToEndpoint("switchyard://WebOutService")
+                      .skipSendToOriginalEndpoint().to(
+                      "mock:switchyard:WebOutService");
+                      super.configure();
+                    }
+                  };
+                }
+              }
+            </code>
+          </pre>
+          <pre>
+            <code data-java>
+              from("switchyard://WebInService").to("direct:WebInService");
+              from("direct:WebInService").log("Doing something very clever").to("switchyard://WebInCanonicalSystem");
+            </code>
+          </pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Testing with Pax Exam</h2>
+          <p>
+            In-Container Testing Framework for OSGi, Java EE, and CDI
+          </p>
+          <p>
+            Similar to Arquillian
+          </p>
+          <p>
+            Uses a Test Driver and a Test Container
+          </p>
+          <p>
+            <ul>
+              <li>
+                Test Driver launches the OSGi framework and the system under test
+              </li>
+              <li>
+                Probe Builds Bundles from Test Cases and Injects into the Container
+              </li>
+            </ul>
+          </p>
+          <p>
+            JUnit and TestNG Drivers
+          </p>
+          <p>
+            Drivers are Annotation Based
+          </p>
+        </section>
+
+        <section>
+          <h2>Pax Exam</h2>
+          <p>
+            Supports All Major OSGi Frameworks
+          </p>
+          <p>
+            <ul>
+              <li>
+                Equinox, Felix, Knoplerfish, Karaf
+              </li>
+            </ul>
+          </p>
+          <p>
+            Multiple Strategies for Restarting and Reusing the Running OSGi Framework for each Test
+          </p>
+          <p>
+            Two Types of Containers
+          </p>
+          <p>
+            <ul>
+              <li>
+                Native runs in the same VM as the Test Driver
+              </li>
+              <li>
+                Forked runs in a separate VM from the Test Driver
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Pax Exam Karaf Container</h2>
+          <p>
+            Eases Integration Testing with Pax Exam and Karaf
+          </p>
+          <p>
+            Provides an Actual Karaf Container for Testing
+          </p>
+          <p>
+            Supports any Karaf Based Distribution (Fuse, Service Mix, Geronimo)
+          </p>
+          <p>
+            Maintained as Official Pax Exam modules
+          </p>
+          <p>
+            Adds Karaf Specific Support
+          </p>
+        </section>
+
+        <section>
+          <h2>Container Configuration</h2>
+          <p>
+            Controls the Host Container
+          </p>
+          <p>
+            Determines the Set of Bundles and Features provisioned to the Container
+          </p>
+          <p>
+            Builds and Configures the Container Environment
+          </p>
+          <p>
+            Multiple Methods of Specifying Configuration Options
+          </p>
+          <p>
+            <ul>
+              <li>
+                One or more Methods Annotated with @Configuration that return Option[]
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Probe</h2>
+          <p>
+            Artifact added to the Container for Testing
+          </p>
+          <p>
+            Created on the Fly by Pax TinyBundles
+          </p>
+          <p>
+            Contains the Current Test Classes and All Classes/Resources under the Same Root
+          </p>
+          <p>
+            Can be Configured inside the Test Class if needed
+          </p>
+        </section>
+
+        <section>
+          <h2>Writing Testable Routes</h2>
+          <p>
+            Anything that needs to Change during a Test should be Externalized
+          </p>
+          <p>
+            <ul>
+              <li>All Endpoints</li>
+              <li>Configuration Values</li>
+              <li>Header Names</li>
+              <li>Etc...</li>
+            </ul>
+          </p>
+          <p>
+            Integrations with External Resources should be Mock able
+          </p>
+          <p>
+            <ul>
+              <li>Database Connections</li>
+              <li>Messaging Brokers</li></li>
+              <li>Etc...</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Generating Dependency File</h2>
+          <p>
+            Generate using the Maven Plugin
+          </p>
+          <pre>
+            <code data-xml>
+&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.servicemix.tooling&lt;/groupId&gt;
+  &lt;artifactId&gt;depends-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.2&lt;/version&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;id&gt;generate-depends-file&lt;/id&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;generate-depends-file&lt;/goal&gt;
+      &lt;/goals&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+&lt;/plugin&gt;
+            </code>
+          </pre>
+          <p>
+            Should use the versionAsInProject() method in Container Configuration
+          </p>
+        </section>
+
+        <section>
+          <h2>Configuring the Container</h2>
+          <p>
+            Container Configuration is Done with the @Configuration Annotation
+          </p>
+          <p>
+            Method should Return Option[]
+          </p>
+          <p>
+            Used for
+          </p>
+          <p>
+            <ul>
+              <li>Specifying the Distribution</li>
+              <li>Setting Distribution Properties
+                <ul>
+                  <li>Log Level, Unpack Directory, Start Method, Etc…</li>
+                </ul>
+              </li>
+              <li>Loading Features / Bundles</li>
+              <li>Adding/Modifying Distribution Environment
+                <ul>
+                  <li>Property Files, Etc…</li>
+                </ul>
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>Example Configuration</h2>
+          <pre>
+            <code data-java>
+@Configuration
+public static Option[] configure() throws Exception {
+  return new Option[] {
+    karafDistributionConfiguration()
+      .frameworkUrl(
+        maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("zip")
+          .versionAsInProject()).useDeployFolder(false).karafVersion("3.0.0")
+      .unpackDirectory(new File("target/paxexam/unpack/")),
+    logLevel(LogLevel.WARN),
+    features(
+      maven().groupId("org.apache.camel.karaf").artifactId("apache-camel").type("xml")
+        .classifier("features").versionAsInProject(), "camel-blueprint", "camel-jms",
+      "camel-jpa", "camel-mvel", "camel-jdbc", "camel-cxf", "camel-test"),
+    KarafDistributionOption.editConfigurationFilePut("etc/org.ops4j.pax.url.mvn.cfg",
+      "org.ops4j.pax.url.mvn.proxySupport", "true"),
+    keepRuntimeFolder(),
+    KarafDistributionOption.replaceConfigurationFile("etc/com.walmart.mqm.gateway.routes.cfg", new File(
+      "src/test/resources/com.walmart.mqm.gateway.routes.cfg")),
+    mavenBundle().groupId("net.bryansaunders").artifactId("routeBundle").versionAsInProject() };
+}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Modifying the Probe</h2>
+          <p>
+            Modified Using the @ProbeBuilder Annotation
+          </p>
+          <p>
+            Uses the Following Method Signature
+            <pre>
+              <code data-java>
+@ProbeBuilder
+public TestProbeBuilder probeConfiguration(TestProbeBuilder probe) {
+  // Do Things
+}
+              </code>
+            </pre>
+          </p>
+          <p>
+            Method should return the probe Parameter after Modification
+          </p>
+          <p>
+            Sets Probe Specific Configurations via Headers
+          </p>
+          <p>
+            Dynamically Imports all Packages by Default
+          </p>
+        </section>
+
+        <section>
+          <h2>Using Provisional Packages</h2>
+          <p>
+            Provisional Packages are by Default NOT Imported
+          </p>
+          <p>
+            Probe must be Modified to Import Them
+          </p>
+          <p>
+            Add the Following Line to your ProbeBuilder Method
+            <pre>
+              <code data-java>
+probe.setHeader(Constants.DYNAMICIMPORT_PACKAGE, "*;status=provisional");
+              </code>
+            </pre>
+          </p>
+          <aside class="notes">
+            Only imports required packages by default. Packages exported as Provisional are not imported.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Getting the Camel Context</h2>
+          <p>
+            There will potentially be Multiple Camel Contexts running in the Container
+          </p>
+          <p>
+            Need to get the Correct Context for Our Tests
+          </p>
+          <p>
+            Best Done in doPreSetup() Method that can be Overridden from CamelTestSupport
+          </p>
+          <p>
+            Camel Context should be Looked Up by it’s name in the BundleContext
+          </p>
+          <pre>
+            <code data-java>
+@Override
+protected void doPreSetup() throws Exception {
+  camelContext = PaxExamTestUtil.getOsgiService(CamelContext.class,
+    "(camel.context.name=" + CAMEL_CONTEXT_NAME + ")", 10000, bundleContext);
+  assertNotNull(camelContext);
+}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Sending Messages</h2>
+          <p>
+            2 Steps
+          </p>
+          <p>
+            <ul>
+              <li>Create/Start Producer Template</li>
+              <li>Send Message using Template</li>
+            </ul>
+          </p>
+          <pre>
+            <code data-java>
+// Set Headers To Be Sent
+final Map&lt;String, Object&gt; headerMap = new HashMap&lt;String, Object&gt;();
+headerMap.put("WM_MSG_ID", null);
+headerMap.put("WM_HO_WMQ_QUEUE", null);
+
+// Send the Message Body
+ProducerTemplate template = camelContext.createProducerTemplate();
+template.start();
+
+template.send("direct:gateway_in", new Processor() {
+  public void process(Exchange exchange) {
+    Message in = exchange.getIn();
+    in.setBody("Hello from Camel");
+    in.setHeaders(headerMap);
+  }
+});
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Using Mock Queues</h2>
+          <p>
+            Get the Endpoint from the Camel Context and Cast to a MockEndpoint
+            <pre>
+              <code data-java>
+MockEndpoint mockNoHomeOfficeDlq = (MockEndpoint)
+CamelContext.getEndpoint("mock:gateway_noHomeOfficeDlq");
+              </code>
+            </pre>
+          </p>
+          <p>
+            Set Mock Endpoint’s Expectations
+            <pre>
+              <code data-java>
+mockNoHomeOfficeDlq.expectedMessageCount(1);
+mockNoHomeOfficeDlq.expectedBodiesReceived("Hello from Camel");
+              </code>
+            </pre>
+          </p>
+          <p>
+            Send Messages to Mock Endpoint
+          </p>
+          <p>
+            Assert Mock Endpoint is Satisfied
+            <pre>
+              <code data-java>
+                mockNoHomeOfficeDlq.assertIsSatisfied(2500);
+              </code>
+            </pre>
+          </p>
+        </section>
+
+        <section>
+          <h2>Pax Exam on Karaf Demo</h2>
+          <br/><br/>
+          <p style="text-align: center">
+            <a href="https://github.com/bsaunder/camel/tree/master/fuse/pax-exam" target="_BLANK">https://github.com/bsaunder/camel/tree/master/fuse/pax-exam</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>What About Arquillian?</h2>
+          <p>
+            Arquillian has OSGi support
+          </p>
+          <p>
+            Works like standard Arquillian
+          </p>
+          <p>
+            Supports Multiple Containers
+          </p>
+          <p>
+            <ul>
+              <li>
+                JBoss (Embedded)
+              </li>
+              <li>
+                Felix (Embedded)
+              </li>
+              <li>
+                Equinox (Embedded)
+              </li>
+              <li>
+                Karak (Embedded/Managed/Remote)
+              </li>
+            </ul>
+          </p>
+          <p>
+            Not as Feature Rich as Pax Exam
+          </p>
+          <p>
+            <ul>
+              <li>
+                Evolving Quickly
+              </li>
+            </ul>
+          </p>
+        </section>
+      </section>
+
+      <section data-background="images/rh_bg_7.png" data-background-size="contain">
+        <h1>Future of Camel</h1>
+      </section>
+
+      <section>
+        <h2>Camel v3 Improvements</h2>
+        <p>
+          Improved Test Support
+        </p>
+        <p>
+          <ul>
+            <li>Support for testing indiviual components, processors, etc...</li>
+          </ul>
+        </p>
+        <p>
+          Persistent Message Store
+        </p>
+        <p>
+          Java 8 DSL
+        </p>
+        <p>
+          Split/Optimize Camel-CXF
+        </p>
+      </section>
+
+      <section>
+        <h2>Camel on EAP Subsystem</h2>
+        <p>
+          Full EAP Subsystem
+        </p>
+        <p>
+          Improved Integration with JEE Standards
+        </p>
+        <p>
+          Updated JEE Related Camel Components
+        </p>
+        <p>
+          <ul>
+            <li>camel-cdi</li>
+            <li>camel-cxf</li>
+            <li>camel-jaxb</li>
+            <li>camel-jms</li>
+            <li>camel-jmx</li>
+            <li>camel-jpa</li>
+          </ul>
+        </p>
+        <p>
+          Full Arquillian Support
+        </p>
+        <p>
+          Available now in Wildfly 8.1
+        </p>
+        <p>
+          Official Support in future Fuse Release
+        </p>
+        <p>
+          <ul>
+            <li>
+              Targeted for Fuse 6.2
+            </li>
+          </ul>
+        </p>
+      </section>
+
+      <section data-background="images/rh_bg_8.png" data-background-size="contain">
+        <h1>Questions?</h1>
+        <br/><br/><br/><br/>
+        <p style="text-align: center;">
+          Presentation is Available At
+        </p>
+        <p style="text-align: center;">
+          <a class="titleLink" href="https://github.com/bsaunder/camel_from_the_field" target="_BLANK">https://github.com/bsaunder/camel_from_the_field</a>
+        </p>
+        <p style="text-align: center;">
+          All Demo Code is Available At
+        </p>
+        <p style="text-align: center;">
+          <a class="titleLink" href="https://github.com/bsaunder/camel/" target="_BLANK">https://github.com/bsaunder/camel/</a>
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", init, false);
+
+    function init() {
+      console.log("Running Custom Init Code");
+
+      var cblocks = document.querySelectorAll("pre code");
+
+      if(cblocks.length) {
+        for(var i=0, len=cblocks.length; i<len; i++) {
+          var dom = cblocks[i];
+          var html = dom.innerHTML;
+          html = html.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+          dom.innerHTML = html;
+        }
+      }
+
+      console.log("Initializing Reveal")
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+        height: 1024,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        // Visit http://revealjs.jit.su/token to generate your secret and id
+        multiplex: {
+          secret: null,
+          id: '',
+          url: 'revealjs.jit.su:80'
+        },
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        // Optional reveal.js plugins
+        dependencies: [
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true },
+        { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    }
+
+  </script>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+</body>
+
+</html>

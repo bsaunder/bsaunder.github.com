@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Red Hat, Inc.</title>
+
+  <meta name="description" content="Introduction to Running Camel on WildFly 8">
+  <meta name="author" content="Bryan Saunders">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.css">
+
+
+  <!-- dstanley/dblack - Set the theme to night - black background -->
+  <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+    	var link = document.createElement('link');
+    	link.rel = 'stylesheet';
+    	link.type = 'text/css';
+    	link.href = 'css/print/pdf.css';
+    	document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  </script>
+
+  <!-- Begin added by SCE -->
+  <!-- script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script -->
+  <script type="text/javascript" src="plugin/jquery/jquery.min.js"></script>
+  <!-- script src="http://code.highcharts.com/highcharts.js"></script -->
+  <script src="plugin/highcharts/highcharts.js"></script>
+  <!-- script src="http://code.highcharts.com/modules/exporting.js"></script -->
+  <script src="plugin/highcharts/exporting.js"></script>
+
+
+  <style type="text/css">
+    .rh-header {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      font-family: "Overpass", "Liberation Sans", sans-serif;
+      font-size: 18px;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      color: #eeeeee;
+    }
+    .ribbon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    p {
+      text-align: left;
+    }
+    .reveal table th {
+      text-align: left;
+      padding: 0.2em 0.5em 0.2em 0.5em;
+      border-bottom: 1px solid;
+    }
+    .reveal table td {
+      text-align: left;
+      padding: 0.2em 0.5em 0.2em 0.5em;
+      border-bottom: none;
+    }
+    .reveal table tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+
+  <!-- end content added by SCE -->
+
+
+  <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+  <div class="rh-header">
+    <img src="images/redhat.png" class="ribbon" /> Red Hat | Bryan Saunders
+  </div>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      <section data-background="images/rh_bg_3.png" data-background-size="contain" data-background-position="center" data-transition="slide">
+        <h1 align=left>Camel on WildFly</h1>
+        <h2 align=left></h2>
+        <br />
+        <h3 align=left>
+          Bryan Saunders
+          <br /> Mar 30, 2015
+          <br />
+      </section>
+
+      <section>
+        <h2>Agenda</h2>
+        <ul>
+          <li>Introduction</li>
+          <li>Deployment Options</li>
+          <li>Camel-WildFly Subsystem</li>
+          <li>Impact on Red Hat Products</li>
+        </ul>
+      </section>
+
+      <section data-background="images/rh_bg_4.png" data-background-size="contain">
+        <h1>Introduction</h1>
+      </section>
+
+      <section>
+        <h2>What is Camel</h2>
+        <p>
+          Open-Source Integration Framework based on known Enterprise Integration Patterns
+        </p>
+        <p>
+          Defines Routing and Mediation Rules
+        </p>
+        <p>
+          Similar to an ESB
+        </p>
+        <p>
+          Core Integration Component in JBoss Fuse and JBoss Fuse Service Works
+        </p>
+      </section>
+
+      <section>
+        <h2>What is WildFly</h2>
+        <p>
+          Open-Source Java Application Server from JBoss
+        </p>
+        <p>
+          Upstream project for JBoss Enterprise Application Platform
+        </p>
+      </section>
+
+      <section>
+        <h2>The Middle Layer</h2>
+        <img src="images/StackDiagram.png" alt="Stack Diagram" width="100%"/>
+      </section>
+
+      <section data-background="images/rh_bg_1.png" data-background-size="contain">
+        <h1>Deployment Options</h1>
+      </section>
+
+      <section>
+        <h2>Bundled with Application</h2>
+        <p>
+          Include Libraries like any other JAR
+        </p>
+        <p>
+          Manually Manage Camel Context
+        </p>
+        <p>
+          Manually Manage Routes
+        </p>
+        <p>
+          Works with JEE/CDI, Spring, or Servlets
+        </p>
+      </section>
+
+      <section>
+        <h2>Camel-Wildfly Subsystem</h2>
+        <p>
+          Available now in Wildfly 8.1+
+        </p>
+        <p>
+          Recommended Approach
+        </p>
+        <p>
+          Provides Best Integration with JEE
+        </p>
+        <p>
+          No Need to Manually Manage Context or Routes
+        </p>
+        <p>
+          Includes Management Console based on HawtIO
+        </p>
+      </section>
+
+      <section data-background="images/rh_bg_6.png" data-background-size="contain">
+        <h1>Camel-WildFly Subsystem</h1>
+      </section>
+
+      <section>
+        <section>
+          <h2>Context Definitions &amp; Deployments</h2>
+          <p>
+            Defined inside standalone XML file
+          </p>
+          <p>
+            Deployed with a <strong>-camel-context.xml</strong> suffix
+          </p>
+          <p>
+            Deployment can contain multiple contexts
+          </p>
+          <p>
+            Contexts are injectable via CDI
+          </p>
+          <pre>
+            <code data-trim class="java" >
+@Resource(name = "java:jboss/camel/context/mycontext")
+CamelContext camelContext;
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Sample Context</h2>
+          <pre>
+            <code data-trim>
+&lt;subsystem xmlns="urn:jboss:domain:camel:1.0"&gt;
+   &lt;camelContext id="system-context-1"&gt;
+     &lt;![CDATA[
+     &lt;route&gt;
+       &lt;from uri="direct:start"/&gt;
+       &lt;transform&gt;
+         &lt;simple&gt;Hello #{body}&lt;/simple&gt;
+       &lt;/transform&gt;
+     &lt;/route&gt;
+     ]]&gt;
+   &lt;/camelContext&gt;
+&lt;/subsystem&gt;
+            </code>
+          </pre>
+        </section>
+      </section>
+
+      <section>
+        <h2>Management Console</h2>
+        <p>
+          Based on HawtIO
+        </p>
+        <p>
+          Full Management of Camel
+        </p>
+        <p>
+          <ul>
+            <li>
+              Start/Stop Routes
+            </li>
+            <li>
+              Manage Contexts
+            </li>
+            <li>
+              Debug and Monitor Message Flows
+            </li>
+            <li>
+              Etc...
+            </li>
+          </ul>
+        </p>
+        <img src="images/hawtio-camel-01.png" width="100%"/>
+      </section>
+
+      <section>
+        <h2>Arquillian Support</h2>
+        <p>
+          Uses WildFly Arquillian Managed Container
+        </p>
+        <p>
+          Uses Custom Test Enrichers
+        </p>
+        <p>
+          Allows Injection of WildFly Camel Specific Types
+        </p>
+        <pre>
+          <code data-trim class="java" >
+@ArquillianResource
+CamelContextFactory contextFactory;
+
+@ArquillianResource
+CamelContextRegistry contextRegistry;
+          </code>
+        </pre>
+      </section>
+
+      <section>
+        <h2>JEE Integration</h2>
+        <p>
+          Supports all Major JEE Standards
+        </p>
+        <p>
+          <ul>
+            <li>CDI</li>
+            <li>JAX-RS</li>
+            <li>JAX-WS</li>
+            <li>JMS</li>
+            <li>JMX</li>
+            <li>JNDI</li>
+            <li>JPA</li>
+          </ul>
+        </p>
+        <p>
+          Relies on Existing Camel JEE Related Components
+        </p>
+      </section>
+
+      <section>
+        <h2>Building a Route</h2>
+        <p>
+          Routes Automatically Started at Runtime
+        </p>
+        <p>
+          No Need to Manually Manage Routes or Add to Context
+        </p>
+        <pre>
+          <code data-trim class="java" >
+  @Startup
+  @ApplicationScoped
+  @ContextName("cdi-context")
+  public class MyRouteBuilder extends RouteBuilder {
+
+      @Override
+      public void configure() throws Exception {
+          from("direct:start").transform(body().prepend("Hi"));
+      }
+  }
+          </code>
+        </pre>
+      </section>
+
+      <section data-background="images/rh_bg_2.png" data-background-size="contain">
+        <h1>Impact on Red Hat Products</h1>
+      </section>
+
+      <section>
+        <h2>Camel on EAP Subsystem</h2>
+        <p>
+          Full EAP Subsystem
+        </p>
+        <p>
+          Full Integration with JEE Standards
+        </p>
+        <p>
+          Updated JEE Related Camel Components
+        </p>
+        <p>
+          Full Arquillian Support
+        </p>
+        <p>
+          Official Support in future Fuse Release
+        </p>
+        <p>
+          <ul>
+            <li>
+              Targeted for Fuse 6.2
+            </li>
+          </ul>
+        </p>
+      </section>
+
+      <section data-background="images/rh_bg_8.png" data-background-size="contain">
+        <h1>Questions?</h1>
+        <br/><br/><br/><br/>
+        <p style="text-align: center;">
+          Presentation is Available At
+        </p>
+        <p style="text-align: center;">
+          <a class="titleLink" href="https://github.com/bsaunder/camel_on_wildfly" target="_BLANK">https://github.com/bsaunder/camel_on_wildfly</a>
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", init, false);
+
+    function init() {
+      console.log("Running Custom Init Code");
+
+      var cblocks = document.querySelectorAll("pre code");
+
+      if(cblocks.length) {
+        for(var i=0, len=cblocks.length; i<len; i++) {
+          var dom = cblocks[i];
+          var html = dom.innerHTML;
+          html = html.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+          dom.innerHTML = html;
+        }
+      }
+
+      console.log("Initializing Reveal")
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+        height: 1024,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        // Visit http://revealjs.jit.su/token to generate your secret and id
+        multiplex: {
+          secret: null,
+          id: '',
+          url: 'revealjs.jit.su:80'
+        },
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        // Optional reveal.js plugins
+        dependencies: [
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true },
+        { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    }
+
+  </script>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+</body>
+
+</html>
