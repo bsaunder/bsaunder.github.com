@@ -34,3 +34,6 @@ Now that you have an idea of what JBoss Fuse is and what the offerings are, you 
 ## Tooling Needs
 
 When it comes to tooling and general development with JBoss Fuse products, there are not a lot of required tools. Your development tool set will largely be the same as it always has. However if you are not currently using [Apache Maven](https://maven.apache.org/) for your built tool, you will need to start. This is particularly true if your are going to be using JBoss Fuse or JBoss Fuse for xPaaS, as all of the plugins needed to build the deployables are Apache Maven plugins. While it is possible to build them without, I strongly advise against it. One other optional tool that you should consider adopting however is [JBoss Developer Studio](http://www.jboss.org/products/devstudio/overview/) (JBDS). JBoss Developer Studio is based on the Eclipse IDE and has been specifically tuned for developing with JBoss products. For JBoss Fuse in particular it provides a number of tools such as Camel editors, Fuse debuggers, and graphical data mapping.
+
+
+This post was also published on the [Red Hat Developers Blog](https://developers.redhat.com/blog/2016/07/29/considerations-for-implementing-jboss-fuse-in-your-enterprise/).
